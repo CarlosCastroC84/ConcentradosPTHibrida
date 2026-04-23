@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============ APP GENERAL ============ -->
+    <string name="app_name">Concentrados Puente Tierra</string>
+    <string name="app_slogan">Cultivando el Futuro</string>
+    <string name="app_tagline">Gestión agrícola avanzada, con la precisión que la tierra merece.</string>
+    <string name="brand_name">Puente Tierra</string>
+    <string name="brand_description">Bienvenido de nuevo a su gestión rural.</string>
+    <string name="logo_content_description">Logo Puente Tierra</string>
+
+    <!-- ============ NAVEGACIÓN INFERIOR ============ -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_catalog">Catálogo</string>
+    <string name="nav_cart">Carrito</string>
+    <string name="nav_profile">Perfil</string>
+
+    <!-- ============ NAVEGACIÓN ADMIN ============ -->
+    <string name="nav_admin_dashboard">Dashboard</string>
+    <string name="nav_admin_users">Usuarios</string>
+    <string name="nav_admin_products">Productos</string>
+    <string name="nav_admin_reports">Reportes</string>
+    <string name="nav_admin_settings">Configuración</string>
+
+    <!-- ============ ACCIONES GLOBALES ============ -->
+    <string name="action_back">Volver</string>
+    <string name="action_search">Buscar</string>
+    <string name="search_hint">Buscar productos…</string>
+    <string name="action_filter">Filtrar</string>
+    <string name="action_see_all">Ver Todo</string>
+    <string name="action_add">Añadir</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_delete">Eliminar</string>
+    <string name="action_share">Compartir</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_confirm">Confirmar</string>
+    <string name="action_continue">Continuar</string>
+    <string name="action_notifications">Notificaciones</string>
+    <string name="action_download">Descargar</string>
+    <string name="action_more_options">Más opciones</string>
+
+    <!-- ============ LOGIN ============ -->
+    <string name="login_hero_title">Cultivando el Futuro</string>
+    <string name="login_hero_subtitle">Gestión agrícola avanzada, con la precisión que la tierra merece.</string>
+    <string name="login_welcome">Bienvenido de nuevo a su gestión rural.</string>
+    <string name="login_label_email">Correo Electrónico</string>
+    <string name="login_hint_email">ejemplo@finca.com</string>
+    <string name="login_label_password">Contraseña</string>
+    <string name="login_hint_password">••••••••</string>
+    <string name="login_forgot_password">¿Olvidó su contraseña?</string>
+    <string name="login_btn_enter">Ingresar</string>
+    <string name="login_or_quick_access">o ingreso rápido</string>
+    <string name="login_btn_biometric">Usar Biometría</string>
+    <string name="login_no_account">¿No tienes una cuenta?</string>
+    <string name="login_create_account">Crear Cuenta</string>
+    <string name="login_label_access_type">Tipo de acceso</string>
+
+    <!-- ============ HOME / INICIO ============ -->
+    <string name="home_hero_title">Alimento Premium para Animales</string>
+    <string name="home_hero_subtitle">Asegura la mejor nutrición para tu ganado con nuestras nuevas fórmulas concentradas.</string>
+    <string name="home_section_new_products">Nuevos Productos</string>
+    <string name="home_section_categories">Categorías</string>
+    <string name="home_section_featured">Productos Destacados</string>
+
+    <!-- ============ CATÁLOGO ============ -->
+    <string name="catalog_title">Catálogo</string>
+    <string name="catalog_filter_all">Todos</string>
+    <string name="catalog_filter_concentrados">Concentrados</string>
+    <string name="catalog_filter_fertilizantes">Fertilizantes</string>
+    <string name="catalog_filter_semillas">Semillas</string>
+    <string name="catalog_filter_herramientas">Herramientas</string>
+    <string name="catalog_empty_message">No se encontraron productos</string>
+    <string name="catalog_filter_sales">Sales</string>
+    <string name="catalog_label_price_per_unit">Precio x Bulto</string>
+    <string name="catalog_currency">COP</string>
+    <string name="catalog_featured_badge">Destacado</string>
+
+    <!-- ============ CATEGORÍAS ============ -->
+    <string name="category_concentrados">Concentrados</string>
+    <string name="category_fertilizantes">Fertilizantes</string>
+    <string name="category_semillas">Semillas</string>
+    <string name="category_herramientas">Herramientas</string>
+    <string name="category_sales">Sales</string>
+    <string name="category_alimento_animal">Alimento Animal</string>
+
+    <!-- ============ PRODUCTOS (datos de ejemplo) ============ -->
+    <string name="product_badge_premium">Premium</string>
+    <string name="product_badge_new">Nuevo</string>
+    <string name="product_label_sku">SKU:</string>
+    <string name="product_label_weight">40 KG</string>
+    <string name="product_label_brand">CONCENTRADOS PUENTE TIERRA</string>
+    <string name="product_label_available">disponibles</string>
+    <string name="product_action_add_to_cart">Añadir al carrito</string>
+    <string name="product_btn_add_cart">Agregar al Carrito</string>
+    <string name="product_action_wishlist">Agregar a favoritos</string>
+    <string name="product_section_description">Descripción</string>
+    <string name="product_label_quantity">CANTIDAD</string>
+    <string name="product_label_original_price">Precio original</string>
+
+    <!-- ============ CARRITO ============ -->
+    <string name="cart_title">Tu Cosecha</string>
+    <string name="cart_section_summary">Resumen del Pedido</string>
+    <string name="cart_label_subtotal">Subtotal</string>
+    <string name="cart_label_shipping">Envío (Estimado)</string>
+    <string name="cart_label_taxes">Impuestos</string>
+    <string name="cart_label_total">Total</string>
+    <string name="cart_btn_checkout">Proceder al Pago</string>
+    <string name="cart_item_unit">Bulto 40kg</string>
+    <string name="cart_empty_title">Tu carrito está vacío</string>
+    <string name="cart_empty_subtitle">Agrega productos del catálogo para comenzar tu pedido.</string>
+
+    <!-- ============ CHECKOUT ============ -->
+    <string name="checkout_title">Confirmar Pedido</string>
+    <string name="checkout_label_total_to_pay">Total a pagar</string>
+    <string name="checkout_label_items_in_cart">artículos en tu carrito</string>
+    <string name="checkout_section_contact">Información de Contacto</string>
+    <string name="checkout_label_full_name">Nombre Completo</string>
+    <string name="checkout_hint_full_name">Ej. Carlos Martínez</string>
+    <string name="checkout_label_phone">Teléfono Celular</string>
+    <string name="checkout_hint_phone">Ej. 55 1234 5678</string>
+    <string name="checkout_section_delivery">Entrega</string>
+    <string name="checkout_select_location">Seleccionar Ubicación</string>
+    <string name="checkout_location_hint">Toca para fijar el punto exacto de entrega en el mapa de tu finca o rancho.</string>
+    <string name="checkout_label_address">Dirección Detallada / Indicaciones</string>
+    <string name="checkout_hint_address">Ej. Km 14 vía principal, portón verde junto al establo mayor.</string>
+    <string name="checkout_section_payment">Método de Pago</string>
+    <string name="checkout_payment_cod">Pago contra entrega</string>
+    <string name="checkout_btn_confirm">Confirmar Pedido</string>
+
+    <!-- ============ PEDIDOS ============ -->
+    <string name="orders_title">Panel de Pedidos</string>
+    <string name="order_detail_section_products">Productos</string>
+    <string name="orders_subtitle">Administre y rastree sus envíos agrícolas.</string>
+    <string name="orders_filter_all">Todos</string>
+    <string name="orders_filter_pending">Pendiente</string>
+    <string name="orders_filter_in_progress">En Proceso</string>
+    <string name="orders_filter_delivered">Entregado</string>
+    <string name="orders_label_total">Total</string>
+
+    <!-- ============ DETALLE PEDIDO ============ -->
+    <string name="order_detail_title">Detalle de Pedido</string>
+    <string name="order_detail_current_status">Estado Actual</string>
+    <string name="order_detail_last_update">Última actualización:</string>
+    <string name="order_detail_status_pending">Pendiente</string>
+    <string name="order_detail_status_in_progress">En Proceso</string>
+    <string name="order_detail_status_delivered">Entregado</string>
+    <string name="order_detail_status_cancelled">Cancelado</string>
+    <string name="order_detail_section_client">Cliente</string>
+    <string name="order_detail_label_phone">Teléfono</string>
+    <string name="order_detail_label_email">Correo Electrónico</string>
+    <string name="order_detail_section_delivery">Dirección de Entrega</string>
+    <string name="order_detail_label_estimated_date">Fecha Estimada</string>
+    <string name="order_detail_label_notes">Notas del Cliente</string>
+    <string name="order_detail_section_items">Artículos del Pedido</string>
+    <string name="order_detail_label_quantity_abbr">Cant:</string>
+    <string name="order_detail_label_sku">SKU:</string>
+
+    <!-- ============ INVENTARIO ============ -->
+    <string name="inventory_title">Gestión de Inventario</string>
+    <string name="inventory_subtitle">Administre sus productos agrícolas, supervise los niveles de existencias y actualice los listados.</string>
+    <string name="inventory_label_units">bultos</string>
+    <string name="inventory_label_units_short">unidades</string>
+    <string name="inventory_btn_add_product">Añadir Producto</string>
+    <string name="inventory_status_ok">Disponible</string>
+    <string name="inventory_status_low">Stock Bajo</string>
+
+    <!-- ============ GESTIÓN PRODUCTOS (admin) ============ -->
+    <string name="manage_products_title">La Cosecha</string>
+    <string name="manage_products_subtitle">Nuevo Registro</string>
+    <string name="manage_products_form_hint">Ingrese los detalles del producto para catalogarlo en el sistema.</string>
+    <string name="manage_products_upload_photo">Subir Fotografía</string>
+    <string name="manage_products_label_name">Nombre del Producto</string>
+    <string name="manage_products_label_category">Categoría</string>
+    <string name="manage_products_label_price">Precio (USD)</string>
+    <string name="manage_products_label_stock">Stock (Unid.)</string>
+    <string name="manage_products_label_active_catalog">Catálogo Activo</string>
+    <string name="manage_products_filter_all">Todos</string>
+    <string name="manage_products_filter_low_stock">Bajo Stock</string>
+    <string name="manage_products_label_stock_count">Stock:</string>
+
+    <!-- ============ GESTIÓN USUARIOS ============ -->
+    <string name="manage_users_title">Gestión de Usuarios</string>
+    <string name="manage_users_subtitle">Administra los roles, estados y accesos del personal y clientes.</string>
+    <string name="manage_users_filter_all">Todos</string>
+    <string name="manage_users_filter_sellers">Vendedores</string>
+    <string name="manage_users_filter_buyers">Compradores</string>
+    <string name="manage_users_status_active">Activo</string>
+    <string name="manage_users_status_inactive">Inactivo</string>
+    <string name="manage_users_role_seller">Vendedor</string>
+    <string name="manage_users_role_buyer">Comprador</string>
+    <string name="manage_users_role_admin">Administrador</string>
+
+    <!-- ============ REPORTES DE VENTAS ============ -->
+    <string name="sales_reports_title">Reportes de Ventas</string>
+    <string name="sales_reports_subtitle">Resumen Mensual y métricas agrícolas.</string>
+    <string name="sales_reports_kpi_total_sales">Ventas Totales</string>
+    <string name="sales_reports_kpi_orders">Pedidos Procesados</string>
+    <string name="sales_reports_kpi_avg_order">Valor Promedio de Pedido</string>
+    <string name="sales_reports_kpi_returns">Devoluciones</string>
+    <string name="sales_reports_section_revenue">Resumen de Ingresos</string>
+    <string name="sales_reports_section_top_products">Productos Principales</string>
+    <string name="sales_reports_label_units_sold">unidades vendidas</string>
+    <string name="sales_reports_trend_stable">Estable</string>
+    <string name="sales_reports_trend_up_prev_month">del mes pasado</string>
+    <string name="sales_reports_trend_vs_prev_month">vs mes anterior</string>
+
+    <!-- ============ REPORTES DE NEGOCIO ============ -->
+    <string name="business_reports_title">Rendimiento</string>
+    <string name="business_reports_subtitle">Visión general de métricas comerciales.</string>
+    <string name="business_reports_filter_today">Hoy</string>
+    <string name="business_reports_filter_week">Semana</string>
+    <string name="business_reports_filter_month">Mes</string>
+    <string name="business_reports_kpi_sales">Total Ventas</string>
+    <string name="business_reports_kpi_orders">Pedidos Completados</string>
+    <string name="business_reports_kpi_new_users">Nuevos Usuarios</string>
+    <string name="business_reports_section_evolution">Evolución de Ventas</string>
+    <string name="business_reports_section_by_category">Por Categoría</string>
+
+    <!-- ============ DASHBOARD ADMIN ============ -->
+    <string name="dashboard_title">Resumen General</string>
+    <string name="dashboard_welcome">Bienvenido al panel de administración.</string>
+    <string name="dashboard_btn_new_report">Nuevo Reporte</string>
+    <string name="dashboard_kpi_total_sales">Ventas Totales</string>
+    <string name="dashboard_kpi_new_orders">Pedidos Nuevos</string>
+    <string name="dashboard_kpi_new_orders_badge">NUEVOS</string>
+    <string name="dashboard_kpi_active_users">Usuarios Activos</string>
+    <string name="dashboard_kpi_weekly_sales">Ventas Semanales</string>
+    <string name="dashboard_quick_access">Acceso Rápido</string>
+    <string name="dashboard_quick_products">Gestión de Productos</string>
+    <string name="dashboard_quick_products_sub">Inventario y precios</string>
+    <string name="dashboard_quick_users">Gestión de Usuarios</string>
+    <string name="dashboard_quick_users_sub">Roles y permisos</string>
+    <string name="dashboard_section_recent_orders">Pedidos Recientes</string>
+    <string name="dashboard_order_time_2h">Hace 2 horas</string>
+    <string name="dashboard_order_time_5h">Hace 5 horas</string>
+
+    <!-- ============ PERFIL ============ -->
+    <string name="profile_title">Mi Perfil</string>
+    <string name="profile_action_change_photo">Cambiar foto</string>
+    <string name="profile_section_my_orders">Mis Pedidos</string>
+    <string name="profile_section_orders_subtitle">Últimas transacciones</string>
+    <string name="profile_action_see_all_orders">Ver todos</string>
+    <string name="profile_section_addresses">Mis Direcciones</string>
+    <string name="profile_action_add_address">Añadir dirección</string>
+    <string name="profile_address_default_badge">Predet.</string>
+    <string name="profile_section_settings">Configuración</string>
+    <string name="profile_setting_payment_methods">Métodos de Pago</string>
+    <string name="profile_setting_security">Seguridad y Privacidad</string>
+    <string name="profile_setting_help">Centro de Ayuda</string>
+    <string name="profile_action_logout">Cerrar sesión</string>
+    <string name="profile_setting_edit_profile">Editar Perfil</string>
+    <string name="profile_edit_dialog_title">Editar Perfil</string>
+    <string name="profile_edit_hint_name">Nombre completo</string>
+    <string name="profile_edit_hint_phone">Teléfono de contacto</string>
+    <string name="profile_edit_hint_address">Dirección de envío</string>
+    <string name="profile_edit_success">Perfil actualizado correctamente</string>
+    <string name="cd_user_avatar">Foto de perfil del usuario</string>
+    <string name="profile_edit_error">No se pudo actualizar el perfil</string>
+    <string name="profile_order_status_on_the_way">En Camino</string>
+    <string name="profile_order_status_delivered">Entregado</string>
+
+    <!-- ============ ESTADOS VACÍOS / ERRORES ============ -->
+    <string name="empty_state_title">Sin resultados</string>
+    <string name="empty_state_subtitle">No hay elementos disponibles en este momento.</string>
+    <string name="error_generic">Algo salió mal. Por favor intenta de nuevo.</string>
+    <string name="error_network">Sin conexión a internet.</string>
+    <string name="loading">Cargando…</string>
+
+    <!-- ============ ACCESIBILIDAD (content descriptions) ============ -->
+    <string name="cd_product_image">Imagen del producto</string>
+    <string name="cd_map_view">Vista del mapa</string>
+    <string name="cd_btn_add_to_cart">Añadir al carrito</string>
+    <string name="cd_btn_remove_from_cart">Eliminar del carrito</string>
+    <string name="cd_btn_increase_quantity">Aumentar cantidad</string>
+    <string name="cd_btn_decrease_quantity">Disminuir cantidad</string>
+    <string name="cd_btn_wishlist">Agregar a favoritos</string>
+
+    <!-- ============ MESES (para gráficas de reportes) ============ -->
+    <string name="month_jan">Ene</string>
+    <string name="month_feb">Feb</string>
+    <string name="month_mar">Mar</string>
+    <string name="month_apr">Abr</string>
+    <string name="month_may">May</string>
+    <string name="month_jun">Jun</string>
+    <string name="month_jul">Jul</string>
+    <string name="month_aug">Ago</string>
+    <string name="month_sep">Sep</string>
+    <string name="month_oct">Oct</string>
+    <string name="month_nov">Nov</string>
+    <string name="month_dec">Dic</string>
+</resources>

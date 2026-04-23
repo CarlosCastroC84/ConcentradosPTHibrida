@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        android:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/detalle_pedido_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_app_bar_height"
+            app:title="@string/order_detail_title"
+            app:titleTextAppearance="@style/TextAppearance.App.HeadlineSmall"
+            app:navigationIcon="@android:drawable/ic_menu_revert"
+            app:navigationContentDescription="@string/action_back" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ProgressBar
+        android:id="@+id/detalle_pedido_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <TextView
+        android:id="@+id/detalle_pedido_tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/spacing_xl"
+        android:textAppearance="@style/TextAppearance.App.BodySmall"
+        android:textColor="@color/on_surface_variant"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/detalle_pedido_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/spacing_lg"
+            android:paddingBottom="@dimen/spacing_xl">
+
+            <!-- Card: info del pedido -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card.Surface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
+
+                    <!-- ID + estado -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/detalle_pedido_id"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textAppearance="@style/TextAppearance.App.Label"
+                            android:fontFamily="@font/manrope"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary" />
+
+                        <TextView
+                            android:id="@+id/detalle_pedido_estado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="@dimen/spacing_sm"
+                            android:paddingVertical="@dimen/spacing_xxs"
+                            android:textAppearance="@style/TextAppearance.App.LabelSmall"
+                            android:fontFamily="@font/manrope"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_cart_badge" />
+                    </LinearLayout>
+
+                    <!-- Fecha -->
+                    <TextView
+                        android:id="@+id/detalle_pedido_fecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_sm"
+                        android:textAppearance="@style/TextAppearance.App.BodySmall"
+                        android:textColor="@color/on_surface_variant"
+                        android:fontFamily="@font/inter" />
+
+                    <!-- Dirección -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:layout_marginVertical="@dimen/spacing_md"
+                        android:background="@color/surface_container_high" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/checkout_label_address"
+                        android:textAppearance="@style/TextAppearance.App.LabelSmall"
+                        android:textColor="@color/on_surface_variant"
+                        android:fontFamily="@font/manrope" />
+
+                    <TextView
+                        android:id="@+id/detalle_pedido_direccion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xxs"
+                        android:textAppearance="@style/TextAppearance.App.Body"
+                        android:fontFamily="@font/inter" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Sección: Productos -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xl"
+                android:text="@string/order_detail_section_products"
+                android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+                android:fontFamily="@font/noto_serif"
+                android:textStyle="bold" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card.Surface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/detalle_pedido_rv_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/spacing_lg"
+                    android:paddingTop="@dimen/spacing_sm"
+                    android:paddingBottom="@dimen/spacing_sm"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card: resumen de totales -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card.Surface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
+
+                    <!-- Subtotal -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cart_label_subtotal"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:textColor="@color/on_surface_variant"
+                            android:fontFamily="@font/inter" />
+
+                        <TextView
+                            android:id="@+id/detalle_pedido_subtotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:fontFamily="@font/inter" />
+                    </LinearLayout>
+
+                    <!-- IVA -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cart_label_taxes"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:textColor="@color/on_surface_variant"
+                            android:fontFamily="@font/inter" />
+
+                        <TextView
+                            android:id="@+id/detalle_pedido_iva"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:fontFamily="@font/inter" />
+                    </LinearLayout>
+
+                    <!-- Divisor -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:layout_marginVertical="@dimen/spacing_md"
+                        android:background="@color/surface_container_high" />
+
+                    <!-- Total -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cart_label_total"
+                            android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+                            android:fontFamily="@font/noto_serif"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/detalle_pedido_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.App.Price"
+                            android:fontFamily="@font/noto_serif"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

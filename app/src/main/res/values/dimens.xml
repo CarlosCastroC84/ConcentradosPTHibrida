@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ======== CORNER RADIUS ======== -->
+    <!-- Botones principales, BottomNav -->
+    <dimen name="corner_radius_xl">24dp</dimen>
+    <!-- Cards de productos -->
+    <dimen name="corner_radius_lg">16dp</dimen>
+    <!-- Inputs, secciones internas -->
+    <dimen name="corner_radius_md">12dp</dimen>
+    <!-- Badges, chips pequeños -->
+    <dimen name="corner_radius_sm">8dp</dimen>
+    <!-- Full round -->
+    <dimen name="corner_radius_full">999dp</dimen>
+
+    <!-- ======== ESPACIADO (SPACING) ======== -->
+    <dimen name="spacing_xxs">2dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_xxl">48dp</dimen>
+
+    <!-- ======== PADDING DE PANTALLA ======== -->
+    <dimen name="screen_horizontal_padding">16dp</dimen>
+    <dimen name="screen_top_padding">16dp</dimen>
+
+    <!-- ======== TOP APP BAR ======== -->
+    <dimen name="top_app_bar_height">64dp</dimen>
+    <dimen name="top_app_bar_icon_size">48dp</dimen>
+
+    <!-- ======== BOTTOM NAVIGATION ======== -->
+    <dimen name="bottom_nav_height">80dp</dimen>
+    <dimen name="bottom_nav_corner_top">24dp</dimen>
+
+    <!-- ======== BOTONES ======== -->
+    <dimen name="btn_height_primary">56dp</dimen>
+    <dimen name="btn_height_secondary">48dp</dimen>
+    <dimen name="btn_icon_size">24dp</dimen>
+    <dimen name="btn_fab_size">56dp</dimen>
+
+    <!-- ======== CARDS ======== -->
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_image_height">180dp</dimen>
+
+    <!-- ======== INPUTS ======== -->
+    <dimen name="input_height">56dp</dimen>
+    <dimen name="input_icon_size">24dp</dimen>
+    <dimen name="input_horizontal_padding">16dp</dimen>
+
+    <!-- ======== ÍCONOS ======== -->
+    <dimen name="icon_sm">16dp</dimen>
+    <dimen name="icon_md">24dp</dimen>
+    <dimen name="icon_lg">32dp</dimen>
+    <dimen name="icon_xl">48dp</dimen>
+
+    <!-- ======== BADGES Y CHIPS ======== -->
+    <dimen name="badge_horizontal_padding">8dp</dimen>
+    <dimen name="badge_vertical_padding">4dp</dimen>
+    <dimen name="chip_horizontal_padding">12dp</dimen>
+
+    <!-- ======== PRODUCTO CARD ======== -->
+    <dimen name="product_card_image_size">140dp</dimen>
+    <dimen name="product_card_mini_image">80dp</dimen>
+
+    <!-- ======== TEXTO ======== -->
+    <dimen name="text_price_large">28sp</dimen>
+    <dimen name="text_price_medium">20sp</dimen>
+    <dimen name="text_headline_large">32sp</dimen>
+    <dimen name="text_headline_medium">24sp</dimen>
+    <dimen name="text_headline_small">20sp</dimen>
+    <dimen name="text_body_large">16sp</dimen>
+    <dimen name="text_body_medium">14sp</dimen>
+    <dimen name="text_body_small">12sp</dimen>
+    <dimen name="text_label">11sp</dimen>
+
+    <!-- ======== ELEVATION ======== -->
+    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_bottom_nav">8dp</dimen>
+    <dimen name="elevation_button">4dp</dimen>
+    <dimen name="elevation_top_bar">0dp</dimen>
+
+    <!-- ======== LOGO ======== -->
+    <dimen name="logo_height">80dp</dimen>
+    <dimen name="logo_height_small">48dp</dimen>
+
+    <!-- ======== AVATAR ======== -->
+    <dimen name="avatar_large">96dp</dimen>
+    <dimen name="avatar_medium">48dp</dimen>
+    <dimen name="avatar_small">32dp</dimen>
+
+    <!-- ======== DIVIDER ======== -->
+    <dimen name="divider_height">1dp</dimen>
+</resources>

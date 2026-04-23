@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- PRIMARY: "El Suelo" — Terracota -->
+    <color name="primary">#A33900</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#C74E14</color>
+    <color name="on_primary_container">#FFFBFF</color>
+    <color name="primary_fixed">#FFDBCE</color>
+    <color name="primary_fixed_dim">#FFB599</color>
+    <color name="on_primary_fixed">#370E00</color>
+    <color name="on_primary_fixed_variant">#7F2A00</color>
+    <color name="inverse_primary">#FFB599</color>
+
+    <!-- SECONDARY: "El Crecimiento" — Verde Oscuro -->
+    <color name="secondary">#1B6D24</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="secondary_container">#A0F499</color>
+    <color name="on_secondary_container">#207128</color>
+    <color name="secondary_fixed">#A3F69C</color>
+    <color name="secondary_fixed_dim">#87D982</color>
+    <color name="on_secondary_fixed">#002204</color>
+    <color name="on_secondary_fixed_variant">#005312</color>
+
+    <!-- TERTIARY: "La Cosecha" — Ámbar Dorado -->
+    <color name="tertiary">#7F5300</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="tertiary_container">#9C6A1A</color>
+    <color name="on_tertiary_container">#FFFBFF</color>
+    <color name="tertiary_fixed">#FFDDB4</color>
+    <color name="tertiary_fixed_dim">#F9BB65</color>
+    <color name="on_tertiary_fixed">#291800</color>
+    <color name="on_tertiary_fixed_variant">#633F00</color>
+
+    <!-- SURFACE HIERARCHY -->
+    <color name="background">#FAF9F5</color>
+    <color name="on_background">#1B1C1A</color>
+    <color name="surface">#FAF9F5</color>
+    <color name="surface_bright">#FAF9F5</color>
+    <color name="surface_dim">#DBDAD6</color>
+    <color name="surface_container_lowest">#FFFFFF</color>
+    <color name="surface_container_low">#F4F4F0</color>
+    <color name="surface_container">#EFEEEA</color>
+    <color name="surface_container_high">#E9E8E4</color>
+    <color name="surface_container_highest">#E3E2DF</color>
+    <color name="on_surface">#1B1C1A</color>
+    <color name="on_surface_variant">#584239</color>
+    <color name="surface_variant">#E3E2DF</color>
+    <color name="surface_tint">#A73A00</color>
+
+    <!-- BORDES -->
+    <color name="outline">#8C7168</color>
+    <color name="outline_variant">#E0C0B4</color>
+
+    <!-- INVERSOS -->
+    <color name="inverse_surface">#2F312E</color>
+    <color name="inverse_on_surface">#F2F1ED</color>
+
+    <!-- ERROR -->
+    <color name="error">#BA1A1A</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="error_container">#FFDAD6</color>
+    <color name="on_error_container">#93000A</color>
+
+    <!-- ESTADOS DE PEDIDO -->
+    <color name="status_pending_bg">#FFF3E0</color>
+    <color name="status_pending_text">#E65100</color>
+    <color name="status_in_progress_bg">#E3F2FD</color>
+    <color name="status_in_progress_text">#1565C0</color>
+    <color name="status_delivered_bg">#E8F5E9</color>
+    <color name="status_delivered_text">#2E7D32</color>
+    <color name="status_cancelled_bg">#FFEBEE</color>
+    <color name="status_cancelled_text">#C62828</color>
+
+    <!-- GRADIENTE BOTÓN PRIMARIO -->
+    <color name="gradient_start">#A33900</color>
+    <color name="gradient_end">#C74E14</color>
+
+    <!-- SOMBRA CÁLIDA (overlay en cards) -->
+    <color name="shadow_tint">#0D584239</color>
+
+    <!-- LEGACY -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+</resources>

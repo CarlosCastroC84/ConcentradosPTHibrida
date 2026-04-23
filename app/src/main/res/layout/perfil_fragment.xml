@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/spacing_xl">
+
+        <!-- Header con foto y nombre -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="@dimen/spacing_lg"
+            android:paddingBottom="@dimen/spacing_lg"
+            android:background="@color/surface_container_low">
+
+            <FrameLayout
+                android:layout_width="@dimen/avatar_large"
+                android:layout_height="@dimen/avatar_large">
+
+                <ImageView
+                    android:id="@+id/perfil_avatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/cd_user_avatar"
+                    android:background="@color/surface_container" />
+
+                <!-- Botón cambiar foto -->
+                <ImageButton
+                    android:id="@+id/perfil_btn_change_photo"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/bg_chip_selected"
+                    android:contentDescription="@string/profile_action_change_photo"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:tint="@color/on_primary"
+                    android:padding="@dimen/spacing_xs" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/perfil_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+                android:fontFamily="@font/noto_serif"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:textAppearance="@style/TextAppearance.App.BodySmall"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/on_surface_variant" />
+        </LinearLayout>
+
+        <!-- Mis Pedidos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/profile_section_my_orders"
+                android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+                android:fontFamily="@font/noto_serif"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_see_all_orders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:gravity="center_vertical"
+                android:text="@string/profile_action_see_all_orders"
+                android:textAppearance="@style/TextAppearance.App.Label"
+                android:textColor="@color/primary"
+                android:fontFamily="@font/manrope"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="@string/profile_section_orders_subtitle"
+            android:textAppearance="@style/TextAppearance.App.BodySmall"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/on_surface_variant" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/perfil_rv_orders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false" />
+
+        <!-- Configuración -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:text="@string/profile_section_settings"
+            android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+            android:fontFamily="@font/noto_serif"
+            android:textStyle="bold" />
+
+        <!-- Editar Perfil -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/perfil_setting_edit_profile"
+            style="@style/Widget.App.Card.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_md"
+                android:text="@string/profile_setting_edit_profile"
+                android:textAppearance="@style/TextAppearance.App.Body"
+                android:fontFamily="@font/inter" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Métodos de Pago -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/perfil_setting_payment"
+            style="@style/Widget.App.Card.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_md"
+                android:text="@string/profile_setting_payment_methods"
+                android:textAppearance="@style/TextAppearance.App.Body"
+                android:fontFamily="@font/inter" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Seguridad -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/perfil_setting_security"
+            style="@style/Widget.App.Card.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_md"
+                android:text="@string/profile_setting_security"
+                android:textAppearance="@style/TextAppearance.App.Body"
+                android:fontFamily="@font/inter" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Centro de Ayuda -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/perfil_setting_help"
+            style="@style/Widget.App.Card.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_md"
+                android:text="@string/profile_setting_help"
+                android:textAppearance="@style/TextAppearance.App.Body"
+                android:fontFamily="@font/inter" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Botón Cerrar Sesión -->
+        <Button
+            android:id="@+id/perfil_btn_logout"
+            style="@style/Widget.App.Button.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height_primary"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:text="@string/profile_action_logout"
+            android:textColor="@color/error"
+            android:fontFamily="@font/manrope"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

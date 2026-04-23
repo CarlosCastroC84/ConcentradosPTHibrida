@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_admin_dashboard"
+        android:icon="@drawable/ic_nav_dashboard"
+        android:title="@string/nav_admin_dashboard" />
+    <item
+        android:id="@+id/nav_admin_ventas"
+        android:icon="@drawable/ic_nav_cart"
+        android:title="Ventas" />
+    <item
+        android:id="@+id/nav_admin_gestion_productos"
+        android:icon="@drawable/ic_nav_catalog"
+        android:title="@string/nav_admin_products" />
+    <item
+        android:id="@+id/nav_admin_gestion_usuarios"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="@string/nav_admin_users"
+        android:visible="false" />
+</menu>

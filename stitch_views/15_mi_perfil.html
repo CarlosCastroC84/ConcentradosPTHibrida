@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Perfil de Usuario - Puente Tierra</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e3e2df",
+                      "surface-container-highest": "#e3e2df",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-surface": "#1b1c1a",
+                      "outline-variant": "#e0c0b4",
+                      "surface": "#faf9f5",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#ffddb4",
+                      "tertiary-container": "#9c6a1a",
+                      "on-tertiary-fixed": "#291800",
+                      "on-tertiary-fixed-variant": "#633f00",
+                      "surface-tint": "#a73a00",
+                      "secondary-fixed": "#a3f69c",
+                      "on-background": "#1b1c1a",
+                      "on-primary-fixed": "#370e00",
+                      "primary-container": "#c74e14",
+                      "on-secondary-fixed": "#002204",
+                      "secondary-container": "#a0f499",
+                      "on-secondary-fixed-variant": "#005312",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#ffdbce",
+                      "secondary": "#1b6d24",
+                      "tertiary-fixed-dim": "#f9bb65",
+                      "inverse-on-surface": "#f2f1ed",
+                      "primary-fixed-dim": "#ffb599",
+                      "primary": "#a33900",
+                      "surface-container": "#efeeea",
+                      "surface-bright": "#faf9f5",
+                      "background": "#faf9f5",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#7f2a00",
+                      "surface-container-high": "#e9e8e4",
+                      "surface-dim": "#dbdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-container": "#207128",
+                      "outline": "#8c7168",
+                      "on-tertiary-container": "#fffbff",
+                      "secondary-fixed-dim": "#87d982",
+                      "surface-container-low": "#f4f4f0",
+                      "on-surface-variant": "#584239",
+                      "inverse-primary": "#ffb599",
+                      "on-primary-container": "#fffbff",
+                      "tertiary": "#7f5300",
+                      "inverse-surface": "#2f312e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": [
+                              "Noto Serif"
+                      ],
+                      "body": [
+                              "Inter"
+                      ],
+                      "label": [
+                              "Manrope"
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body h-full antialiased pb-32">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky bg-[#faf9f5]/80 dark:bg-stone-900/80 backdrop-blur-xl z-40 bg-[#f4f4f0] dark:bg-stone-800 flat no-line tonal-layering">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<button class="text-[#a33900] dark:text-orange-500 hover:bg-stone-200/50 dark:hover:bg-stone-700/50 transition-colors Active: opacity-70 scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<img alt="Puente Tierra" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujCZOvCUMSlD8k2tpmChReGh8cQsdGkinIFgASLEtFZ9Gwla2NbCR9RvU5GJpjTjm4k106gTXWB6YTyg-RbV246yjhNl4KaOU9m1Vmtdsu2lEYLHIF0Carx3ZVn-AFpbgJQdyFKMojkkAwiqg4OdY1u6CXTZEtk3UxJGfQl_KBOIAXVpladVr8EXWZqFz3VTIJ_eRF4r3Jxqv8hBiJL-IvCOujHjZTF_hExulBwo7LtcqPalrTNPU3wcU4kDbCNveM-eHEPYkDorQ"/>
+<button class="text-[#a33900] dark:text-orange-500 hover:bg-stone-200/50 dark:hover:bg-stone-700/50 transition-colors Active: opacity-70 scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+<!-- User Profile Header -->
+<section class="flex flex-col items-center mb-12">
+<div class="relative mb-6">
+<div class="w-32 h-32 rounded-full bg-surface-container-high overflow-hidden shadow-[0_24px_40px_-8px_rgba(88,66,57,0.05)] border-4 border-surface-container-lowest">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="portrait of a rugged male farmer outdoors with warm sunlight, wearing a casual shirt, earth tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1A83O2TgYULM79Ree6bnjX27c-Dq8HLN3MDIfKYZmiuCmwatgmt7vKCA24J74oYE90Oxj1Xq8iG0RjkXo-v2chkeAUubRcdYdcSPUkc9W82V0d6pKi7DEN5vxDo8ocxKCBV-8UJKeUpCRpqMZxrt0xuCmWI-NSWVS56G4wkc-PoSdyESDPBwGpGIEFGHJBJaW-tBskpZlyeky_OT6Sh0AIW8oFi6JNr_Sf2h2FlLoE3R6-1MXqX_qBESyAVO4WyyQcMFIQ7_c84c"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary p-3 rounded-full shadow-[0_8px_16px_-4px_rgba(163,57,0,0.3)] hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="photo_camera" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</button>
+</div>
+<h2 class="font-headline text-2xl font-bold text-on-surface mb-1">Mateo Silva</h2>
+<p class="font-body text-on-surface-variant text-sm mb-4">mateo.silva@finca.co</p>
+<button class="bg-surface-container-highest text-primary font-label font-semibold py-2 px-6 rounded-xl hover:bg-surface-dim transition-colors">
+                Editar Perfil
+            </button>
+</section>
+<!-- Bento Grid Layout for Sections -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Mis Pedidos Section (Larger/Prominent) -->
+<section class="md:col-span-2 bg-surface-container-low rounded-lg p-6 shadow-[0_24px_40px_-8px_rgba(88,66,57,0.04)]">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-1">Mis Pedidos</h3>
+<p class="font-body text-xs text-on-surface-variant">Últimas transacciones</p>
+</div>
+<button class="text-primary font-label text-sm font-semibold hover:text-primary-container transition-colors">Ver todos</button>
+</div>
+<div class="space-y-4">
+<!-- Order Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-4 flex items-center justify-between shadow-[0_8px_24px_-8px_rgba(88,66,57,0.03)]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-md bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<p class="font-label font-bold text-on-surface">Bulto de Vaca 20</p>
+<p class="font-body text-xs text-on-surface-variant">24 Oct, 2023 • 3 items</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline font-bold text-on-surface mb-1">$450.000</p>
+<span class="inline-block bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">En Camino</span>
+</div>
+</div>
+<!-- Order Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-4 flex items-center justify-between shadow-[0_8px_24px_-8px_rgba(88,66,57,0.03)]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-md bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</div>
+<div>
+<p class="font-label font-bold text-on-surface">Pedido #PT-8311</p>
+<p class="font-body text-xs text-on-surface-variant">12 Sep, 2023 • 12 items</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline font-bold text-on-surface mb-1">$1.200.000</p>
+<span class="inline-block bg-surface-container-high text-on-surface-variant font-label text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Entregado</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Mis Direcciones Section -->
+<section class="bg-surface-container-low rounded-lg p-6 shadow-[0_24px_40px_-8px_rgba(88,66,57,0.04)]">
+<div class="flex justify-between items-end mb-6">
+<h3 class="font-headline text-xl font-bold text-on-surface">Mis Direcciones</h3>
+<button class="text-primary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</button>
+</div>
+<div class="space-y-4">
+<!-- Address Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-4 border border-outline-variant/20 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="pl-2">
+<div class="flex justify-between items-start mb-1">
+<p class="font-label font-bold text-on-surface">Finca Principal</p>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase">Predet.</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant leading-tight">Vía La Mesa km 14<br/>Vereda San Javier<br/>Cundinamarca</p>
+</div>
+</div>
+<!-- Address Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-4 border border-outline-variant/20 hover:bg-surface-container transition-colors cursor-pointer">
+<p class="font-label font-bold text-on-surface mb-1">Bodega Acopio</p>
+<p class="font-body text-sm text-on-surface-variant leading-tight">Calle 45 # 12-89 Sur<br/>Zona Industrial<br/>Bogotá</p>
+</div>
+</div>
+</section>
+<!-- Settings / Quick Links (Added to balance the bento grid) -->
+<section class="bg-surface-container-low rounded-lg p-6 shadow-[0_24px_40px_-8px_rgba(88,66,57,0.04)] flex flex-col justify-between">
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-4">Configuración</h3>
+<ul class="space-y-3">
+<li>
+<a class="flex items-center justify-between text-on-surface hover:text-primary transition-colors py-2" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="payments">payments</span>
+<span class="font-label font-semibold text-sm">Métodos de Pago</span>
+</div>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between text-on-surface hover:text-primary transition-colors py-2" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="security">security</span>
+<span class="font-label font-semibold text-sm">Seguridad y Privacidad</span>
+</div>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between text-on-surface hover:text-primary transition-colors py-2" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
+<span class="font-label font-semibold text-sm">Centro de Ayuda</span>
+</div>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</li>
+</ul>
+</div>
+<button class="mt-6 w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-error-container text-on-error-container font-label font-bold text-sm hover:bg-error/20 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+                    Cerrar Sesión
+                </button>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pt-3 pb-8 fixed bottom-0 w-full rounded-t-[3rem] border-t-0 bg-[#faf9f5]/90 dark:bg-stone-900/90 backdrop-blur-2xl tonal-shift-from-surface-to-container-low shadow-[0_-8px_40px_-12px_rgba(88,66,57,0.08)]">
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-[#a33900] dark:hover:text-orange-300 transition-colors vibration-light scale-110 duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider text-[#a33900] dark:text-orange-500">Inicio</span>
+</button>
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-[#a33900] dark:hover:text-orange-300 transition-colors vibration-light scale-110 duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="potted_plant">potted_plant</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider text-[#a33900] dark:text-orange-500">Catálogo</span>
+</button>
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-[#a33900] dark:hover:text-orange-300 transition-colors vibration-light scale-110 duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider text-[#a33900] dark:text-orange-500">Carrito</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-[#a33900] text-white rounded-full px-5 py-2 transition-all duration-300 shadow-lg shadow-[#a33900]/20 hover:text-[#a33900] dark:hover:text-orange-300 transition-colors vibration-light scale-110 duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider text-white">Perfil</span>
+</button>
+</nav>
+</body></html>

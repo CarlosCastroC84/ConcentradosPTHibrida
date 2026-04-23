@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        android:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/catalogo_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_app_bar_height"
+            app:title="@string/catalog_title"
+            app:titleTextAppearance="@style/TextAppearance.App.HeadlineSmall" />
+
+        <!-- Barra de búsqueda -->
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/catalogo_search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginBottom="@dimen/spacing_sm"
+            android:hint="@string/search_hint"
+            android:fontFamily="@font/inter"
+            app:navigationIcon="@android:drawable/ic_menu_search" />
+
+        <!-- Chips de filtro -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingBottom="@dimen/spacing_sm"
+            android:clipToPadding="false"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/catalogo_chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/catalogo_chip_all"
+                    style="@style/Widget.App.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/catalog_filter_all"
+                    android:checked="true"
+                    android:fontFamily="@font/manrope" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/catalogo_chip_concentrados"
+                    style="@style/Widget.App.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/catalog_filter_concentrados"
+                    android:fontFamily="@font/manrope" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/catalogo_chip_fertilizantes"
+                    style="@style/Widget.App.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/catalog_filter_fertilizantes"
+                    android:fontFamily="@font/manrope" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/catalogo_chip_semillas"
+                    style="@style/Widget.App.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/catalog_filter_semillas"
+                    android:fontFamily="@font/manrope" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/catalogo_chip_herramientas"
+                    style="@style/Widget.App.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/catalog_filter_herramientas"
+                    android:fontFamily="@font/manrope" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Loading -->
+    <ProgressBar
+        android:id="@+id/catalogo_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <!-- Estado vacío / error -->
+    <TextView
+        android:id="@+id/catalogo_tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/spacing_xl"
+        android:textAppearance="@style/TextAppearance.App.BodySmall"
+        android:textColor="@color/on_surface_variant"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <!-- Grid de productos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/catalogo_rv_products"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/spacing_md"
+        android:paddingBottom="@dimen/spacing_xl"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <!-- SearchView overlay (M3) -->
+    <com.google.android.material.search.SearchView
+        android:id="@+id/catalogo_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="@string/search_hint"
+        android:fontFamily="@font/inter" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

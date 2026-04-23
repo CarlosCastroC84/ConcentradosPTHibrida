@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+
+    <!-- HOME -->
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.concentradospt.ui.home.HomeFragment"
+        android:label="@string/nav_home">
+        <action
+            android:id="@+id/action_home_to_detalle_producto"
+            app:destination="@id/nav_detalle_producto" />
+    </fragment>
+
+    <!-- CATÁLOGO -->
+    <fragment
+        android:id="@+id/nav_catalog"
+        android:name="com.example.concentradospt.ui.catalogo.CatalogoFragment"
+        android:label="@string/catalog_title">
+        <action
+            android:id="@+id/action_catalog_to_detalle_producto"
+            app:destination="@id/nav_detalle_producto" />
+    </fragment>
+
+    <!-- DETALLE PRODUCTO -->
+    <fragment
+        android:id="@+id/nav_detalle_producto"
+        android:name="com.example.concentradospt.ui.detalle.DetalleProductoFragment"
+        android:label="@string/product_section_description">
+        <argument
+            android:name="productoId"
+            app:argType="string"
+            android:defaultValue="" />
+        <action
+            android:id="@+id/action_detalle_to_carrito"
+            app:destination="@id/nav_cart" />
+    </fragment>
+
+    <!-- CARRITO -->
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.example.concentradospt.ui.carrito.CarritoFragment"
+        android:label="@string/nav_cart">
+        <action
+            android:id="@+id/action_cart_to_checkout"
+            app:destination="@id/nav_checkout" />
+    </fragment>
+
+    <!-- CHECKOUT -->
+    <fragment
+        android:id="@+id/nav_checkout"
+        android:name="com.example.concentradospt.ui.checkout.CheckoutFragment"
+        android:label="@string/checkout_title">
+        <action
+            android:id="@+id/action_checkout_to_pedidos"
+            app:destination="@id/nav_pedidos" />
+    </fragment>
+
+    <!-- PEDIDOS -->
+    <fragment
+        android:id="@+id/nav_pedidos"
+        android:name="com.example.concentradospt.ui.pedidos.PedidosFragment"
+        android:label="@string/orders_title">
+        <action
+            android:id="@+id/action_pedidos_to_detalle_pedido"
+            app:destination="@id/nav_detalle_pedido" />
+    </fragment>
+
+    <!-- DETALLE PEDIDO -->
+    <fragment
+        android:id="@+id/nav_detalle_pedido"
+        android:name="com.example.concentradospt.ui.pedidos.DetallePedidoFragment"
+        android:label="@string/order_detail_title">
+        <argument
+            android:name="pedidoId"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+    <!-- INVENTARIO -->
+    <fragment
+        android:id="@+id/nav_inventario"
+        android:name="com.example.concentradospt.ui.inventario.InventarioFragment"
+        android:label="@string/inventory_title" />
+
+    <!-- GESTIÓN PRODUCTOS -->
+    <fragment
+        android:id="@+id/nav_gestion_productos"
+        android:name="com.example.concentradospt.ui.admin.GestionProductosFragment"
+        android:label="@string/manage_products_title" />
+
+    <!-- GESTIÓN USUARIOS -->
+    <fragment
+        android:id="@+id/nav_gestion_usuarios"
+        android:name="com.example.concentradospt.ui.admin.GestionUsuariosFragment"
+        android:label="@string/manage_users_title" />
+
+    <!-- REPORTES VENTAS -->
+    <fragment
+        android:id="@+id/nav_reportes_ventas"
+        android:name="com.example.concentradospt.ui.reportes.ReportesVentasFragment"
+        android:label="@string/sales_reports_title" />
+
+    <!-- REPORTES NEGOCIO -->
+    <fragment
+        android:id="@+id/nav_reportes_negocio"
+        android:name="com.example.concentradospt.ui.reportes.ReportesNegocioFragment"
+        android:label="@string/business_reports_title" />
+
+    <!-- DASHBOARD ADMIN -->
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.example.concentradospt.ui.admin.DashboardFragment"
+        android:label="@string/dashboard_title">
+        <action
+            android:id="@+id/action_dashboard_to_gestion_productos"
+            app:destination="@id/nav_gestion_productos" />
+        <action
+            android:id="@+id/action_dashboard_to_gestion_usuarios"
+            app:destination="@id/nav_gestion_usuarios" />
+        <action
+            android:id="@+id/action_dashboard_to_reportes_ventas"
+            app:destination="@id/nav_reportes_ventas" />
+        <action
+            android:id="@+id/action_dashboard_to_pedidos"
+            app:destination="@id/nav_pedidos" />
+    </fragment>
+
+    <!-- PERFIL -->
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.concentradospt.ui.perfil.PerfilFragment"
+        android:label="@string/profile_title">
+        <action
+            android:id="@+id/action_perfil_to_pedidos"
+            app:destination="@id/nav_pedidos" />
+        <action
+            android:id="@+id/action_perfil_to_dashboard"
+            app:destination="@id/nav_dashboard" />
+        <action
+            android:id="@+id/action_perfil_to_detalle_pedido"
+            app:destination="@id/nav_detalle_pedido" />
+    </fragment>
+
+</navigation>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout - Puente Tierra</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e3e2df",
+                        "surface-container-highest": "#e3e2df",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1b1c1a",
+                        "outline-variant": "#e0c0b4",
+                        "surface": "#faf9f5",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffddb4",
+                        "tertiary-container": "#9c6a1a",
+                        "on-tertiary-fixed": "#291800",
+                        "on-tertiary-fixed-variant": "#633f00",
+                        "surface-tint": "#a73a00",
+                        "secondary-fixed": "#a3f69c",
+                        "on-background": "#1b1c1a",
+                        "on-primary-fixed": "#370e00",
+                        "primary-container": "#c74e14",
+                        "on-secondary-fixed": "#002204",
+                        "secondary-container": "#a0f499",
+                        "on-secondary-fixed-variant": "#005312",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#ffdbce",
+                        "secondary": "#1b6d24",
+                        "tertiary-fixed-dim": "#f9bb65",
+                        "inverse-on-surface": "#f2f1ed",
+                        "primary-fixed-dim": "#ffb599",
+                        "primary": "#a33900",
+                        "surface-container": "#efeeea",
+                        "surface-bright": "#faf9f5",
+                        "background": "#faf9f5",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#7f2a00",
+                        "surface-container-high": "#e9e8e4",
+                        "surface-dim": "#dbdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#207128",
+                        "outline": "#8c7168",
+                        "on-tertiary-container": "#fffbff",
+                        "secondary-fixed-dim": "#87d982",
+                        "surface-container-low": "#f4f4f0",
+                        "on-surface-variant": "#584239",
+                        "inverse-primary": "#ffb599",
+                        "on-primary-container": "#fffbff",
+                        "tertiary": "#7f5300",
+                        "inverse-surface": "#2f312e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Inter"],
+                        "label": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf9f5; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Noto Serif', serif; }
+        .font-label { font-family: 'Manrope', sans-serif; }
+        
+        /* Subtle diffuse shadow for floating elements */
+        .shadow-ambient {
+            box-shadow: 0 12px 32px -8px rgba(88, 66, 57, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col pb-24 md:pb-0">
+<!-- Top App Bar (Transactional, NO Navigation Cluster) -->
+<header class="sticky top-0 z-40 bg-surface/80 backdrop-blur-xl w-full flex items-center justify-between px-6 py-4">
+<button aria-label="Volver" class="flex items-center justify-center w-12 h-12 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<img alt="Distribuidora de Concentrados Puente Tierra" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujCZOvCUMSlD8k2tpmChReGh8cQsdGkinIFgASLEtFZ9Gwla2NbCR9RvU5GJpjTjm4k106gTXWB6YTyg-RbV246yjhNl4KaOU9m1Vmtdsu2lEYLHIF0Carx3ZVn-AFpbgJQdyFKMojkkAwiqg4OdY1u6CXTZEtk3UxJGfQl_KBOIAXVpladVr8EXWZqFz3VTIJ_eRF4r3Jxqv8hBiJL-IvCOujHjZTF_hExulBwo7LtcqPalrTNPU3wcU4kDbCNveM-eHEPYkDorQ"/>
+<div class="w-12 h-12"></div> <!-- Spacer for centering -->
+</header>
+<main class="flex-grow container mx-auto px-4 md:px-8 max-w-3xl pt-6 pb-32">
+<!-- Summary Header -->
+<div class="mb-10 text-center">
+<p class="font-body text-on-surface-variant text-sm mb-1">Total a pagar</p>
+<h2 class="font-headline text-5xl font-bold text-on-surface">$14,250</h2>
+<p class="font-body text-primary text-sm mt-2 font-medium">3 artículos en tu carrito</p>
+</div>
+<form action="#" class="space-y-8" method="POST">
+<!-- Contact Information Section -->
+<section class="bg-surface-container-low p-6 md:p-8 rounded-lg">
+<h3 class="font-headline text-xl font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="person">person</span>
+                    Información de Contacto
+                </h3>
+<div class="space-y-5">
+<!-- Soft Well Input: Nombre -->
+<div class="relative">
+<label class="absolute top-2 left-4 font-label text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider" for="name">Nombre Completo</label>
+<input class="w-full bg-surface-container-high border-0 rounded-md pt-7 pb-3 px-4 font-body text-on-surface focus:ring-2 focus:ring-primary focus:bg-primary-fixed transition-colors" id="name" name="name" placeholder="Ej. Carlos Martínez" type="text"/>
+</div>
+<!-- Soft Well Input: Teléfono -->
+<div class="relative">
+<label class="absolute top-2 left-4 font-label text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider" for="phone">Teléfono Celular</label>
+<input class="w-full bg-surface-container-high border-0 rounded-md pt-7 pb-3 px-4 font-body text-on-surface focus:ring-2 focus:ring-primary focus:bg-primary-fixed transition-colors" id="phone" name="phone" placeholder="Ej. 55 1234 5678" type="tel"/>
+</div>
+</div>
+</section>
+<!-- Location Section -->
+<section class="bg-surface-container-low p-6 md:p-8 rounded-lg relative overflow-hidden">
+<h3 class="font-headline text-xl font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="location_on">location_on</span>
+                    Entrega
+                </h3>
+<!-- Geolocation Card -->
+<button class="w-full text-left group" type="button">
+<div class="bg-surface-container-highest rounded-lg p-2 flex items-center gap-4 transition-transform group-active:scale-[0.98]">
+<!-- Map Thumbnail -->
+<div class="w-24 h-24 rounded-md overflow-hidden bg-surface-dim relative flex-shrink-0">
+<img alt="Map view" class="w-full h-full object-cover opacity-80 mix-blend-multiply" data-alt="stylized top down map view of a rural agricultural area with fields and small roads in warm earthy tones" data-location="Bogota" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_V84flmjGxiACVDWb8vLx1nODvJ3XICnRyBsrf5hIrFLZZe7Hcej566DlFsXovX2GVYMOxCb1w6upJ1Ghr11icqCwvAQ2k2XKwgd1OdfrAzRo-2eiCyVP94OHIT8qfYtV6TtlkVearrdZhN-wtr3OB6-NLtzWW6Cb-h54eGzC_9hnlzJDdgJ5GMH_XGSi2c0UhNtn2IHd8joAyLijO4DZqizJWrHUcsXNcd8t3c73PtVsoMKMMMMnTfeR0L1TDRFCyIfCeXL3iI4"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl drop-shadow-md" data-icon="pin_drop" data-weight="fill">pin_drop</span>
+</div>
+</div>
+<div class="flex-grow pr-4">
+<h4 class="font-label font-bold text-primary mb-1 group-hover:text-primary-container transition-colors">Seleccionar Ubicación</h4>
+<p class="font-body text-sm text-on-surface-variant line-clamp-2">Toca para fijar el punto exacto de entrega en el mapa de tu finca o rancho.</p>
+</div>
+<div class="pr-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</button>
+<div class="mt-6 space-y-5">
+<!-- Soft Well Input: Address Details -->
+<div class="relative">
+<label class="absolute top-2 left-4 font-label text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider" for="address">Dirección Detallada / Indicaciones</label>
+<textarea class="w-full bg-surface-container-high border-0 rounded-md pt-7 pb-3 px-4 font-body text-on-surface focus:ring-2 focus:ring-primary focus:bg-primary-fixed transition-colors resize-none" id="address" name="address" placeholder="Ej. Km 14 vía principal, portón verde junto al establo mayor." rows="3"></textarea>
+</div>
+</div>
+</section>
+<!-- Payment Method (Simplified for visual balance) -->
+<section class="bg-surface-container-low p-6 md:p-8 rounded-lg">
+<h3 class="font-headline text-xl font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+                    Método de Pago
+                </h3>
+<div class="bg-surface-container-highest rounded-md p-4 flex items-center justify-between border border-outline-variant/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="local_shipping">local_shipping</span>
+<span class="font-body text-on-surface font-medium">Pago contra entrega</span>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+</section>
+</form>
+</main>
+<!-- Floating Action Button / Bottom Bar for Checkout -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-2xl p-4 md:p-6 shadow-[0_-8px_40px_-12px_rgba(88,66,57,0.1)] border-t-0">
+<div class="container mx-auto max-w-3xl">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-label text-lg font-bold uppercase tracking-wider py-4 px-8 rounded-xl shadow-ambient hover:opacity-90 active:scale-[0.98] transition-all flex justify-center items-center gap-3" type="submit">
+<span>Confirmar Pedido</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

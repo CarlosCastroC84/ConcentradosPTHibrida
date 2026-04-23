@@ -1,0 +1,266 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Gestión de Inventario - Earthbound Editorial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;0,900;1,900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#1b6d24",
+                        "surface-bright": "#faf9f5",
+                        "surface-container-high": "#e9e8e4",
+                        "secondary-fixed-dim": "#87d982",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#f9bb65",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#207128",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-fixed-variant": "#005312",
+                        "primary": "#a33900",
+                        "on-primary-container": "#fffbff",
+                        "inverse-on-surface": "#f2f1ed",
+                        "surface-container": "#efeeea",
+                        "tertiary-container": "#9c6a1a",
+                        "background": "#faf9f5",
+                        "secondary-fixed": "#a3f69c",
+                        "on-secondary-fixed": "#002204",
+                        "primary-fixed": "#ffdbce",
+                        "tertiary-fixed": "#ffddb4",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#ffb599",
+                        "on-tertiary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#370e00",
+                        "inverse-surface": "#2f312e",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#584239",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#faf9f5",
+                        "outline-variant": "#e0c0b4",
+                        "outline": "#8c7168",
+                        "on-primary-fixed-variant": "#7f2a00",
+                        "on-surface": "#1b1c1a",
+                        "inverse-primary": "#ffb599",
+                        "primary-container": "#c74e14",
+                        "surface-variant": "#e3e2df",
+                        "on-tertiary-fixed-variant": "#633f00",
+                        "on-tertiary-fixed": "#291800",
+                        "secondary-container": "#a0f499",
+                        "surface-dim": "#dbdad6",
+                        "surface-container-low": "#f4f4f0",
+                        "surface-container-highest": "#e3e2df",
+                        "tertiary": "#7f5300",
+                        "surface-tint": "#a73a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Inter"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col md:pb-0 pb-28">
+<!-- TopAppBar -->
+<header class="bg-[#faf9f5]/80 dark:bg-stone-950/80 backdrop-blur-xl docked full-width top-0 shadow-none flex items-center justify-between px-6 py-4 w-full sticky z-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden ring-1 ring-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant" style="">person</span>
+</div>
+<h1 class="font-['Noto_Serif'] font-bold text-3xl tracking-tight text-[#a33900] dark:text-orange-500 italic" style=""><h1 class="font-['Noto_Serif'] font-bold text-3xl tracking-tight text-[#a33900] dark:text-orange-500 cursor-text" spellcheck="false" data-stitch-added-classes="cursor-text" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(163, 57, 0); font-style: normal; outline: none !important;">Puente Tierra</h1></h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors text-stone-500 dark:text-stone-400" style="">
+<span class="material-symbols-outlined" data-icon="settings" style="">settings</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+<div class="mb-10 lg:mb-16">
+<h2 class="font-headline text-5xl lg:text-7xl font-bold text-primary tracking-tight mb-4" style="">La Cosecha</h2>
+<p class="font-body text-on-surface-variant text-lg lg:text-xl max-w-2xl" style="">Gestión de inventario y registro de nuevos productos agrícolas. Mantenga el control de la calidad y disponibilidad en el almacén principal.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+<!-- Left Column: Product Form (The "Soil") -->
+<section class="lg:col-span-4 bg-surface-container-low rounded-lg p-6 lg:p-8 shadow-[0_8px_40px_rgba(88,66,57,0.03)] flex flex-col">
+<div class="mb-8">
+<h3 class="font-headline text-3xl font-bold text-on-surface mb-2" style="">Nuevo Registro</h3>
+<p class="font-body text-sm text-on-surface-variant" style="">Ingrese los detalles del producto para catalogarlo en el sistema.</p>
+</div>
+<form class="flex flex-col gap-6 flex-grow">
+<!-- Image Upload Area (Organic Brutalism style) -->
+<div class="relative w-full aspect-[4/3] rounded-lg bg-surface-container-highest flex flex-col items-center justify-center group overflow-hidden ring-1 ring-outline-variant/30 hover:bg-surface-container transition-colors cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent z-0"></div>
+<div class="z-10 flex gap-4 mb-4">
+<button class="w-14 h-14 rounded-full bg-surface-container-lowest shadow-[0_4px_20px_rgba(88,66,57,0.08)] flex items-center justify-center text-primary hover:text-primary-container transition-transform scale-100 active:scale-95" type="button" style="">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">photo_camera</span>
+</button>
+<button class="w-14 h-14 rounded-full bg-surface-container-lowest shadow-[0_4px_20px_rgba(88,66,57,0.08)] flex items-center justify-center text-primary hover:text-primary-container transition-transform scale-100 active:scale-95" type="button" style="">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">image</span>
+</button>
+</div>
+<span class="z-10 font-label text-sm font-semibold text-on-surface-variant tracking-wider uppercase" style="">Subir Fotografía</span>
+</div>
+<!-- Input Fields ("Soft Wells") -->
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-widest pl-2" style="">Nombre del Producto</label>
+<input class="w-full bg-surface-container-high text-on-surface font-body px-5 py-4 rounded border-none focus:ring-0 focus:bg-primary-fixed transition-colors placeholder-on-surface-variant/50" placeholder="Ej. Abono Orgánico Premium" type="text">
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-widest pl-2" style="">Categoría</label>
+<select class="w-full bg-surface-container-high text-on-surface font-body px-5 py-4 rounded border-none focus:ring-0 focus:bg-primary-fixed transition-colors appearance-none cursor-pointer">
+<option>Fertilizantes</option>
+<option>Semillas</option>
+<option>Herramientas</option>
+<option>Alimento Animal</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-widest pl-2" style="">Precio (USD)</label>
+<input class="w-full bg-surface-container-high text-on-surface font-headline font-bold text-lg px-5 py-4 rounded border-none focus:ring-0 focus:bg-primary-fixed transition-colors placeholder-on-surface-variant/50" placeholder="0.00" type="number">
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-widest pl-2" style="">Stock (Unid.)</label>
+<input class="w-full bg-surface-container-high text-on-surface font-headline font-bold text-lg px-5 py-4 rounded border-none focus:ring-0 focus:bg-primary-fixed transition-colors placeholder-on-surface-variant/50" placeholder="0" type="number">
+</div>
+</div>
+<div class="mt-auto pt-8">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-label font-bold text-sm tracking-widest uppercase py-5 px-8 rounded-xl shadow-[0_8px_30px_rgba(163,57,0,0.25)] hover:shadow-[0_12px_40px_rgba(163,57,0,0.35)] transition-all transform active:scale-95" type="button" style="">
+                            Guardar Producto
+                        </button>
+</div>
+</form>
+</section>
+<!-- Right Column: Inventory List (The "Harvest") -->
+<section class="lg:col-span-8 flex flex-col gap-6">
+<div class="flex items-end justify-between mb-4">
+<h3 class="font-headline text-3xl font-bold text-on-surface" style="">Catálogo Activo</h3>
+<div class="flex gap-2">
+<!-- Filter Chips -->
+<button class="bg-secondary text-on-secondary px-5 py-2 rounded-full font-label text-xs font-bold tracking-wider uppercase transition-colors" style="">Todos</button>
+<button class="bg-surface-container-low text-on-surface-variant hover:bg-surface-container-highest px-5 py-2 rounded-full font-label text-xs font-bold tracking-wider uppercase transition-colors ring-1 ring-outline-variant/20" style="">Bajo Stock</button>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Product Card 1 -->
+<article class="bg-surface-container-lowest rounded-lg p-3 flex flex-col gap-4 shadow-[0_4px_24px_rgba(88,66,57,0.04)] ring-1 ring-outline-variant/10 group">
+<div class="w-full aspect-square rounded overflow-hidden bg-surface-container relative">
+<img alt="Saco de semillas orgánicas apoyado en tierra de cultivo con luz natural" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" data-alt="close-up photo of a burlap sack filled with organic seeds resting on rich dark soil outdoors in bright natural daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALweoud5ZusnfgiJIU71SHu4jnEM0SM6Gax8sbS8ujz6taJgFiBUpfuIrRjt1JUwhHObpkolZ8YILI5NoferLmLOEBnKu9z5g7IzjM5YtwtxmN0zFyqOAkSLMK9PvlGh0pBzKR4pe3i25AqJ2cF4Xh50GyzraBjhmXIbsISG1JyCtK1D5TsQLZ7wN4Cx1H0bvmL9d1CLPsvmvU-5Oo3VePjWyPVc1pkZ2ap1AiXyWqiZzvUaNfp2S4TZQ8I8bNJ-BffXBRKDfc5JY" style="">
+<div class="absolute top-3 left-3 bg-secondary/90 backdrop-blur text-on-secondary font-label text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full" style="">Semillas</div>
+</div>
+<div class="px-2 pb-2 flex flex-col flex-grow">
+<h4 class="font-headline font-bold text-lg text-on-surface leading-tight mb-1" style="">Semilla de Maíz Criollo</h4>
+<div class="flex items-center justify-between mt-auto pt-4">
+<span class="font-headline font-black text-xl text-primary" style="">$45.00</span>
+<span class="font-label text-xs text-on-surface-variant font-bold bg-surface-container-low px-3 py-1 rounded" style="">Stock: 120</span>
+</div>
+<div class="flex items-center justify-end gap-2 mt-4 pt-4 border-t border-surface-container-highest/50">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low" style=""><span class="material-symbols-outlined text-[20px]" style="">edit</span></button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2 rounded-full hover:bg-error-container/50" style=""><span class="material-symbols-outlined text-[20px]" style="">delete</span></button>
+</div>
+</div>
+</article>
+<!-- Product Card 2 (Low Stock highlight) -->
+<article class="bg-surface-container-lowest rounded-lg p-3 flex flex-col gap-4 shadow-[0_4px_24px_rgba(88,66,57,0.04)] ring-1 ring-outline-variant/10 group">
+<div class="w-full aspect-square rounded overflow-hidden bg-surface-container relative">
+<img alt="Herramientas de mano para agricultura oxidadas sobre una mesa de madera" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" data-alt="vintage agricultural hand tools arranged neatly on a weathered wooden table with dramatic natural side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNDM0HeM1BpkWnm6aHFycYRRANWvkZ-yab0g207NSZ2qr68CIuObmnfu9y10MEWNcXJf7o9FNoXRmqpGyNdw87DOsRA4zHO5S8RxbqNu4oYlrqw8zYwtjuZALyQNxol-6BomzCP-xo0RMgLVv-7owWGlyXKXhENksa59_z2SastO6VBdR-9d1IWaVuaNXt3iPhnyuaiJqJirPLBO1JOpcZlkM-zMlBvvp4CjoyUAfslb2iuDni7qhhHeSMppuY99AZV7RkO4q6Cr0" style="">
+<div class="absolute top-3 left-3 bg-surface-container-highest/90 backdrop-blur text-on-surface font-label text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full" style="">Herramientas</div>
+</div>
+<div class="px-2 pb-2 flex flex-col flex-grow">
+<h4 class="font-headline font-bold text-lg text-on-surface leading-tight mb-1" style="">Tijera Podadora Acero</h4>
+<div class="flex items-center justify-between mt-auto pt-4">
+<span class="font-headline font-black text-xl text-primary" style="">$28.50</span>
+<span class="font-label text-xs text-error font-bold bg-error-container px-3 py-1 rounded" style="">Stock: 4</span>
+</div>
+<div class="flex items-center justify-end gap-2 mt-4 pt-4 border-t border-surface-container-highest/50">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low" style=""><span class="material-symbols-outlined text-[20px]" style="">edit</span></button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2 rounded-full hover:bg-error-container/50" style=""><span class="material-symbols-outlined text-[20px]" style="">delete</span></button>
+</div>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="bg-surface-container-lowest rounded-lg p-3 flex flex-col gap-4 shadow-[0_4px_24px_rgba(88,66,57,0.04)] ring-1 ring-outline-variant/10 group">
+<div class="w-full aspect-square rounded overflow-hidden bg-surface-container relative">
+<div class="w-full h-full bg-gradient-to-br from-surface-container-high to-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-outline-variant/50" style="">compost</span>
+</div>
+<div class="absolute top-3 left-3 bg-surface-container-highest/90 backdrop-blur text-on-surface font-label text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full" style="">Fertilizantes</div>
+</div>
+<div class="px-2 pb-2 flex flex-col flex-grow">
+<h4 class="font-headline font-bold text-lg text-on-surface leading-tight mb-1" style="">Compost Orgánico 50kg</h4>
+<div class="flex items-center justify-between mt-auto pt-4">
+<span class="font-headline font-black text-xl text-primary" style="">$15.00</span>
+<span class="font-label text-xs text-on-surface-variant font-bold bg-surface-container-low px-3 py-1 rounded" style="">Stock: 850</span>
+</div>
+<div class="flex items-center justify-end gap-2 mt-4 pt-4 border-t border-surface-container-highest/50">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low" style=""><span class="material-symbols-outlined text-[20px]" style="">edit</span></button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2 rounded-full hover:bg-error-container/50" style=""><span class="material-symbols-outlined text-[20px]" style="">delete</span></button>
+</div>
+</div>
+</article>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-4 bg-[#faf9f5] dark:bg-stone-950 text-[#a33900] dark:text-orange-500 font-['Manrope'] font-semibold text-[11px] uppercase tracking-wider rounded-t-[3rem] overflow-hidden no-border shadow-[0_-4px_40px_rgba(88,66,57,0.08)] shadow-2xl">
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-4 py-2 hover:text-[#a33900] dark:hover:text-orange-400 active:scale-90 transition-transform" style="">
+<span class="material-symbols-outlined mb-1" data-icon="dashboard" style="">dashboard</span>
+<span class="" style="">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-4 py-2 hover:text-[#a33900] dark:hover:text-orange-400 active:scale-90 transition-transform" style="">
+<span class="material-symbols-outlined mb-1" data-icon="group" style="">group</span>
+<span class="" style="">Users</span>
+</button>
+<!-- Active Tab: Products -->
+<button class="flex flex-col items-center justify-center bg-[#a33900] text-white rounded-full px-6 py-2 transition-all duration-300 hover:text-[#a33900] dark:hover:text-orange-400 active:scale-90" style="">
+<span class="material-symbols-outlined mb-1" data-icon="inventory_2" style="font-variation-settings: &quot;FILL&quot; 1;">inventory_2</span>
+<span class="" style="">Products</span>
+</button>
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-4 py-2 hover:text-[#a33900] dark:hover:text-orange-400 active:scale-90 transition-transform" style="">
+<span class="material-symbols-outlined mb-1" data-icon="analytics" style="">analytics</span>
+<span class="" style="">Reports</span>
+</button>
+</nav>
+</body></html>

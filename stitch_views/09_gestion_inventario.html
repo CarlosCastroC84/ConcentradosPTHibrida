@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Productos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e3e2df",
+                      "surface-container-highest": "#e3e2df",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-surface": "#1b1c1a",
+                      "outline-variant": "#e0c0b4",
+                      "surface": "#faf9f5",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#ffddb4",
+                      "tertiary-container": "#9c6a1a",
+                      "on-tertiary-fixed": "#291800",
+                      "on-tertiary-fixed-variant": "#633f00",
+                      "surface-tint": "#a73a00",
+                      "secondary-fixed": "#a3f69c",
+                      "on-background": "#1b1c1a",
+                      "on-primary-fixed": "#370e00",
+                      "primary-container": "#c74e14",
+                      "on-secondary-fixed": "#002204",
+                      "secondary-container": "#a0f499",
+                      "on-secondary-fixed-variant": "#005312",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#ffdbce",
+                      "secondary": "#1b6d24",
+                      "tertiary-fixed-dim": "#f9bb65",
+                      "inverse-on-surface": "#f2f1ed",
+                      "primary-fixed-dim": "#ffb599",
+                      "primary": "#a33900",
+                      "surface-container": "#efeeea",
+                      "surface-bright": "#faf9f5",
+                      "background": "#faf9f5",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#7f2a00",
+                      "surface-container-high": "#e9e8e4",
+                      "surface-dim": "#dbdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-container": "#207128",
+                      "outline": "#8c7168",
+                      "on-tertiary-container": "#fffbff",
+                      "secondary-fixed-dim": "#87d982",
+                      "surface-container-low": "#f4f4f0",
+                      "on-surface-variant": "#584239",
+                      "inverse-primary": "#ffb599",
+                      "on-primary-container": "#fffbff",
+                      "tertiary": "#7f5300",
+                      "inverse-surface": "#2f312e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": [
+                              "Noto Serif"
+                      ],
+                      "body": [
+                              "Inter"
+                      ],
+                      "label": [
+                              "Manrope"
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-[#faf9f5]/80 dark:bg-stone-900/80 backdrop-blur-xl docked full-width top-0 sticky z-40 bg-[#f4f4f0] dark:bg-stone-800 flat no-line tonal-layering">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<button aria-label="Search" class="text-[#a33900] dark:text-orange-500 hover:bg-stone-200/50 dark:hover:bg-stone-700/50 transition-colors rounded-full p-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+</button>
+<img alt="Puente Tierra Logo" class="h-12 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0ujCZOvCUMSlD8k2tpmChReGh8cQsdGkinIFgASLEtFZ9Gwla2NbCR9RvU5GJpjTjm4k106gTXWB6YTyg-RbV246yjhNl4KaOU9m1Vmtdsu2lEYLHIF0Carx3ZVn-AFpbgJQdyFKMojkkAwiqg4OdY1u6CXTZEtk3UxJGfQl_KBOIAXVpladVr8EXWZqFz3VTIJ_eRF4r3Jxqv8hBiJL-IvCOujHjZTF_hExulBwo7LtcqPalrTNPU3wcU4kDbCNveM-eHEPYkDorQ"/>
+<button aria-label="Notifications" class="text-[#a33900] dark:text-orange-500 hover:bg-stone-200/50 dark:hover:bg-stone-700/50 transition-colors rounded-full p-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Search and Header Section -->
+<div class="mb-10">
+<h2 class="font-headline text-4xl font-bold text-on-surface mb-2">Gestión de Inventario</h2>
+<p class="font-body text-on-surface-variant text-sm mb-6">Administre sus productos agrícolas, supervise los niveles de existencias y actualice los listados.</p>
+<div class="relative w-full max-w-md">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full bg-surface-container-high text-on-surface font-body placeholder:text-outline rounded-md py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:bg-primary-fixed transition-colors border-none" placeholder="Buscar productos..." type="text"/>
+</div>
+</div>
+<!-- Filters (Chips) -->
+<div class="flex gap-3 mb-8 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-secondary text-on-secondary font-label text-sm px-6 py-2 rounded-full whitespace-nowrap shadow-[0_4px_12px_rgba(27,109,36,0.2)]">Todos los Productos</button>
+<button class="bg-surface-container-low text-on-surface-variant font-label text-sm px-6 py-2 rounded-full whitespace-nowrap hover:bg-surface-container transition-colors">Concentrados</button>
+<button class="bg-surface-container-low text-on-surface-variant font-label text-sm px-6 py-2 rounded-full whitespace-nowrap hover:bg-surface-container transition-colors">Fertilizantes</button>
+<button class="bg-surface-container-low text-on-surface-variant font-label text-sm px-6 py-2 rounded-full whitespace-nowrap hover:bg-surface-container transition-colors">Semillas</button>
+<button class="bg-surface-container-low text-on-surface-variant font-label text-sm px-6 py-2 rounded-full whitespace-nowrap hover:bg-surface-container transition-colors">Herramientas</button>
+</div>
+<!-- Product List (Bento/Card Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-highest rounded-lg overflow-hidden flex flex-col relative group shadow-[0_8px_30px_rgba(88,66,57,0.05)] hover:shadow-[0_12px_40px_rgba(88,66,57,0.08)] transition-all duration-300">
+<div class="h-48 bg-surface-container-low relative overflow-hidden">
+<img alt="Premium Cow Feed" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="large sack of premium cow feed in a rustic barn setting with warm sunlight filtering through dust motes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRRhg3UUKFzOE7hk7FP8DrlOT3VBMiAjEvy15dVOz8KvkpdBM91kMiYsZDjgZvmg0Jk-MRphxZ-KjJ3YIxm1lA2eRihEvyvAJmePL3kBPwgG2_6nkqqR_wFKoGI4e0aoX7l-xmDvSvu9LdnAxXbdUejYSpUa7Q2uVQD_qLmnLtl8WIlnwcG4YoF9IpsWWw9aHhC2RLtZlkVNsdZ3tA4cOXi6cm5DVNFFjc5GIcF_MnptflRD4rXSKIN0NW-5b1V4--mNJsxZ5-U9w"/>
+<div class="absolute top-3 left-3 bg-secondary text-on-secondary font-label text-xs px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> En Inventario
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl font-bold text-on-surface">Vaca 20</h3>
+<span class="font-headline text-lg text-primary">$78.000</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm mb-4 line-clamp-2">Concentrado alto en proteínas específicamente formulado para vacas lecheras lactantes para maximizar el rendimiento.</p>
+<div class="flex items-center gap-4 mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-2 text-sm font-body text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">inventory_2</span>
+<span>120 bultos</span>
+</div>
+<div class="flex gap-2 ml-auto">
+<button aria-label="Edit" class="bg-surface text-on-surface-variant hover:text-primary hover:bg-primary-fixed/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="bg-surface text-on-surface-variant hover:text-error hover:bg-error-container/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-highest rounded-lg overflow-hidden flex flex-col relative group shadow-[0_8px_30px_rgba(88,66,57,0.05)] hover:shadow-[0_12px_40px_rgba(88,66,57,0.08)] transition-all duration-300">
+<div class="h-48 bg-surface-container-low relative overflow-hidden">
+<img alt="Organic Fertilizer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="pile of rich dark organic compost fertilizer next to green seedling in warm earthy tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN7FPPW8KFauGHDqUqH84JArjOF1nbQBCOHGl4-ZeZ3AKRotBczA52-PGcel6El5fPvPEzsWy4ch_iAbLUG46AfLtxQw0NOyHYPA3omH-6SrqnziIiPPoiXc9-_IKqaFrRKzSe-xd-NyvSdR95jj3lXLxLuKPkJ8-g843KlGP6yyZ854ZX8PSlD5_Ay-o8qcGKZzdQ2xAuEbPWi74GkKX2RN_yU6GI-elGK0AfC9rL7FF0OA21MfZ8dYPPODY7r0-tzPW1hZmHuW4"/>
+<div class="absolute top-3 left-3 bg-tertiary text-on-tertiary font-label text-xs px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[14px]">warning</span> Stock Bajo
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl font-bold text-on-surface">Mezcla de Compost Orgánico</h3>
+<span class="font-headline text-lg text-primary">$28.500</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm mb-4 line-clamp-2">Compost orgánico rico en nutrientes adecuado para todo tipo de cultivos, mejorando la estructura del suelo.</p>
+<div class="flex items-center gap-4 mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-2 text-sm font-body text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">inventory_2</span>
+<span class="text-error font-medium">15 bultos</span>
+</div>
+<div class="flex gap-2 ml-auto">
+<button aria-label="Edit" class="bg-surface text-on-surface-variant hover:text-primary hover:bg-primary-fixed/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="bg-surface text-on-surface-variant hover:text-error hover:bg-error-container/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-highest rounded-lg overflow-hidden flex flex-col relative group shadow-[0_8px_30px_rgba(88,66,57,0.05)] hover:shadow-[0_12px_40px_rgba(88,66,57,0.08)] transition-all duration-300">
+<div class="h-48 bg-surface-container-low relative overflow-hidden">
+<img alt="Heirloom Corn Seeds" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close up of vibrant yellow and orange heirloom corn seeds spilling from a rustic burlap sack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS8UG4I7TltBRxYMoG3_p5C2AwUbmCVDXcTFM3ckJFOQ5dMc9DLE8bZ3NDNBdNawfi3fNirKSIHhR7elfV3W8JPgIzcEwxYCH6sZyJijQJVtRkzBo1PScZyc8C6q7u5rxgHFV5AZCd4ZXVSB5lPi9Ne8Hpn8hEpgOMPypuSc9IkzCWJ84zdUeDmsHINhghww6G_T4MkYyDHVFTxE8wqcxgs7paSf197cGz0j_LamzYx91EkNdiUJv0E5Zs4F9GXPnmpj2AEhLOHX8"/>
+<div class="absolute top-3 left-3 bg-secondary text-on-secondary font-label text-xs px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> En Inventario
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl font-bold text-on-surface">Pollito Pre-iniciador</h3>
+<span class="font-headline text-lg text-primary">$98.000</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm mb-4 line-clamp-2">Alimento balanceado ideal para las primeras semanas de vida de los pollitos.</p>
+<div class="flex items-center gap-4 mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-2 text-sm font-body text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">inventory_2</span>
+<span>450 bultos</span>
+</div>
+<div class="flex gap-2 ml-auto">
+<button aria-label="Edit" class="bg-surface text-on-surface-variant hover:text-primary hover:bg-primary-fixed/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="bg-surface text-on-surface-variant hover:text-error hover:bg-error-container/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-highest rounded-lg overflow-hidden flex flex-col relative group shadow-[0_8px_30px_rgba(88,66,57,0.05)] hover:shadow-[0_12px_40px_rgba(88,66,57,0.08)] transition-all duration-300">
+<div class="h-48 bg-surface-container-low relative overflow-hidden">
+<img alt="Steel Hoe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="heavy duty forged steel agricultural hoe resting on rich dark soil outdoors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJu6nDHGshagYjUd_XJhJMxHeNUu5gONSQ_64FFIXTE471dwerQsTE-DkeWLlwfe38xsIG-Twg6gZzLwStSDYZlKY_g0RLMidEDKh6G2LGZuHJCkmSkb4UxQWuzgCZBfuk4dOQ5eCy7jZnH-PYLlYSnW6dwAROdA0RJBRLW_3OdUPKSwuM7WjxlwYwRBjG6HNvRq7QtLHiBVam1ZSHO5wYCZJ9-6JAUkfNQMe8CRnaZNGqEPCrxdByHop_aDH5pAGQeui4S5rIcMo"/>
+<div class="absolute top-3 left-3 bg-secondary text-on-secondary font-label text-xs px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> En Inventario
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl font-bold text-on-surface">Azadón de Acero Forjado</h3>
+<span class="font-headline text-lg text-primary">$35.000</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm mb-4 line-clamp-2">Azadón agrícola de acero forjado de alta resistencia con mango ergonómico de madera.</p>
+<div class="flex items-center gap-4 mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-2 text-sm font-body text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">inventory_2</span>
+<span>85 unidades</span>
+</div>
+<div class="flex gap-2 ml-auto">
+<button aria-label="Edit" class="bg-surface text-on-surface-variant hover:text-primary hover:bg-primary-fixed/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="bg-surface text-on-surface-variant hover:text-error hover:bg-error-container/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button aria-label="Add New Product" class="fixed bottom-24 md:bottom-8 right-6 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl p-4 shadow-[0_8px_32px_rgba(163,57,0,0.3)] hover:shadow-[0_12px_40px_rgba(163,57,0,0.4)] hover:-translate-y-1 transition-all duration-300 z-50 flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+<span class="font-label font-bold hidden sm:inline pr-2">Añadir Producto</span>
+</button>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-[#faf9f5]/90 dark:bg-stone-900/90 backdrop-blur-2xl fixed bottom-0 w-full rounded-t-[3rem] border-t-0 tonal-shift-from-surface-to-container-low shadow-[0_-8px_40px_-12px_rgba(88,66,57,0.08)] fixed bottom-0 left-0 w-full z-40 flex justify-around items-center px-4 pt-3 pb-8">
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-[#a33900] dark:hover:text-orange-300 transition-colors vibration-light scale-110 duration-300 ease-out group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">home</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider mt-1">Inicio</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-[#a33900] text-white rounded-full px-5 py-2 transition-all duration-300 shadow-lg shadow-[#a33900]/20 vibration-light scale-110 duration-300 ease-out group">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">potted_plant</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider mt-1">Catálogo</span>
+</button>
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-[#a33900] dark:hover:text-orange-300 transition-colors vibration-light scale-110 duration-300 ease-out group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">shopping_cart</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider mt-1">Carrito</span>
+</button>
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-[#a33900] dark:hover:text-orange-300 transition-colors vibration-light scale-110 duration-300 ease-out group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">person</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider mt-1">Perfil</span>
+</button>
+</nav>
+</body></html>

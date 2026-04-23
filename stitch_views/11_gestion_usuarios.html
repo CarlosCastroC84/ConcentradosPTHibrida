@@ -1,0 +1,269 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Gestión de Usuarios - Earthbound Editorial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#1b6d24",
+                        "surface-bright": "#faf9f5",
+                        "surface-container-high": "#e9e8e4",
+                        "secondary-fixed-dim": "#87d982",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#f9bb65",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#207128",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-fixed-variant": "#005312",
+                        "primary": "#a33900",
+                        "on-primary-container": "#fffbff",
+                        "inverse-on-surface": "#f2f1ed",
+                        "surface-container": "#efeeea",
+                        "tertiary-container": "#9c6a1a",
+                        "background": "#faf9f5",
+                        "secondary-fixed": "#a3f69c",
+                        "on-secondary-fixed": "#002204",
+                        "primary-fixed": "#ffdbce",
+                        "tertiary-fixed": "#ffddb4",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#ffb599",
+                        "on-tertiary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#370e00",
+                        "inverse-surface": "#2f312e",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#584239",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#faf9f5",
+                        "outline-variant": "#e0c0b4",
+                        "outline": "#8c7168",
+                        "on-primary-fixed-variant": "#7f2a00",
+                        "on-surface": "#1b1c1a",
+                        "inverse-primary": "#ffb599",
+                        "primary-container": "#c74e14",
+                        "surface-variant": "#e3e2df",
+                        "on-tertiary-fixed-variant": "#633f00",
+                        "on-tertiary-fixed": "#291800",
+                        "secondary-container": "#a0f499",
+                        "surface-dim": "#dbdad6",
+                        "surface-container-low": "#f4f4f0",
+                        "surface-container-highest": "#e3e2df",
+                        "tertiary": "#7f5300",
+                        "surface-tint": "#a73a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Inter"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.surface'); color: theme('colors.on-surface'); font-family: theme('fontFamily.body'); }
+        h1, h2, h3, h4, h5, h6 { font-family: theme('fontFamily.headline'); }
+        .label-text { font-family: theme('fontFamily.label'); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-6 py-4 w-full sticky top-0 z-50 bg-surface/80 dark:bg-stone-950/80 backdrop-blur-xl shadow-none">
+<div class="flex items-center gap-4">
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full object-cover border-2 border-surface-container" data-alt="Portrait of a mature man with a beard, wearing a rustic canvas jacket, looking directly at the camera outdoors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBnDVmVaw3LjLoRa4qKE2NkuBpJKLQPVP0mOni82j2KRt27k3nRuzQAFHKvbakXlIR839qlUKfmYmWBYij7jToS8o5y5fdVUvwomX51dmf_GL7aw9sQTOcHpCpvHyBU0D4YCHxAVXFQ8O4mtqluXMLb5LNtOAomgatGQEqEsifhMLVRru82Jq5Gzk8Xi6neX4L6UAk7QZu9kq3UMjsNK9My7jusMbSe4kLiedKhXxNfN_INel8biUuB1PVY3bQeTl6-FrSeZu_YyI" style="">
+<h1 class="font-['Noto_Serif'] font-bold text-3xl tracking-tight text-[#a33900] dark:text-orange-500" style="">Puente Tierra</h1>
+</div>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-stone-500 dark:text-stone-400 font-label text-sm uppercase tracking-wider hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors px-3 py-1 rounded-full" href="#" style="">Dashboard</a>
+<a class="text-[#a33900] dark:text-orange-400 font-bold font-label text-sm uppercase tracking-wider hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors px-3 py-1 rounded-full" href="#" style="">Users</a>
+<a class="text-stone-500 dark:text-stone-400 font-label text-sm uppercase tracking-wider hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors px-3 py-1 rounded-full" href="#" style="">Products</a>
+<a class="text-stone-500 dark:text-stone-400 font-label text-sm uppercase tracking-wider hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors px-3 py-1 rounded-full" href="#" style="">Reports</a>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low hover:bg-surface-container transition-colors text-primary" style="">
+<span class="material-symbols-outlined" data-icon="settings" style="">settings</span>
+</button>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Header & Search Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+<div>
+<h2 class="text-4xl font-headline font-bold text-primary mb-2" style="">Gestión de Usuarios</h2>
+<p class="text-on-surface-variant font-body" style="">Administra los roles, estados y accesos del personal y clientes.</p>
+</div>
+<div class="w-full md:w-auto flex flex-col sm:flex-row gap-4">
+<div class="relative w-full sm:w-72">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" style="">search</span>
+<input class="w-full bg-surface-container-high border-none rounded-md py-3 pl-12 pr-4 text-on-surface focus:ring-2 focus:ring-primary focus:bg-primary-fixed transition-colors font-body placeholder:text-outline shadow-sm" placeholder="Buscar usuario..." type="text">
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-hide">
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-secondary text-on-secondary font-label text-sm shadow-[0_4px_12px_rgba(27,109,36,0.15)]" style="">Todos</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors font-label text-sm" style="">Vendedores</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors font-label text-sm" style="">Compradores</button>
+</div>
+</div>
+</div>
+<!-- User Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- User Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_24px_rgba(88,66,57,0.04)] relative overflow-hidden group hover:shadow-[0_12px_32px_rgba(88,66,57,0.08)] transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<img alt="Avatar" class="w-14 h-14 rounded-full object-cover" data-alt="Portrait of a young woman with dark hair in a sunlit outdoor setting, wearing a simple linen shirt." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW2RNMyqBhHay8Rcw7d7h1IRKpUcoYkYeE80zw7KUFbNPG4zUwB3zWbeyQu_PLa-XHFgzUyyuJIGHts3hd2LzN_C6-MIo4yomQInpwQ9jMesZ3kyhfosc_XLp-izEDhO-4eAcioxnEt3MUSV3IHEeTIXjyrgr4R72ChKS6kbdIWkmU3DK7HeShw9wGrdpDWx58xpABX4XgrogobCq_zPxQFKHlvfZ0HVGRu-ivh18VJ9rkuUgshOz3F4G4_MfGWfP6hvjY3328n4U" style="">
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface" style="">Elena Rojas</h3>
+<span class="inline-flex items-center gap-1 text-xs font-label bg-tertiary-container/10 text-tertiary-container px-2 py-1 rounded-full mt-1" style="">
+<span class="material-symbols-outlined text-[14px]" style="">storefront</span> Vendedora
+                            </span>
+</div>
+</div>
+<button class="text-outline hover:text-primary transition-colors" style="">
+<span class="material-symbols-outlined" style="">more_vert</span>
+</button>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex items-center gap-2 text-on-surface-variant font-body text-sm" style="">
+<span class="material-symbols-outlined text-[18px]" style="">mail</span>
+                        elena.rojas@finca.com
+                    </div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body text-sm" style="">
+<span class="material-symbols-outlined text-[18px]" style="">calendar_today</span>
+                        Registro: 12 May 2023
+                    </div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-sm font-label text-secondary" style="">Activo</span>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-high text-on-surface hover:text-primary transition-colors" style="">
+<span class="material-symbols-outlined text-[18px]" style="">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- User Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_24px_rgba(88,66,57,0.04)] relative overflow-hidden group hover:shadow-[0_12px_32px_rgba(88,66,57,0.08)] transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-headline font-bold text-2xl" style="">
+                            MC
+                        </div>
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface" style="">Miguel Cruz</h3>
+<span class="inline-flex items-center gap-1 text-xs font-label bg-secondary/10 text-secondary px-2 py-1 rounded-full mt-1" style="">
+<span class="material-symbols-outlined text-[14px]" style="">shopping_cart</span> Comprador
+                            </span>
+</div>
+</div>
+<button class="text-outline hover:text-primary transition-colors" style="">
+<span class="material-symbols-outlined" style="">more_vert</span>
+</button>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex items-center gap-2 text-on-surface-variant font-body text-sm" style="">
+<span class="material-symbols-outlined text-[18px]" style="">mail</span>
+                        mcruz.distribuidora@mail.com
+                    </div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body text-sm" style="">
+<span class="material-symbols-outlined text-[18px]" style="">calendar_today</span>
+                        Registro: 05 Ago 2023
+                    </div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-sm font-label text-secondary" style="">Activo</span>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-high text-on-surface hover:text-primary transition-colors" style="">
+<span class="material-symbols-outlined text-[18px]" style="">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- User Card 3 (Inactive) -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_24px_rgba(88,66,57,0.04)] relative overflow-hidden opacity-75 group hover:opacity-100 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<img alt="Avatar" class="w-14 h-14 rounded-full object-cover grayscale" data-alt="Portrait of a middle-aged man wearing glasses and a formal shirt, slightly desaturated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-_b0qNGxrrV7AnqDblaERNDMr-vcsxetSxupOkcN3Yae7D5JZUg4mfsjlj61oaUAeL3tblIY8GkHsfVHXFyG29FJodcJbB0uRRpkJCjyJD3dVEYwI3TxxnGkOyGEHT0Ihx0pPjym9dZgYrB60tThrEvtNgzX0CkWauenLH_M2FY6mVbg6vTIP6HxuI5ld6ZP7giy2QhAB3xXegAYmk2mYy3C397zCV_waesOE7m3qUHojTmlH8E0UEpzsReS_Ps0foGjmoUxgLKs" style="">
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface" style="">Roberto Velez</h3>
+<span class="inline-flex items-center gap-1 text-xs font-label bg-surface-variant text-on-surface-variant px-2 py-1 rounded-full mt-1" style="">
+<span class="material-symbols-outlined text-[14px]" style="">admin_panel_settings</span> Admin
+                            </span>
+</div>
+</div>
+<button class="text-outline hover:text-primary transition-colors" style="">
+<span class="material-symbols-outlined" style="">more_vert</span>
+</button>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex items-center gap-2 text-on-surface-variant font-body text-sm" style="">
+<span class="material-symbols-outlined text-[18px]" style="">mail</span>
+                        r.velez@earthbound.com
+                    </div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body text-sm" style="">
+<span class="material-symbols-outlined text-[18px]" style="">calendar_today</span>
+                        Registro: 01 Ene 2022
+                    </div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="text-sm font-label text-outline" style="">Inactivo</span>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-high text-on-surface hover:text-primary transition-colors" style="">
+<span class="material-symbols-outlined text-[18px]" style="">edit</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 md:bottom-8 right-6 w-16 h-16 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl shadow-[0_8px_32px_rgba(88,66,57,0.15)] flex items-center justify-center hover:scale-105 transition-transform z-40" style="">
+<span class="material-symbols-outlined text-3xl" style="">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-4 bg-[#faf9f5] dark:bg-stone-950 rounded-t-[3rem] overflow-hidden shadow-2xl md:hidden">
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-4 py-2 hover:text-[#a33900] dark:hover:text-orange-400 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined mb-1" style="">dashboard</span>
+<span class="font-['Manrope'] font-semibold text-[11px] uppercase tracking-wider" style="">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#a33900] text-white rounded-full px-6 py-2 transition-all duration-300 active:scale-90" href="#" style="">
+<span class="material-symbols-outlined mb-1" style="">group</span>
+<span class="font-['Manrope'] font-semibold text-[11px] uppercase tracking-wider" style="">usuarios</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-4 py-2 hover:text-[#a33900] dark:hover:text-orange-400 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined mb-1" style="">inventory_2</span>
+<span class="font-['Manrope'] font-semibold text-[11px] uppercase tracking-wider" style="">productos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-4 py-2 hover:text-[#a33900] dark:hover:text-orange-400 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined mb-1" style="">analytics</span>
+<span class="font-['Manrope'] font-semibold text-[11px] uppercase tracking-wider" style="">Reportes</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- Top App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        android:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/carrito_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_app_bar_height"
+            app:navigationIcon="@android:drawable/ic_menu_search"
+            app:navigationContentDescription="@string/action_search">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/logo_height_small"
+                android:layout_gravity="center"
+                android:contentDescription="@string/logo_content_description"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/ic_launcher" />
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Contenido -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/carrito_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:paddingBottom="96dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/spacing_lg">
+
+            <!-- Título "Tu Cosecha" -->
+            <TextView
+                android:id="@+id/carrito_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cart_title"
+                android:textAppearance="@style/TextAppearance.App.Headline"
+                android:fontFamily="@font/noto_serif"
+                android:textColor="@color/primary"
+                android:textStyle="bold" />
+
+            <!-- Lista de items -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/carrito_rv_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_lg"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false" />
+
+            <!-- Resumen del Pedido -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/carrito_summary_card"
+                style="@style/Widget.App.Card.Surface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xl">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cart_section_summary"
+                        android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+                        android:fontFamily="@font/noto_serif"
+                        android:textStyle="bold" />
+
+                    <!-- Subtotal -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cart_label_subtotal"
+                            android:textAppearance="@style/TextAppearance.App.Body"
+                            android:textColor="@color/on_surface_variant"
+                            android:fontFamily="@font/inter" />
+                        <TextView
+                            android:id="@+id/carrito_subtotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.App.HeadlineSmall"
+                            android:fontFamily="@font/noto_serif"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Envío -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_sm"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cart_label_shipping"
+                            android:textAppearance="@style/TextAppearance.App.Body"
+                            android:textColor="@color/on_surface_variant"
+                            android:fontFamily="@font/inter" />
+                        <TextView
+                            android:id="@+id/carrito_shipping"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.App.HeadlineSmall"
+                            android:fontFamily="@font/noto_serif"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Impuestos -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_sm"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cart_label_taxes"
+                            android:textAppearance="@style/TextAppearance.App.Body"
+                            android:textColor="@color/on_surface_variant"
+                            android:fontFamily="@font/inter" />
+                        <TextView
+                            android:id="@+id/carrito_taxes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.App.HeadlineSmall"
+                            android:fontFamily="@font/noto_serif"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Divisor -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:layout_marginVertical="@dimen/spacing_md"
+                        android:background="@color/surface_container_high" />
+
+                    <!-- Total -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cart_label_total"
+                            android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+                            android:fontFamily="@font/noto_serif"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/carrito_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.App.Price"
+                            android:textSize="@dimen/text_price_large"
+                            android:fontFamily="@font/noto_serif"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary" />
+                    </LinearLayout>
+
+                    <!-- Botón Proceder al Pago -->
+                    <Button
+                        android:id="@+id/carrito_btn_checkout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/btn_height_primary"
+                        android:layout_marginTop="@dimen/spacing_lg"
+                        android:text="@string/cart_btn_checkout"
+                        android:background="@drawable/bg_button_primary"
+                        android:textColor="@color/on_primary"
+                        android:fontFamily="@font/manrope"
+                        android:textAllCaps="false"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
