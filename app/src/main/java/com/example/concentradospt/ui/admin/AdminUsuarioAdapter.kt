@@ -10,7 +10,9 @@ import com.example.concentradospt.databinding.ItemAdminUsuarioBinding
 
 class AdminUsuarioAdapter(
     private val onToggleEstado: (AdminUsuarioInfo) -> Unit,
-    private val onResetPin: (AdminUsuarioInfo) -> Unit
+    private val onResetPin: (AdminUsuarioInfo) -> Unit,
+    private val onEditar: (AdminUsuarioInfo) -> Unit = {},
+    private val onEliminar: (AdminUsuarioInfo) -> Unit = {}
 ) : ListAdapter<AdminUsuarioInfo, AdminUsuarioAdapter.ViewHolder>(DiffCallback) {
 
     inner class ViewHolder(private val binding: ItemAdminUsuarioBinding) :
@@ -33,6 +35,8 @@ class AdminUsuarioAdapter(
             binding.adminUserBtnToggle.text = if (u.isActive) "Desactivar" else "Activar"
             binding.adminUserBtnToggle.setOnClickListener { onToggleEstado(u) }
             binding.adminUserBtnResetPass.setOnClickListener { onResetPin(u) }
+            binding.adminUserBtnEditar.setOnClickListener { onEditar(u) }
+            binding.adminUserBtnEliminar.setOnClickListener { onEliminar(u) }
         }
     }
 

@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.concentradospt.data.repository.AdminAuthRepository
 import com.example.concentradospt.databinding.ActivityAdminBinding
+import com.google.android.material.navigation.NavigationBarView
 
 class AdminActivity : AppCompatActivity() {
 
@@ -27,11 +28,12 @@ class AdminActivity : AppCompatActivity() {
             .findFragmentById(R.id.admin_nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        binding.adminBottomNavView.setupWithNavController(navController)
+        val navBarView = binding.adminBottomNavView as NavigationBarView
+        navBarView.setupWithNavController(navController)
 
         // Mostrar pestaña Usuarios solo para ADMIN
         if (rol == "ADMIN") {
-            binding.adminBottomNavView.menu.findItem(R.id.nav_admin_gestion_usuarios)?.isVisible = true
+            navBarView.menu.findItem(R.id.nav_admin_gestion_usuarios)?.isVisible = true
         }
 
         // Ocultar nav en pantallas con toolbar propio
@@ -39,9 +41,10 @@ class AdminActivity : AppCompatActivity() {
             val hideNavFor = setOf(
                 R.id.nav_admin_gestion_productos,
                 R.id.nav_admin_gestion_usuarios,
-                R.id.nav_admin_detalle_venta
+                R.id.nav_admin_detalle_venta,
+                R.id.nav_admin_reportes_ventas
             )
-            binding.adminBottomNavView.visibility =
+            navBarView.visibility =
                 if (destination.id in hideNavFor) android.view.View.GONE else android.view.View.VISIBLE
         }
     }

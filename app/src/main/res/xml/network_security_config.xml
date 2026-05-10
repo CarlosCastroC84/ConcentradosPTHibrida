@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <!-- Permitir HTTP a la instancia Lightsail (Spring Boot) -->
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="false">100.25.124.3</domain>
-    </domain-config>
+    <!-- Todo el tráfico va por HTTPS a AWS API Gateway — no se necesita cleartext -->
 </network-security-config>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Cuerpo -->
+    <path android:fillColor="@color/primary"
+        android:pathData="M12,10C8.7,10 6,12.2 6,15C6,17.8 8.7,20 12,20C15.3,20 18,17.8 18,15C18,12.2 15.3,10 12,10Z"/>
+    <!-- Cabeza -->
+    <path android:fillColor="@color/primary"
+        android:pathData="M12,4C10.3,4 9,5.3 9,7C9,8.7 10.3,10 12,10C13.7,10 15,8.7 15,7C15,5.3 13.7,4 12,4Z"/>
+    <!-- Cresta -->
+    <path android:fillColor="@color/error"
+        android:pathData="M10.5,4C10.5,4 10,2 12,2C14,2 13.5,4 13.5,4Z"/>
+    <!-- Pico -->
+    <path android:fillColor="@color/tertiary"
+        android:pathData="M11,7.5L9.5,8.5L11,9Z"/>
+    <!-- Ojo -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M13,6.5C13,7.1 12.6,7.5 12,7.5C11.4,7.5 11,7.1 11,6.5C11,5.9 11.4,5.5 12,5.5C12.6,5.5 13,5.9 13,6.5Z"/>
+    <!-- Ala -->
+    <path android:fillColor="@color/primary_container"
+        android:pathData="M8,13C6.5,12.5 5.5,13.5 6,15C7,14.5 8,14 8,13Z"/>
+</vector>

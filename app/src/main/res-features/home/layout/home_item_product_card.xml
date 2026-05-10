@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.App.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_xs">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding">
+
+        <!-- Imagen del producto -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_image_height">
+
+            <ImageView
+                android:id="@+id/home_product_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/cd_product_image"
+                android:background="@color/surface_container_low" />
+
+            <!-- Botón favorito -->
+            <ImageButton
+                android:id="@+id/home_product_btn_wishlist"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="@dimen/spacing_xs"
+                android:background="@drawable/bg_quantity_selector"
+                android:contentDescription="@string/cd_btn_wishlist"
+                android:src="@android:drawable/btn_star_big_off"
+                app:tint="@color/on_surface_variant"
+                android:padding="@dimen/spacing_xs" />
+        </FrameLayout>
+
+        <!-- Categoría -->
+        <TextView
+            android:id="@+id/home_product_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:textAppearance="@style/TextAppearance.App.LabelSmall"
+            android:textColor="@color/tertiary"
+            android:fontFamily="@font/manrope"
+            android:textStyle="bold" />
+
+        <!-- Nombre del producto -->
+        <TextView
+            android:id="@+id/home_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:textAppearance="@style/TextAppearance.App.BodySmall"
+            android:fontFamily="@font/inter"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+        <!-- Precio y botón agregar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/home_product_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.App.Price"
+                android:fontFamily="@font/noto_serif"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/home_product_btn_add"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_cart_badge"
+                android:contentDescription="@string/cd_btn_add_to_cart"
+                android:src="@android:drawable/ic_input_add"
+                app:tint="@color/on_primary"
+                android:padding="@dimen/spacing_xs" />
+        </LinearLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

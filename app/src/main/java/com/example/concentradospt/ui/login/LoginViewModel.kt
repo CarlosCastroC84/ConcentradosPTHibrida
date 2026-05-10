@@ -15,6 +15,9 @@ sealed class LoginState {
     data class Success(val isAdmin: Boolean) : LoginState()
     data class AdminSuccess(val usuario: AdminUsuarioInfo) : LoginState()
     data class Error(val message: String) : LoginState()
+    data class ForgotPasswordCodeSent(val email: String) : LoginState()
+    object ForgotPasswordSuccess : LoginState()
+    data class ForgotPasswordError(val message: String) : LoginState()
 }
 
 class LoginViewModel : ViewModel() {
@@ -78,6 +81,36 @@ class LoginViewModel : ViewModel() {
         }
     }
 
+    fun forgotPassword(email: String) {
+        viewModelScope.launch {
+            _state.value = LoginState.Loading
+            try {
+                authRepository.forgotPassword(email)
+                _state.value = LoginState.ForgotPasswordCodeSent(email)
+            } catch (e: Exception) {
+                android.util.Log.e("LoginViewModel", "Error en forgotPassword: ${e.message}", e)
+                _state.value = LoginState.ForgotPasswordError(friendlyResetError(e.message))
+            }
+        }
+    }
+
+    fun confirmForgotPassword(email: String, code: String, newPassword: String) {
+        viewModelScope.launch {
+            _state.value = LoginState.Loading
+            try {
+                authRepository.confirmForgotPassword(email, code, newPassword)
+                _state.value = LoginState.ForgotPasswordSuccess
+            } catch (e: Exception) {
+                android.util.Log.e("LoginViewModel", "Error en confirmForgotPassword: ${e.message}", e)
+                _state.value = LoginState.ForgotPasswordError(friendlyResetError(e.message))
+            }
+        }
+    }
+
+    fun resetToIdle() {
+        _state.value = LoginState.Idle
+    }
+
     private fun friendlyClientError(message: String?): String = when {
         message == null -> "Error desconocido"
         message.contains("NotAuthorizedException") || message.contains("Incorrect") ->
@@ -98,5 +131,18 @@ class LoginViewModel : ViewModel() {
         message.contains("connect") || message.contains("timeout") ->
             "No se pudo conectar al servidor"
         else -> "Error al iniciar sesión. Verifica tu conexión"
+    }
+
+    private fun friendlyResetError(message: String?): String = when {
+        message == null -> "Error desconocido"
+        message.contains("CodeMismatchException") -> "Código incorrecto. Verifica tu correo"
+        message.contains("ExpiredCodeException") -> "El código ha expirado. Solicita uno nuevo"
+        message.contains("LimitExceededException") -> "Demasiados intentos. Espera unos minutos"
+        message.contains("UserNotFoundException") -> "No existe una cuenta con ese correo"
+        message.contains("UserNotConfirmedException") -> "La cuenta no ha sido confirmada aún"
+        message.contains("InvalidPasswordException") -> "La contraseña no cumple los requisitos de seguridad"
+        message.contains("InvalidParameterException") -> "Correo electrónico inválido"
+        message.contains("NetworkException") || message.contains("UnknownHostException") -> "Sin conexión a internet"
+        else -> "Error: $message"
     }
 }

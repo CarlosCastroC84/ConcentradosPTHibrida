@@ -4,7 +4,9 @@
       "WebFetch(domain:stitch.withgoogle.com)",
       "WebSearch",
       "Bash(xargs grep *)",
-      "Bash(xargs wc *)"
+      "Bash(xargs wc *)",
+      "Bash(dir \"D:\\\\\\\\Librerias\\\\\\\\ConcentradosPT\\\\\\\\app\\\\\\\\src\\\\\\\\main\\\\\\\\res\\\\\\\\layout\\\\\\\\\")",
+      "Bash(findstr dialog *)"
     ]
   }
 }

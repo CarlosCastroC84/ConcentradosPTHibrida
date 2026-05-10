@@ -56,6 +56,34 @@
         <action
             android:id="@+id/action_checkout_to_pedidos"
             app:destination="@id/nav_pedidos" />
+        <action
+            android:id="@+id/action_checkout_to_pago"
+            app:destination="@id/nav_pago" />
+    </fragment>
+
+    <!-- PASARELA DE PAGO -->
+    <fragment
+        android:id="@+id/nav_pago"
+        android:name="com.example.concentradospt.ui.checkout.PagoFragment"
+        android:label="Pasarela de Pago">
+        <argument
+            android:name="pedidoId"
+            app:argType="string"
+            android:defaultValue="" />
+        <action
+            android:id="@+id/action_pago_to_exito"
+            app:destination="@id/nav_pago_exito" />
+    </fragment>
+
+    <!-- PAGO EXITOSO -->
+    <fragment
+        android:id="@+id/nav_pago_exito"
+        android:name="com.example.concentradospt.ui.checkout.PagoExitoFragment"
+        android:label="Pago Exitoso">
+        <argument
+            android:name="pedidoId"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
 
     <!-- PEDIDOS -->
@@ -142,6 +170,19 @@
         <action
             android:id="@+id/action_perfil_to_detalle_pedido"
             app:destination="@id/nav_detalle_pedido" />
+        <action
+            android:id="@+id/action_perfil_to_favoritos"
+            app:destination="@id/nav_favoritos" />
+    </fragment>
+
+    <!-- FAVORITOS -->
+    <fragment
+        android:id="@+id/nav_favoritos"
+        android:name="com.example.concentradospt.ui.favoritos.FavoritosFragment"
+        android:label="@string/favoritos_title">
+        <action
+            android:id="@+id/action_favoritos_to_detalle_producto"
+            app:destination="@id/nav_detalle_producto" />
     </fragment>
 
 </navigation>

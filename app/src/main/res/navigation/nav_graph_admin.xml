@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_admin_dashboard_to_ventas"
             app:destination="@id/nav_admin_ventas" />
+        <action
+            android:id="@+id/action_admin_dashboard_to_reportes"
+            app:destination="@id/nav_admin_reportes_ventas" />
     </fragment>
 
     <!-- VENTAS -->
@@ -38,7 +41,7 @@
         <argument
             android:name="ventaId"
             app:argType="long"
-            android:defaultValue="0" />
+            android:defaultValue="0L" />
     </fragment>
 
     <!-- GESTIÓN PRODUCTOS -->
@@ -52,5 +55,11 @@
         android:id="@+id/nav_admin_gestion_usuarios"
         android:name="com.example.concentradospt.ui.admin.GestionUsuariosFragment"
         android:label="@string/manage_users_title" />
+
+    <!-- REPORTES DE VENTAS -->
+    <fragment
+        android:id="@+id/nav_admin_reportes_ventas"
+        android:name="com.example.concentradospt.ui.reportes.ReportesVentasFragment"
+        android:label="@string/sales_reports_title" />
 
 </navigation>

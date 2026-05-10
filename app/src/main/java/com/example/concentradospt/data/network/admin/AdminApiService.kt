@@ -9,6 +9,7 @@ import com.example.concentradospt.data.model.admin.AdminUsuarioInfo
 import com.example.concentradospt.data.model.admin.Venta
 import com.example.concentradospt.data.model.admin.Tercero
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
@@ -60,6 +61,9 @@ interface AdminApiService {
         @Path("id") id: Long,
         @Body body: AdminProducto
     ): AdminProducto
+
+    @DELETE("admin/productos/{id}")
+    suspend fun eliminarAdminProducto(@Path("id") id: Long)
 
     // --- Ventas ---
     @GET("ventas")

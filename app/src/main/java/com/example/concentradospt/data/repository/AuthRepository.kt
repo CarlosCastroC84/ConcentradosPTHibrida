@@ -1,8 +1,10 @@
 package com.example.concentradospt.data.repository
 
 import com.amplifyframework.auth.AuthException
+import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.options.AuthSignInOptions
+import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.auth.result.AuthSignInResult
 import com.amplifyframework.core.Amplify
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -22,6 +24,21 @@ class AuthRepository {
     suspend fun signOut(): Unit =
         suspendCancellableCoroutine { cont ->
             Amplify.Auth.signOut { cont.resume(Unit) }
+        }
+
+    suspend fun fetchAccessToken(): String? =
+        suspendCancellableCoroutine { cont ->
+            Amplify.Auth.fetchAuthSession(
+                { session ->
+                    val cognitoSession = session as? AWSCognitoAuthSession
+                    val token = cognitoSession?.userPoolTokensResult?.value?.accessToken
+                    cont.resume(token)
+                },
+                { error ->
+                    android.util.Log.e("AuthRepository", "Error fetching access token", error)
+                    cont.resume(null)
+                }
+            )
         }
 
     suspend fun isSignedIn(): Boolean =
@@ -81,4 +98,39 @@ class AuthRepository {
             emptyList()
         }
     }
+
+    suspend fun forgotPassword(email: String): Unit =
+        suspendCancellableCoroutine { cont ->
+            Amplify.Auth.resetPassword(email,
+                { cont.resume(Unit) },
+                { error -> cont.resumeWithException(error) }
+            )
+        }
+
+    suspend fun confirmForgotPassword(email: String, code: String, newPassword: String): Unit =
+        suspendCancellableCoroutine { cont ->
+            Amplify.Auth.confirmResetPassword(email, newPassword, code,
+                { cont.resume(Unit) },
+                { error -> cont.resumeWithException(error) }
+            )
+        }
+
+    suspend fun signUp(email: String, password: String, fullName: String): Unit =
+        suspendCancellableCoroutine { cont ->
+            val options = AuthSignUpOptions.builder()
+                .userAttribute(AuthUserAttributeKey.name(), fullName)
+                .build()
+            Amplify.Auth.signUp(email, password, options,
+                { cont.resume(Unit) },
+                { error -> cont.resumeWithException(error) }
+            )
+        }
+
+    suspend fun confirmSignUp(email: String, code: String): Unit =
+        suspendCancellableCoroutine { cont ->
+            Amplify.Auth.confirmSignUp(email, code,
+                { cont.resume(Unit) },
+                { error -> cont.resumeWithException(error) }
+            )
+        }
 }

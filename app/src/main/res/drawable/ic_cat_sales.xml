@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Frasco de ciencia / minerales -->
+    <path
+        android:fillColor="@color/primary"
+        android:pathData="M7,2V4H8V18C8,20.21 9.79,22 12,22C14.21,22 16,20.21 16,18V4H17V2H7ZM12,20C10.9,20 10,19.1 10,18V13H14V18C14,19.1 13.1,20 12,20ZM14,11H10V4H14V11Z" />
+</vector>

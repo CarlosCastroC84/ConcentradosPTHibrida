@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.concentradospt.R
 import com.example.concentradospt.databinding.FragmentCheckoutBinding
 import com.example.concentradospt.ui.carrito.CartViewModel
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
@@ -76,7 +75,7 @@ class CheckoutFragment : Fragment() {
 
                     is CheckoutState.Success -> {
                         setLoading(false)
-                        showSuccessDialog(state.pedidoId)
+                        navigateToPago(state.pedidoId)
                     }
 
                     is CheckoutState.Error -> {
@@ -99,17 +98,12 @@ class CheckoutFragment : Fragment() {
         }
     }
 
-    private fun showSuccessDialog(pedidoId: String) {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("¡Pedido confirmado!")
-            .setMessage("Tu pedido #${pedidoId.takeLast(8).uppercase()} fue registrado exitosamente.\nNos pondremos en contacto para coordinar la entrega.")
-            .setPositiveButton("Ver mis pedidos") { _, _ ->
-                cartViewModel.clear()
-                checkoutViewModel.resetState()
-                findNavController().navigate(R.id.action_checkout_to_pedidos)
-            }
-            .setCancelable(false)
-            .show()
+    private fun navigateToPago(pedidoId: String) {
+        checkoutViewModel.resetState()
+        val args = android.os.Bundle().apply {
+            putString("pedidoId", pedidoId)
+        }
+        findNavController().navigate(R.id.action_checkout_to_pago, args)
     }
 
     private fun setLoading(loading: Boolean) {

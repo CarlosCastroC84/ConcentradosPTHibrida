@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
+
+        <!-- Header con avatar e info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/surface"
+            android:paddingTop="40dp"
+            android:paddingBottom="24dp"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding">
+
+            <!-- Avatar con iniciales -->
+            <TextView
+                android:id="@+id/pv_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:textSize="28sp"
+                android:textColor="@color/on_primary"
+                android:fontFamily="@font/manrope"
+                android:textStyle="bold"
+                android:background="@color/primary"
+                android:text="V" />
+
+            <TextView
+                android:id="@+id/pv_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Vendedor"
+                android:textAppearance="@style/TextAppearance.App.HeadlineSmall"
+                android:fontFamily="@font/manrope"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pv_cedula"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Cédula: —"
+                android:textAppearance="@style/TextAppearance.App.BodySmall"
+                android:textColor="@color/on_surface_variant" />
+
+            <TextView
+                android:id="@+id/pv_rol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="4dp"
+                android:text="VENDEDOR"
+                android:textSize="11sp"
+                android:fontFamily="@font/manrope"
+                android:textStyle="bold"
+                android:textColor="@color/on_primary"
+                android:background="@color/primary" />
+
+        </LinearLayout>
+
+        <!-- Cards de estadísticas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/spacing_lg"
+            android:paddingBottom="@dimen/spacing_md">
+
+            <!-- Stat: Productos -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card"
+                android:padding="@dimen/spacing_md"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:id="@+id/pv_stat_productos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/manrope"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Productos"
+                    android:textAppearance="@style/TextAppearance.App.BodySmall"
+                    android:textColor="@color/on_surface_variant" />
+
+            </LinearLayout>
+
+            <!-- Stat: Pedidos -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card"
+                android:padding="@dimen/spacing_md"
+                android:layout_marginHorizontal="4dp">
+
+                <TextView
+                    android:id="@+id/pv_stat_pedidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/manrope"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pedidos"
+                    android:textAppearance="@style/TextAppearance.App.BodySmall"
+                    android:textColor="@color/on_surface_variant" />
+
+            </LinearLayout>
+
+            <!-- Stat: Ventas -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card"
+                android:padding="@dimen/spacing_md"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:id="@+id/pv_stat_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/manrope"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total ventas"
+                    android:textAppearance="@style/TextAppearance.App.BodySmall"
+                    android:textColor="@color/on_surface_variant" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Botón Cerrar Sesión -->
+        <Button
+            android:id="@+id/pv_btn_logout"
+            style="@style/Widget.App.Button.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height_primary"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:text="Cerrar Sesión"
+            android:textColor="@color/error"
+            android:fontFamily="@font/manrope" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

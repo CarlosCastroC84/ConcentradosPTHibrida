@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:paddingHorizontal="@dimen/screen_horizontal_padding">
+
+    <!-- Ícono de éxito -->
+    <TextView
+        android:id="@+id/exito_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="✓"
+        android:textSize="40sp"
+        android:textColor="@color/on_primary"
+        android:fontFamily="@font/manrope"
+        android:textStyle="bold"
+        android:background="@color/primary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/exito_titulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        android:id="@+id/exito_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="¡Pago exitoso!"
+        android:textAppearance="@style/TextAppearance.App.HeadlineSmall"
+        android:fontFamily="@font/manrope"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/exito_icon"
+        app:layout_constraintBottom_toTopOf="@+id/exito_mensaje"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/exito_mensaje"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Tu pago fue procesado correctamente.\nNos pondremos en contacto para coordinar la entrega."
+        android:textAppearance="@style/TextAppearance.App.BodySmall"
+        android:textColor="@color/on_surface_variant"
+        android:fontFamily="@font/inter"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/exito_titulo"
+        app:layout_constraintBottom_toTopOf="@+id/exito_pedido_id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/exito_pedido_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Pedido #——"
+        android:textAppearance="@style/TextAppearance.App.Body"
+        android:fontFamily="@font/manrope"
+        android:textStyle="bold"
+        android:textColor="@color/primary"
+        app:layout_constraintTop_toBottomOf="@id/exito_mensaje"
+        app:layout_constraintBottom_toTopOf="@+id/exito_btn_inicio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/exito_btn_inicio"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height_primary"
+        android:layout_marginTop="32dp"
+        android:text="Ir al Inicio"
+        android:background="@drawable/bg_button_primary"
+        android:textColor="@color/on_primary"
+        android:fontFamily="@font/manrope"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/exito_pedido_id"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

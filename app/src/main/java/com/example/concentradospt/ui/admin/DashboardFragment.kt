@@ -42,7 +42,10 @@ class DashboardFragment : Fragment() {
             findNavController().navigate(R.id.action_dashboard_to_gestion_usuarios)
         }
         binding.dashboardBtnNewReport.setOnClickListener {
-            findNavController().navigate(R.id.action_admin_dashboard_to_ventas)
+            findNavController().navigate(R.id.action_admin_dashboard_to_reportes)
+        }
+        binding.dashboardBtnLogout.setOnClickListener {
+            (activity as? AdminActivity)?.adminSignOut()
         }
 
         observeState()

@@ -63,5 +63,49 @@ class GestionUsuariosViewModel : ViewModel() {
         }
     }
 
+    fun crearUsuario(nuevo: AdminUsuarioInfo) {
+        viewModelScope.launch {
+            try {
+                val current = (_state.value as? GestionUsuariosState.Success)?.usuarios?.toMutableList()
+                    ?: mutableListOf()
+                val withId = nuevo.copy(id = System.currentTimeMillis())
+                current.add(0, withId)
+                _state.value = GestionUsuariosState.Success(current)
+                _actionResult.value = "Usuario ${nuevo.nombreCompleto} creado (pendiente sincronización)"
+            } catch (e: Exception) {
+                _actionResult.value = "Error al crear el usuario"
+            }
+        }
+    }
+
+    fun editarUsuario(actualizado: AdminUsuarioInfo) {
+        viewModelScope.launch {
+            try {
+                val current = (_state.value as? GestionUsuariosState.Success)?.usuarios?.toMutableList()
+                    ?: mutableListOf()
+                val idx = current.indexOfFirst { it.id == actualizado.id }
+                if (idx >= 0) current[idx] = actualizado
+                _state.value = GestionUsuariosState.Success(current)
+                _actionResult.value = "Usuario actualizado"
+            } catch (e: Exception) {
+                _actionResult.value = "Error al actualizar el usuario"
+            }
+        }
+    }
+
+    fun eliminarUsuario(usuario: AdminUsuarioInfo) {
+        viewModelScope.launch {
+            try {
+                val current = (_state.value as? GestionUsuariosState.Success)?.usuarios?.toMutableList()
+                    ?: mutableListOf()
+                current.removeAll { it.id == usuario.id }
+                _state.value = GestionUsuariosState.Success(current)
+                _actionResult.value = "Usuario ${usuario.nombreCompleto.ifBlank { usuario.cedula }} eliminado"
+            } catch (e: Exception) {
+                _actionResult.value = "Error al eliminar el usuario"
+            }
+        }
+    }
+
     fun clearActionResult() { _actionResult.value = null }
 }

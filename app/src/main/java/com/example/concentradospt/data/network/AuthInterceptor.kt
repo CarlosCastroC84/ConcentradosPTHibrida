@@ -14,24 +14,26 @@ class AuthInterceptor : Interceptor {
         val request = chain.request()
         val path = request.url.pathSegments.lastOrNull { it.isNotEmpty() } ?: ""
 
-        // Endpoints GET públicos no requieren token
-        if (request.method == "GET" && ApiConstants.PUBLIC_ENDPOINTS.any { path.contains(it) }) {
+        if (request.method == "GET" && (ApiConstants.PUBLIC_ENDPOINTS.any { path.contains(it) })) {
             return chain.proceed(request)
         }
 
-        val token = fetchIdToken()
+        val token = fetchToken()
+        
         return if (token != null) {
+            Log.d("AuthInterceptor", "Inyectando ID Token en: $path")
             chain.proceed(
                 request.newBuilder()
                     .addHeader("Authorization", "Bearer $token")
                     .build()
             )
         } else {
+            Log.w("AuthInterceptor", "No se encontró token para la ruta: $path")
             chain.proceed(request)
         }
     }
 
-    private fun fetchIdToken(): String? {
+    private fun fetchToken(): String? {
         var token: String? = null
         val latch = CountDownLatch(1)
 
@@ -39,18 +41,20 @@ class AuthInterceptor : Interceptor {
             { session ->
                 val cognitoSession = session as? AWSCognitoAuthSession
                 if (session.isSignedIn) {
+                    // idToken lleva las claims de identidad (email, sub) que Spring Boot usa para /clientes/me
                     token = cognitoSession?.userPoolTokensResult?.value?.idToken
+                        ?: cognitoSession?.userPoolTokensResult?.value?.accessToken
                 }
                 latch.countDown()
             },
             { error ->
-                Log.e("AuthInterceptor", "Error obteniendo sesión: ${error.message}")
+                Log.e("AuthInterceptor", "Error obteniendo sesión de Amplify: ${error.message}")
                 latch.countDown()
             }
         )
 
-        // Aumentamos el timeout para zonas con baja conectividad
-        latch.await(10, TimeUnit.SECONDS)
+        // Timeout de 5 segundos para no bloquear el hilo de red demasiado tiempo
+        latch.await(5, TimeUnit.SECONDS)
         return token
     }
 }

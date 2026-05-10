@@ -11,6 +11,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 data class PerfilUiState(
     val isLoading: Boolean = true,
@@ -39,8 +40,14 @@ class PerfilViewModel : ViewModel() {
         viewModelScope.launch {
             _state.value = PerfilUiState(isLoading = true)
 
+            var perfilException: Exception? = null
             val clienteDeferred = async {
-                runCatching { clienteRepo.getMiPerfil() }.getOrNull()
+                try {
+                    clienteRepo.getMiPerfil()
+                } catch (e: Exception) {
+                    perfilException = e
+                    null
+                }
             }
             val pedidosDeferred = async {
                 runCatching { pedidoRepo.getMisPedidos() }.getOrElse { emptyList() }
@@ -53,6 +60,19 @@ class PerfilViewModel : ViewModel() {
             val pedidos = pedidosDeferred.await()
             val emailFallback = emailDeferred.await()
 
+            val errorMessage = if (cliente == null) {
+                when (val cause = perfilException) {
+                    is HttpException -> when (cause.code()) {
+                        401 -> "Error de autenticación. Cierra sesión y vuelve a ingresar."
+                        403 -> "Tu cuenta aún no está activada en el sistema. Contacta al administrador."
+                        404 -> "Perfil no encontrado. Contacta a soporte."
+                        else -> "Error del servidor (${cause.code()}). Intenta de nuevo."
+                    }
+                    null -> "No se pudo cargar el perfil"
+                    else -> "Error de conexión: ${cause.javaClass.simpleName}"
+                }
+            } else null
+
             _state.value = PerfilUiState(
                 isLoading = false,
                 cliente = cliente,
@@ -60,7 +80,7 @@ class PerfilViewModel : ViewModel() {
                 recentOrders = pedidos
                     .sortedByDescending { it.fechaCreacion }
                     .take(3),
-                error = if (cliente == null) "No se pudo cargar el perfil" else null
+                error = errorMessage
             )
         }
     }

@@ -101,19 +101,11 @@ class DetalleProductoFragment : Fragment() {
         }
         binding.detallePrecio.text = p.precio.formatCOP()
         binding.detalleDescripcion.text = p.descripcion
-        binding.detalleStock.text = when {
-            p.stock <= 0 -> "Sin stock"
-            p.stock <= 5 -> "¡Solo quedan ${p.stock} unidades!"
-            else -> "${p.stock} unidades disponibles"
-        }
-        binding.detalleStock.setTextColor(
-            requireContext().getColor(if (p.stock <= 5) R.color.error else R.color.tertiary)
-        )
 
         Glide.with(this)
             .load(p.imagenUrl)
             .placeholder(R.drawable.bg_card)
-            .centerCrop()
+            .fitCenter()
             .into(binding.detalleImage)
     }
 
@@ -123,5 +115,9 @@ class DetalleProductoFragment : Fragment() {
     }
 }
 
-private fun Double.formatCOP(): String =
-    NumberFormat.getCurrencyInstance(Locale("es", "CO")).format(this)
+private fun Double.formatCOP(): String {
+    val fmt = NumberFormat.getCurrencyInstance(Locale("es", "CO"))
+    fmt.maximumFractionDigits = 0
+    fmt.minimumFractionDigits = 0
+    return fmt.format(this.toLong())
+}

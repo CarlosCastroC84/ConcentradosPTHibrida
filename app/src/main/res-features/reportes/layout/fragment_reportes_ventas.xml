@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        android:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/rv_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_app_bar_height"
+            app:title="@string/sales_reports_title"
+            app:titleTextAppearance="@style/TextAppearance.App.HeadlineSmall"
+            app:navigationIcon="@android:drawable/ic_menu_revert"
+            app:navigationContentDescription="@string/action_back" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:paddingBottom="24dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/spacing_lg">
+
+            <!-- Filtro de período -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/spacing_lg">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Período:"
+                    android:textAppearance="@style/TextAppearance.App.Body"
+                    android:fontFamily="@font/inter" />
+
+                <Spinner
+                    android:id="@+id/rv_spinner_period"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <!-- KPIs -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/spacing_md">
+
+                <!-- KPI: Total Ingresos -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_card"
+                    android:padding="@dimen/spacing_md"
+                    android:layout_marginEnd="6dp">
+
+                    <TextView
+                        android:id="@+id/rv_kpi_ingresos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/manrope"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/sales_reports_kpi_total_sales"
+                        android:textAppearance="@style/TextAppearance.App.BodySmall"
+                        android:textColor="@color/on_surface_variant"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <!-- KPI: Pedidos -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_card"
+                    android:padding="@dimen/spacing_md"
+                    android:layout_marginHorizontal="3dp">
+
+                    <TextView
+                        android:id="@+id/rv_kpi_pedidos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="22sp"
+                        android:fontFamily="@font/manrope"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/sales_reports_kpi_orders"
+                        android:textAppearance="@style/TextAppearance.App.BodySmall"
+                        android:textColor="@color/on_surface_variant"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <!-- KPI: Promedio -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_card"
+                    android:padding="@dimen/spacing_md"
+                    android:layout_marginStart="6dp">
+
+                    <TextView
+                        android:id="@+id/rv_kpi_promedio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/manrope"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/sales_reports_kpi_avg_order"
+                        android:textAppearance="@style/TextAppearance.App.BodySmall"
+                        android:textColor="@color/on_surface_variant"
+                        android:gravity="center" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Gráfico de barras -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card.Surface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_md">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_md"
+                        android:text="Ventas por Estado"
+                        android:textAppearance="@style/TextAppearance.App.Body"
+                        android:fontFamily="@font/manrope"
+                        android:textStyle="bold" />
+
+                    <!-- Barra: GENERADA -->
+                    <TextView
+                        android:id="@+id/rv_bar_label_generada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GENERADA"
+                        android:textAppearance="@style/TextAppearance.App.BodySmall"
+                        android:textColor="@color/on_surface_variant" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/spacing_sm">
+
+                        <View
+                            android:id="@+id/rv_bar_generada"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:background="@color/primary" />
+
+                        <TextView
+                            android:id="@+id/rv_bar_val_generada"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="0"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:fontFamily="@font/manrope"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Barra: BORRADOR -->
+                    <TextView
+                        android:id="@+id/rv_bar_label_borrador"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BORRADOR"
+                        android:textAppearance="@style/TextAppearance.App.BodySmall"
+                        android:textColor="@color/on_surface_variant" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/spacing_sm">
+
+                        <View
+                            android:id="@+id/rv_bar_borrador"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:background="@color/tertiary" />
+
+                        <TextView
+                            android:id="@+id/rv_bar_val_borrador"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="0"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:fontFamily="@font/manrope"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Barra: ANULADA -->
+                    <TextView
+                        android:id="@+id/rv_bar_label_anulada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ANULADA"
+                        android:textAppearance="@style/TextAppearance.App.BodySmall"
+                        android:textColor="@color/on_surface_variant" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <View
+                            android:id="@+id/rv_bar_anulada"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:background="@color/error" />
+
+                        <TextView
+                            android:id="@+id/rv_bar_val_anulada"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="0"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:fontFamily="@font/manrope"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Tabla: Top Productos -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card.Surface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_md">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_md"
+                        android:text="@string/sales_reports_section_top_products"
+                        android:textAppearance="@style/TextAppearance.App.Body"
+                        android:fontFamily="@font/manrope"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/rv_top_productos_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Botón Exportar -->
+            <Button
+                android:id="@+id/rv_btn_exportar"
+                style="@style/Widget.App.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height_primary"
+                android:text="Exportar Reporte"
+                android:textColor="@color/primary"
+                android:fontFamily="@font/manrope" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

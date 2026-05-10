@@ -155,8 +155,13 @@
 
     <!-- ======== BOTTOM NAVIGATION ======== -->
     <style name="Widget.App.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
-        <item name="backgroundTint">@color/surface</item>
-        <item name="itemIconTint">@color/on_surface_variant</item>
-        <item name="itemTextColor">@color/on_surface_variant</item>
+        <item name="itemIconTint">@color/nav_item_color</item>
+        <item name="itemTextColor">@color/nav_item_color</item>
+    </style>
+
+    <!-- Cambia el color del indicador activo del BottomNav sin afectar el resto de la app -->
+    <style name="ThemeOverlay.App.BottomNav" parent="">
+        <item name="colorSecondaryContainer">@color/primary_fixed</item>
+        <item name="colorOnSecondaryContainer">@color/primary</item>
     </style>
 </resources>

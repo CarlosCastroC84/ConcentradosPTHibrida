@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        android:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/pago_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_app_bar_height"
+            app:title="Pasarela de Pago"
+            app:titleTextAppearance="@style/TextAppearance.App.HeadlineSmall"
+            app:navigationIcon="@android:drawable/ic_menu_revert"
+            app:navigationContentDescription="@string/action_back" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/spacing_lg">
+
+            <!-- Resumen del pedido -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card.Surface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_lg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Resumen del pedido"
+                        android:textAppearance="@style/TextAppearance.App.Body"
+                        android:fontFamily="@font/manrope"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="@dimen/spacing_sm" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Pedido #"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:textColor="@color/on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/pago_pedido_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:fontFamily="@font/manrope"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/spacing_xs">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Total a pagar"
+                            android:textAppearance="@style/TextAppearance.App.BodySmall"
+                            android:textColor="@color/on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/pago_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$0"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/manrope"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Selección método de pago -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_md"
+                android:text="Método de pago"
+                android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+                android:fontFamily="@font/noto_serif"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/pago_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_lg">
+
+                <RadioButton
+                    android:id="@+id/pago_radio_tarjeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Tarjeta de Crédito / Débito"
+                    android:textAppearance="@style/TextAppearance.App.Body"
+                    android:fontFamily="@font/inter"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/pago_radio_pse"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="PSE — Débito bancario"
+                    android:textAppearance="@style/TextAppearance.App.Body"
+                    android:fontFamily="@font/inter" />
+
+                <RadioButton
+                    android:id="@+id/pago_radio_contraentrega"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Pago contra entrega"
+                    android:textAppearance="@style/TextAppearance.App.Body"
+                    android:fontFamily="@font/inter" />
+            </RadioGroup>
+
+            <!-- Formulario tarjeta -->
+            <LinearLayout
+                android:id="@+id/pago_form_tarjeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pago_til_numero"
+                    style="@style/Widget.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_md"
+                    android:hint="Número de tarjeta">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pago_et_numero"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/input_height"
+                        android:inputType="number"
+                        android:maxLength="16"
+                        android:fontFamily="@font/inter" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pago_til_nombre"
+                    style="@style/Widget.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_md"
+                    android:hint="Nombre en la tarjeta">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pago_et_nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/input_height"
+                        android:inputType="textPersonName|textCapCharacters"
+                        android:fontFamily="@font/inter" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/pago_til_vence"
+                        style="@style/Widget.App.TextInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:hint="MM/AA">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pago_et_vence"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/input_height"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:fontFamily="@font/inter" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/pago_til_cvv"
+                        style="@style/Widget.App.TextInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_sm"
+                        android:hint="CVV"
+                        app:endIconMode="password_toggle">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pago_et_cvv"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/input_height"
+                            android:inputType="numberPassword"
+                            android:maxLength="4"
+                            android:fontFamily="@font/inter" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Formulario PSE -->
+            <LinearLayout
+                android:id="@+id/pago_form_pse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pago_til_banco"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_md"
+                    android:hint="Banco">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/pago_actv_banco"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/input_height"
+                        android:inputType="none"
+                        android:fontFamily="@font/inter" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pago_til_documento_pse"
+                    style="@style/Widget.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Número de documento">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pago_et_documento_pse"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/input_height"
+                        android:inputType="number"
+                        android:fontFamily="@font/inter" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Mensaje contra entrega -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/pago_card_contraentrega"
+                style="@style/Widget.App.Card.Surface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/card_padding"
+                    android:text="El pago se realizará al momento de recibir el pedido. Nuestro equipo se comunicará para coordinar la entrega."
+                    android:textAppearance="@style/TextAppearance.App.BodySmall"
+                    android:textColor="@color/on_surface_variant"
+                    android:fontFamily="@font/inter" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Sello de seguridad -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/spacing_lg">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@android:drawable/ic_lock_lock"
+                    android:contentDescription="@null"
+                    app:tint="@color/on_surface_variant" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Transacción segura SSL"
+                    android:textAppearance="@style/TextAppearance.App.BodySmall"
+                    android:textColor="@color/on_surface_variant"
+                    android:fontFamily="@font/inter" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Botón Confirmar pago -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:elevation="8dp"
+        app:cardCornerRadius="0dp"
+        app:cardBackgroundColor="@color/surface">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_lg">
+
+            <ProgressBar
+                android:id="@+id/pago_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/pago_btn_confirmar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height_primary"
+                android:text="Confirmar pago"
+                android:background="@drawable/bg_button_primary"
+                android:textColor="@color/on_primary"
+                android:fontFamily="@font/manrope"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

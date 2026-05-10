@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_vendedor"
+    app:startDestination="@id/nav_vend_productos">
+
+    <!-- PANEL PRODUCTOS VENDEDOR -->
+    <fragment
+        android:id="@+id/nav_vend_productos"
+        android:name="com.example.concentradospt.ui.vendedor.PanelProductosVendedorFragment"
+        android:label="Productos" />
+
+    <!-- PEDIDOS RECIBIDOS VENDEDOR -->
+    <fragment
+        android:id="@+id/nav_vend_pedidos"
+        android:name="com.example.concentradospt.ui.vendedor.PedidosVendedorFragment"
+        android:label="Pedidos Recibidos">
+        <action
+            android:id="@+id/action_pedidos_vend_to_detalle"
+            app:destination="@id/nav_vend_detalle_pedido" />
+    </fragment>
+
+    <!-- DETALLE PEDIDO VENDEDOR -->
+    <fragment
+        android:id="@+id/nav_vend_detalle_pedido"
+        android:name="com.example.concentradospt.ui.admin.DetalleVentaFragment"
+        android:label="Detalle de Pedido">
+        <argument
+            android:name="ventaId"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
+
+    <!-- PERFIL VENDEDOR -->
+    <fragment
+        android:id="@+id/nav_vend_perfil"
+        android:name="com.example.concentradospt.ui.vendedor.PerfilVendedorFragment"
+        android:label="Perfil" />
+
+</navigation>

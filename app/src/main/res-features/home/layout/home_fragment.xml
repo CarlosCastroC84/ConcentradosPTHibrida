@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- Top App Bar con glassmorphism simulado -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/home_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        android:elevation="0dp"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/home_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_app_bar_height"
+            android:paddingHorizontal="@dimen/spacing_sm">
+
+            <!-- Logo centrado -->
+            <ImageView
+                android:id="@+id/img_logo_home"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/logo_height_small"
+                android:layout_gravity="center"
+                android:contentDescription="@string/logo_content_description"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/ic_launcher" />
+
+            <!-- Botón búsqueda (izquierda) -->
+            <ImageButton
+                android:id="@+id/btn_search"
+                android:layout_width="@dimen/top_app_bar_icon_size"
+                android:layout_height="@dimen/top_app_bar_icon_size"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/action_search"
+                android:src="@android:drawable/ic_menu_search"
+                app:tint="@color/primary"
+                android:layout_gravity="start|center_vertical" />
+
+            <!-- Botón notificaciones (derecha) -->
+            <ImageButton
+                android:id="@+id/btn_notifications"
+                android:layout_width="@dimen/top_app_bar_icon_size"
+                android:layout_height="@dimen/top_app_bar_icon_size"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/action_notifications"
+                android:src="@android:drawable/ic_popup_reminder"
+                app:tint="@color/primary"
+                android:layout_gravity="end|center_vertical" />
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Loading -->
+    <ProgressBar
+        android:id="@+id/home_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <!-- Estado vacío / error -->
+    <TextView
+        android:id="@+id/home_tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/spacing_xl"
+        android:textAppearance="@style/TextAppearance.App.BodySmall"
+        android:textColor="@color/on_surface_variant"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <!-- Contenido scrollable -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/home_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/spacing_xl">
+
+            <!-- Hero Banner con carrusel desde S3 -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/home_hero_card"
+                style="@style/Widget.App.Card"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+                android:layout_marginTop="@dimen/spacing_md">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/home_banner_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Indicadores del carrusel (dots) -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/home_banner_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/spacing_xs"
+                app:tabBackground="@drawable/bg_chip_unselected"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                app:tabMinWidth="8dp"
+                app:tabMaxWidth="8dp"
+                app:tabPaddingStart="4dp"
+                app:tabPaddingEnd="4dp" />
+
+            <!-- Sección: Categorías -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/home_section_categories"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_section_categories"
+                    android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+                    android:fontFamily="@font/noto_serif"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/home_see_all_categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_see_all"
+                    android:textAppearance="@style/TextAppearance.App.Label"
+                    android:textColor="@color/primary"
+                    android:fontFamily="@font/manrope"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <!-- Chips de categorías (scroll horizontal) -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:paddingHorizontal="@dimen/screen_horizontal_padding"
+                android:scrollbars="none">
+
+                <!-- Chips generados dinámicamente desde AWS en HomeFragment -->
+                <LinearLayout
+                    android:id="@+id/home_categories_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+            <!-- Sección: Productos Destacados -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+                android:layout_marginTop="@dimen/spacing_lg"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/home_section_featured"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_section_featured"
+                    android:textAppearance="@style/TextAppearance.App.HeadlineMedium"
+                    android:fontFamily="@font/noto_serif"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/home_see_all_products"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_see_all"
+                    android:textAppearance="@style/TextAppearance.App.Label"
+                    android:textColor="@color/primary"
+                    android:fontFamily="@font/manrope"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <!-- Grid de productos (2 columnas con RecyclerView) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_rv_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:paddingHorizontal="@dimen/screen_horizontal_padding"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

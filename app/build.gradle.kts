@@ -36,6 +36,25 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    sourceSets {
+        getByName("main") {
+            res.srcDirs(
+                "src/main/res",
+                "src/main/res-features/activities",
+                "src/main/res-features/home",
+                "src/main/res-features/catalogo",
+                "src/main/res-features/carrito",
+                "src/main/res-features/pedidos",
+                "src/main/res-features/producto",
+                "src/main/res-features/perfil",
+                "src/main/res-features/dashboard",
+                "src/main/res-features/dialogs",
+                "src/main/res-features/vendedor",
+                "src/main/res-features/reportes",
+                "src/main/res-w600dp"
+            )
+        }
+    }
 }
 
 dependencies {
@@ -45,12 +64,19 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+
     // Navigation Component
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
+    // Biometrico
+    implementation("androidx.biometric:biometric:1.1.0")
+
     // RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // ViewPager2 (carrusel de imágenes)
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     // Glide (carga de imágenes)
     implementation("com.github.bumptech.glide:glide:4.16.0")

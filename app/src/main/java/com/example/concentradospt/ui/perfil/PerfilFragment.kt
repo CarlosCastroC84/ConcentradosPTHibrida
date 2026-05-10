@@ -56,6 +56,10 @@ class PerfilFragment : Fragment() {
             findNavController().navigate(R.id.action_perfil_to_pedidos)
         }
 
+        binding.perfilSettingFavoritos.setOnClickListener {
+            findNavController().navigate(R.id.action_perfil_to_favoritos)
+        }
+
         binding.perfilSettingEditProfile.setOnClickListener {
             showEditProfileDialog()
         }

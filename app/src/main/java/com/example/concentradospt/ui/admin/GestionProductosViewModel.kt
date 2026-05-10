@@ -63,5 +63,17 @@ class GestionProductosViewModel : ViewModel() {
         }
     }
 
+    fun eliminarProducto(id: Long) {
+        viewModelScope.launch {
+            try {
+                api.eliminarAdminProducto(id)
+                _actionResult.value = "Producto eliminado"
+                loadProductos()
+            } catch (e: Exception) {
+                _actionResult.value = "Error al eliminar el producto"
+            }
+        }
+    }
+
     fun clearActionResult() { _actionResult.value = null }
 }

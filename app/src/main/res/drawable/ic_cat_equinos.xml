@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Cabeza del caballo -->
+    <path android:fillColor="@color/primary"
+        android:pathData="M14,3C11,3 9,5 9,7L9,9C7,9.5 6,11 6,13L8,13C8,11.9 9,11 10,11L10,13L14,13L14,11C16,11.5 17,13 17,15L19,15C19,11.5 17.5,9 15,8L15,7C15,5 14.5,3 14,3Z"/>
+    <!-- Crin -->
+    <path android:fillColor="@color/on_surface"
+        android:pathData="M14,3C14.5,3 15,5 15,7L14,7C14,6 13.5,4 13,4C12.5,4 12,5 11,6L9,7C9,5 11,3 14,3Z"/>
+    <!-- Ojo -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M12,6C12,6.6 11.6,7 11,7C10.4,7 10,6.6 10,6C10,5.4 10.4,5 11,5C11.6,5 12,5.4 12,6Z"/>
+    <!-- Ollares -->
+    <path android:fillColor="@color/on_surface"
+        android:pathData="M10,10.5C10,11 9.7,11.3 9.5,11.3C9.2,11.3 9,11 9,10.5C9,10 9.2,9.7 9.5,9.7C9.7,9.7 10,10 10,10.5Z"/>
+    <!-- Cuello / cuerpo sugerido -->
+    <path android:fillColor="@color/primary_container"
+        android:pathData="M10,13L14,13L14,17C14,18.7 12,20 10,20C8,20 8,18 8,17Z"/>
+</vector>

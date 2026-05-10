@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Oreja izquierda -->
+    <path android:fillColor="@color/primary"
+        android:pathData="M8,5L6,3L7,7Z"/>
+    <!-- Oreja derecha -->
+    <path android:fillColor="@color/primary"
+        android:pathData="M16,5L18,3L17,7Z"/>
+    <!-- Cabeza redonda -->
+    <path android:fillColor="@color/primary"
+        android:pathData="M12,5C8.1,5 5,8.1 5,12C5,15.9 8.1,19 12,19C15.9,19 19,15.9 19,12C19,8.1 15.9,5 12,5Z"/>
+    <!-- Hocico -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M12,14C10.3,14 9,14.9 9,16C9,17.1 10.3,18 12,18C13.7,18 15,17.1 15,16C15,14.9 13.7,14 12,14Z"/>
+    <!-- Orificios nasales -->
+    <path android:fillColor="@color/primary"
+        android:pathData="M10.5,15.5C10.5,16 10.2,16.3 10,16.3C9.7,16.3 9.5,16 9.5,15.5C9.5,15 9.7,14.7 10,14.7C10.2,14.7 10.5,15 10.5,15.5Z"/>
+    <path android:fillColor="@color/primary"
+        android:pathData="M14.5,15.5C14.5,16 14.2,16.3 14,16.3C13.7,16.3 13.5,16 13.5,15.5C13.5,15 13.7,14.7 14,14.7C14.2,14.7 14.5,15 14.5,15.5Z"/>
+    <!-- Ojo izquierdo -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M10,10C10,10.8 9.6,11.5 9,11.5C8.4,11.5 8,10.8 8,10C8,9.2 8.4,8.5 9,8.5C9.6,8.5 10,9.2 10,10Z"/>
+    <!-- Ojo derecho -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M16,10C16,10.8 15.6,11.5 15,11.5C14.4,11.5 14,10.8 14,10C14,9.2 14.4,8.5 15,8.5C15.6,8.5 16,9.2 16,10Z"/>
+</vector>

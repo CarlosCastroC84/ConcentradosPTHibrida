@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.App.Card.Surface"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_md">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding">
+
+        <!-- Fila: nombre + badge estado -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/admin_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.App.Body"
+                    android:fontFamily="@font/inter"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/admin_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xxs"
+                    android:textAppearance="@style/TextAppearance.App.BodySmall"
+                    android:textColor="@color/on_surface_variant"
+                    android:fontFamily="@font/inter" />
+
+                <TextView
+                    android:id="@+id/admin_user_rol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xxs"
+                    android:textAppearance="@style/TextAppearance.App.LabelSmall"
+                    android:textColor="@color/tertiary"
+                    android:fontFamily="@font/manrope"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Badge estado -->
+            <TextView
+                android:id="@+id/admin_user_estado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/spacing_sm"
+                android:paddingVertical="@dimen/spacing_xxs"
+                android:textAppearance="@style/TextAppearance.App.LabelSmall"
+                android:fontFamily="@font/manrope"
+                android:textStyle="bold"
+                android:textColor="@color/on_primary"
+                android:background="@drawable/bg_cart_badge" />
+        </LinearLayout>
+
+        <!-- Divisor -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginVertical="@dimen/spacing_md"
+            android:background="@color/surface_container_high" />
+
+        <!-- Acciones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/admin_user_btn_toggle"
+                style="@style/Widget.App.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/spacing_sm"
+                android:textAppearance="@style/TextAppearance.App.LabelSmall"
+                android:fontFamily="@font/manrope"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/admin_user_btn_reset_pass"
+                style="@style/Widget.App.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:text="Reset PIN"
+                android:textAppearance="@style/TextAppearance.App.LabelSmall"
+                android:fontFamily="@font/manrope"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Segunda fila de acciones: Editar + Eliminar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_sm">
+
+            <Button
+                android:id="@+id/admin_user_btn_editar"
+                style="@style/Widget.App.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/spacing_sm"
+                android:text="Editar"
+                android:textAppearance="@style/TextAppearance.App.LabelSmall"
+                android:fontFamily="@font/manrope"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/admin_user_btn_eliminar"
+                style="@style/Widget.App.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:text="Eliminar"
+                android:textAppearance="@style/TextAppearance.App.LabelSmall"
+                android:fontFamily="@font/manrope"
+                android:textAllCaps="false"
+                android:textColor="@color/error" />
+        </LinearLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -44,16 +44,62 @@
     <string name="login_hero_subtitle">Gestión agrícola avanzada, con la precisión que la tierra merece.</string>
     <string name="login_welcome">Bienvenido de nuevo a su gestión rural.</string>
     <string name="login_label_email">Correo Electrónico</string>
-    <string name="login_hint_email">ejemplo@finca.com</string>
+    <string name="login_hint_email">ejemplo@puentetierra.com</string>
     <string name="login_label_password">Contraseña</string>
     <string name="login_hint_password">••••••••</string>
     <string name="login_forgot_password">¿Olvidó su contraseña?</string>
     <string name="login_btn_enter">Ingresar</string>
     <string name="login_or_quick_access">o ingreso rápido</string>
     <string name="login_btn_biometric">Usar Biometría</string>
+    <string name="login_biometric_setup_hint">Configura tu huella tras ingresar</string>
+    <string name="login_biometric_prompt_title">Acceso con Huella</string>
+    <string name="login_biometric_prompt_subtitle">Usa tu huella dactilar para ingresar</string>
+
+    <string name="forgot_password_dialog_title">Recuperar Contraseña</string>
+    <string name="forgot_password_step1_message">Ingresa tu correo. Te enviaremos un código de verificación.</string>
+    <string name="forgot_password_label_email">Correo Electrónico</string>
+    <string name="forgot_password_btn_send">Enviar Código</string>
+    <string name="forgot_password_step2_message">Ingresa el código que recibiste y tu nueva contraseña.</string>
+    <string name="forgot_password_label_code">Código de Verificación</string>
+    <string name="forgot_password_label_new_password">Nueva Contraseña</string>
+    <string name="forgot_password_label_confirm_password">Confirmar Nueva Contraseña</string>
+    <string name="forgot_password_btn_confirm">Confirmar Cambio</string>
+    <string name="forgot_password_success">¡Contraseña actualizada! Ya puedes ingresar.</string>
+    <string name="forgot_password_error_empty_email">Ingresa tu correo electrónico</string>
+    <string name="forgot_password_error_empty_code">Ingresa el código de verificación</string>
+    <string name="forgot_password_error_password_mismatch">Las contraseñas no coinciden</string>
+    <string name="forgot_password_error_short_password">La contraseña debe tener mínimo 8 caracteres</string>
+
     <string name="login_no_account">¿No tienes una cuenta?</string>
     <string name="login_create_account">Crear Cuenta</string>
     <string name="login_label_access_type">Tipo de acceso</string>
+
+    <!-- ============ REGISTRO ============ -->
+    <string name="register_title">Crear Cuenta</string>
+    <string name="register_subtitle">Regístrate para acceder al catálogo.</string>
+    <string name="register_label_full_name">Nombre Completo</string>
+    <string name="register_hint_full_name">Ej. Carlos Martínez</string>
+    <string name="register_label_email">Correo Electrónico</string>
+    <string name="register_hint_email">ejemplo@puentetierra.com</string>
+    <string name="register_label_password">Contraseña</string>
+    <string name="register_label_confirm_password">Confirmar Contraseña</string>
+    <string name="register_btn_create">Crear Cuenta</string>
+    <string name="register_success_title">¡Registro exitoso!</string>
+    <string name="register_success_message">Revisa tu correo para confirmar tu cuenta antes de ingresar.</string>
+    <string name="register_error_empty_name">Ingresa tu nombre completo</string>
+    <string name="register_error_empty_email">Ingresa tu correo electrónico</string>
+    <string name="register_error_invalid_email">Ingresa un correo válido</string>
+    <string name="register_error_empty_password">Ingresa una contraseña</string>
+    <string name="register_error_short_password">La contraseña debe tener mínimo 8 caracteres</string>
+    <string name="register_error_password_mismatch">Las contraseñas no coinciden</string>
+    <string name="register_already_have_account">¿Ya tienes cuenta?</string>
+    <string name="register_sign_in">Iniciar Sesión</string>
+
+    <!-- ============ REGISTRO CONFIRMACIÓN ============ -->
+    <string name="register_confirm_title">Confirmar Cuenta</string>
+    <string name="register_confirm_message">Ingresa el código de verificación enviado a su correo electrónico.</string>
+    <string name="register_confirm_label_code">Código de Verificación</string>
+    <string name="register_confirm_error_empty_code">Por favor, ingrese el código de verificación</string>
 
     <!-- ============ HOME / INICIO ============ -->
     <string name="home_hero_title">Alimento Premium para Animales</string>
@@ -90,6 +136,7 @@
     <string name="product_label_weight">40 KG</string>
     <string name="product_label_brand">CONCENTRADOS PUENTE TIERRA</string>
     <string name="product_label_available">disponibles</string>
+    <string name="product_label_default_quantity">1</string>
     <string name="product_action_add_to_cart">Añadir al carrito</string>
     <string name="product_btn_add_cart">Agregar al Carrito</string>
     <string name="product_action_wishlist">Agregar a favoritos</string>
@@ -217,7 +264,7 @@
     <string name="business_reports_section_by_category">Por Categoría</string>
 
     <!-- ============ DASHBOARD ADMIN ============ -->
-    <string name="dashboard_title">Resumen General</string>
+    <string name="dashboard_title">Admin</string>
     <string name="dashboard_welcome">Bienvenido al panel de administración.</string>
     <string name="dashboard_btn_new_report">Nuevo Reporte</string>
     <string name="dashboard_kpi_total_sales">Ventas Totales</string>
@@ -274,6 +321,10 @@
     <string name="cd_btn_increase_quantity">Aumentar cantidad</string>
     <string name="cd_btn_decrease_quantity">Disminuir cantidad</string>
     <string name="cd_btn_wishlist">Agregar a favoritos</string>
+
+    <!-- ============ FAVORITOS ============ -->
+    <string name="favoritos_title">Mis Favoritos</string>
+    <string name="favoritos_empty">Aún no tienes productos favoritos.\nToca la estrella en cualquier producto para guardarlo aquí.</string>
 
     <!-- ============ MESES (para gráficas de reportes) ============ -->
     <string name="month_jan">Ene</string>
