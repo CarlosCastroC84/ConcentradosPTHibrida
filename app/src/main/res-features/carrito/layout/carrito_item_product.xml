@@ -35,10 +35,10 @@
                 android:id="@+id/carrito_item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.App.HeadlineSmall"
+                android:textAppearance="@style/TextAppearance.App.Body"
                 android:fontFamily="@font/noto_serif"
                 android:textStyle="bold"
-                android:maxLines="2"
+                android:maxLines="1"
                 android:ellipsize="end" />
 
             <TextView
@@ -56,8 +56,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
                 android:textAppearance="@style/TextAppearance.App.Price"
+                android:textSize="17sp"
                 android:fontFamily="@font/noto_serif"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
         </LinearLayout>
 
         <!-- Selector de cantidad -->

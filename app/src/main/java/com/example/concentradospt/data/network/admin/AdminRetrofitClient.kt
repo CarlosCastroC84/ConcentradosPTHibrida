@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 object AdminRetrofitClient {
 
-    private const val BASE_URL = "https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/api/v1/"
+    private const val BASE_URL = "http://100.25.124.3:8080/api/v1/"
 
     private val okHttpClient: OkHttpClient by lazy {
         val logging = HttpLoggingInterceptor().apply {

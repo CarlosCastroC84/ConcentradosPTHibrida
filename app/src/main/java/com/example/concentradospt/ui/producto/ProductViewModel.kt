@@ -29,6 +29,18 @@ class ProductViewModel : ViewModel() {
 
     val categorias: StateFlow<List<CategoriaProducto>> = _categorias
 
+    private val _selectedProducto = MutableStateFlow<Producto?>(null)
+    val selectedProducto: StateFlow<Producto?> = _selectedProducto
+
+    fun selectProducto(producto: Producto) {
+        _selectedProducto.value = producto
+    }
+
+    fun refresh() {
+        if (_allProductos.value.isEmpty()) loadProductos()
+        else applyFilter()
+    }
+
     init {
         loadProductos()
     }

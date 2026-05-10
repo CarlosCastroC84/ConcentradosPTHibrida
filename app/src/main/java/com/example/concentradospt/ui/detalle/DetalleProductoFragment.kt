@@ -13,7 +13,6 @@ import com.example.concentradospt.R
 import com.example.concentradospt.data.model.Producto
 import com.example.concentradospt.databinding.FragmentDetalleProductoBinding
 import com.example.concentradospt.ui.carrito.CartViewModel
-import com.example.concentradospt.ui.producto.ProductUiState
 import com.example.concentradospt.ui.producto.ProductViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -46,16 +45,9 @@ class DetalleProductoFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        val productoId = arguments?.getString("productoId")
-
         lifecycleScope.launch {
-            productViewModel.uiState.collect { state ->
-                if (state is ProductUiState.Success) {
-                    val p = state.productos.find { it.productoId == productoId }
-                        ?: productViewModel.getFeaturedProductos(Int.MAX_VALUE)
-                            .find { it.productoId == productoId }
-                    p?.let { bindProducto(it) }
-                }
+            productViewModel.selectedProducto.collect { p ->
+                p?.let { bindProducto(it) }
             }
         }
 

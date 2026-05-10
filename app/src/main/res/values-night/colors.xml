@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- PRIMARY dark -->
+    <color name="primary">#FFB599</color>
+    <color name="on_primary">#5A1800</color>
+    <color name="primary_container">#7F2A00</color>
+    <color name="on_primary_container">#FFD0B9</color>
+    <color name="inverse_primary">#A33900</color>
+
+    <!-- SECONDARY dark -->
+    <color name="secondary">#87D982</color>
+    <color name="on_secondary">#003909</color>
+    <color name="secondary_container">#005312</color>
+    <color name="on_secondary_container">#A3F69C</color>
+
+    <!-- TERTIARY dark -->
+    <color name="tertiary">#F9BB65</color>
+    <color name="on_tertiary">#422C00</color>
+    <color name="tertiary_container">#5E3F00</color>
+    <color name="on_tertiary_container">#FFDDB4</color>
+
+    <!-- SURFACE HIERARCHY dark -->
+    <color name="background">#121210</color>
+    <color name="on_background">#E4E3DF</color>
+    <color name="surface">#121210</color>
+    <color name="surface_bright">#383836</color>
+    <color name="surface_dim">#121210</color>
+    <color name="surface_container_lowest">#0D0D0B</color>
+    <color name="surface_container_low">#1B1C1A</color>
+    <color name="surface_container">#1F2020</color>
+    <color name="surface_container_high">#2A2B29</color>
+    <color name="surface_container_highest">#343533</color>
+    <color name="on_surface">#E4E3DF</color>
+    <color name="on_surface_variant">#C7BDB8</color>
+    <color name="surface_variant">#444240</color>
+    <color name="surface_tint">#FFB599</color>
+
+    <!-- BORDES dark -->
+    <color name="outline">#918886</color>
+    <color name="outline_variant">#584239</color>
+
+    <!-- INVERSOS dark -->
+    <color name="inverse_surface">#E4E3DF</color>
+    <color name="inverse_on_surface">#2F312E</color>
+
+    <!-- ERROR dark -->
+    <color name="error">#FFB4AB</color>
+    <color name="on_error">#690005</color>
+    <color name="error_container">#93000A</color>
+    <color name="on_error_container">#FFDAD6</color>
+
+    <!-- ESTADOS DE PEDIDO dark -->
+    <color name="status_pending_bg">#4A2700</color>
+    <color name="status_pending_text">#FFB74D</color>
+    <color name="status_in_progress_bg">#0D2F4A</color>
+    <color name="status_in_progress_text">#64B5F6</color>
+    <color name="status_delivered_bg">#1B3A1D</color>
+    <color name="status_delivered_text">#81C784</color>
+    <color name="status_cancelled_bg">#4A0D0D</color>
+    <color name="status_cancelled_text">#EF9A9A</color>
+
+    <!-- GRADIENTE dark -->
+    <color name="gradient_start">#7F2A00</color>
+    <color name="gradient_end">#A33900</color>
+
+    <!-- SOMBRA dark -->
+    <color name="shadow_tint">#1AFFFFFF</color>
+</resources>

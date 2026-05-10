@@ -6,7 +6,18 @@
       "Bash(xargs grep *)",
       "Bash(xargs wc *)",
       "Bash(dir \"D:\\\\\\\\Librerias\\\\\\\\ConcentradosPT\\\\\\\\app\\\\\\\\src\\\\\\\\main\\\\\\\\res\\\\\\\\layout\\\\\\\\\")",
-      "Bash(findstr dialog *)"
+      "Bash(findstr dialog *)",
+      "Bash(./gradlew assembleDebug)",
+      "PowerShell(curl.exe -X POST \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/api/v1/auth/login\" -H \"Content-Type: application/json\" -d '{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"VENDEDOR\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}' -v 2>&1)",
+      "PowerShell(curl.exe -X POST \"http://172.26.1.119:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d '{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"VENDEDOR\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}' -s -w \"`nHTTP_CODE: %{http_code}\")",
+      "PowerShell(curl.exe \"http://172.26.1.119/\" -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 8; curl.exe \"https://172.26.1.119/\" -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 8 -k)",
+      "PowerShell(curl.exe -X POST \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/auth/login\" -H \"Content-Type: application/json\" -d '{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"VENDEDOR\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}' -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
+      "PowerShell(curl.exe -X POST \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/auth/empleado/login\" -H \"Content-Type: application/json\" -d '{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"VENDEDOR\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}' -s -w \"`nHTTP_CODE: %{http_code}\"; curl.exe -X OPTIONS \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/auth/\" -s -w \"`nHTTP_CODE: %{http_code}\")",
+      "PowerShell(curl.exe \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/productos\" -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10 | Select-Object -First 3)",
+      "PowerShell(curl.exe -X POST \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/api/v1/auth/login\" -H \"Content-Type: application/json\" -d \"{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"ADMIN\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}\" -s -w \"`nHTTP_CODE: %{http_code}\")",
+      "PowerShell(curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d \"{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"ADMIN\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}\" -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
+      "PowerShell($body = '{\"cedula\":\"1065565849\",\"rol\":\"ADMIN\",\"pin\":\"6987\"}'; curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d $body -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
+      "PowerShell($body = '{\"cedula\":\"1065565849\",\"rol\":\"VENDEDOR\",\"pin\":\"6987\"}'; curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d $body -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)"
     ]
   }
 }

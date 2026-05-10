@@ -75,8 +75,14 @@ class LoginViewModel : ViewModel() {
             try {
                 val usuario = adminAuthRepository.signIn(cedula, rol, pin)
                 _state.value = LoginState.AdminSuccess(usuario)
+            } catch (e: retrofit2.HttpException) {
+                val code = e.code()
+                val errorBody = try { e.response()?.errorBody()?.string() ?: "" } catch (_: Exception) { "" }
+                android.util.Log.e("LoginViewModel", "Admin login HTTP $code: $errorBody")
+                _state.value = LoginState.Error(friendlyAdminError(code, errorBody))
             } catch (e: Exception) {
-                _state.value = LoginState.Error(friendlyAdminError(e.message))
+                android.util.Log.e("LoginViewModel", "Admin login error: ${e.message}", e)
+                _state.value = LoginState.Error(friendlyAdminError(message = e.message))
             }
         }
     }
@@ -124,13 +130,23 @@ class LoginViewModel : ViewModel() {
         else -> "Error al iniciar sesión. Intenta de nuevo"
     }
 
-    private fun friendlyAdminError(message: String?): String = when {
-        message == null -> "Error desconocido"
-        message.contains("401") || message.contains("Unauthorized") ->
-            "Cédula, rol o PIN incorrectos"
-        message.contains("connect") || message.contains("timeout") ->
-            "No se pudo conectar al servidor"
-        else -> "Error al iniciar sesión. Verifica tu conexión"
+    private fun friendlyAdminError(code: Int? = null, body: String = "", message: String? = null): String {
+        if (code != null) return when (code) {
+            400 -> "Datos inválidos (400). Contacta soporte técnico."
+            401 -> "Cédula, rol o PIN incorrectos"
+            403 -> "Acceso denegado (403). Verifica que tu cuenta esté activa y el rol sea correcto"
+            404 -> "Endpoint no encontrado (404). Revisa la URL del servidor"
+            in 500..599 -> "El servidor no está disponible ($code). Intenta más tarde"
+            else -> "Error del servidor ($code)"
+        }
+        return when {
+            message == null -> "Error desconocido"
+            message.contains("CLEARTEXT") || message.contains("SSL") ->
+                "Error de conexión segura con el servidor"
+            message.contains("connect") || message.contains("timeout") || message.contains("Unable to resolve") ->
+                "No se pudo conectar al servidor. Verifica tu red"
+            else -> "Error: ${message.takeLast(80)}"
+        }
     }
 
     private fun friendlyResetError(message: String?): String = when {

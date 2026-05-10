@@ -56,8 +56,8 @@ class HomeFragment : Fragment() {
 
     private val adapter = HomeProductAdapter(
         onProductClick = { producto ->
-            val bundle = Bundle().apply { putString("productoId", producto.productoId) }
-            findNavController().navigate(R.id.action_home_to_detalle_producto, bundle)
+            viewModel.selectProducto(producto)
+            findNavController().navigate(R.id.action_home_to_detalle_producto)
         },
         onAddToCart = { producto ->
             cartViewModel.addToCart(producto)
@@ -111,6 +111,11 @@ class HomeFragment : Fragment() {
         observeState()
         observeCategorias()
         observeFavorites()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.refresh()
     }
 
     private fun observeState() {

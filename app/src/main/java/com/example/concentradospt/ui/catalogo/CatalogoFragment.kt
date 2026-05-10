@@ -27,8 +27,8 @@ class CatalogoFragment : Fragment() {
 
     private val adapter = CatalogoAdapter(
         onProductClick = { producto ->
-            val bundle = Bundle().apply { putString("productoId", producto.productoId) }
-            findNavController().navigate(R.id.nav_detalle_producto, bundle)
+            viewModel.selectProducto(producto)
+            findNavController().navigate(R.id.nav_detalle_producto)
         },
         onAddToCart = { producto -> cartViewModel.addToCart(producto) }
     )

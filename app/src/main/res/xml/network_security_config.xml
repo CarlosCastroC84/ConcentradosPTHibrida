@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <!-- Todo el tráfico va por HTTPS a AWS API Gateway — no se necesita cleartext -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">100.25.124.3</domain>
+    </domain-config>
 </network-security-config>
