@@ -17,7 +17,9 @@
       "PowerShell(curl.exe -X POST \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/api/v1/auth/login\" -H \"Content-Type: application/json\" -d \"{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"ADMIN\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}\" -s -w \"`nHTTP_CODE: %{http_code}\")",
       "PowerShell(curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d \"{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"ADMIN\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}\" -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
       "PowerShell($body = '{\"cedula\":\"1065565849\",\"rol\":\"ADMIN\",\"pin\":\"6987\"}'; curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d $body -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
-      "PowerShell($body = '{\"cedula\":\"1065565849\",\"rol\":\"VENDEDOR\",\"pin\":\"6987\"}'; curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d $body -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)"
+      "PowerShell($body = '{\"cedula\":\"1065565849\",\"rol\":\"VENDEDOR\",\"pin\":\"6987\"}'; curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d $body -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
+      "Bash(awk '{print $9}')",
+      "Bash(grep -v \"^$\")"
     ]
   }
 }

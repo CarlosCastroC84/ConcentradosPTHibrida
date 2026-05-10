@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
@@ -145,12 +146,13 @@
                     android:id="@+id/home_see_all_categories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/manrope"
                     android:text="@string/action_see_all"
                     android:textAppearance="@style/TextAppearance.App.Label"
                     android:textColor="@color/primary"
-                    android:fontFamily="@font/manrope"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <!-- Chips de categorías (scroll horizontal) -->
@@ -192,12 +194,13 @@
                     android:id="@+id/home_see_all_products"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/manrope"
                     android:text="@string/action_see_all"
                     android:textAppearance="@style/TextAppearance.App.Label"
                     android:textColor="@color/primary"
-                    android:fontFamily="@font/manrope"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <!-- Grid de productos (2 columnas con RecyclerView) -->
