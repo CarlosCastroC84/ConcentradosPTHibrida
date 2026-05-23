@@ -14,13 +14,29 @@ import com.example.concentradospt.R
 import com.example.concentradospt.databinding.FragmentPedidosBinding
 import kotlinx.coroutines.launch
 
+/**
+ * Fragmento que muestra el historial de pedidos del usuario autenticado.
+ *
+ * Presenta una lista de pedidos ordenados cronológicamente. Al pulsar
+ * sobre un pedido, navega al [DetallePedidoFragment] pasando el ID
+ * del pedido como argumento. Gestiona los estados de carga, éxito y error
+ * mediante [PedidosViewModel].
+ */
 class PedidosFragment : Fragment() {
 
+    /** Referencia al binding de la vista; se anula en [onDestroyView] para evitar fugas de memoria. */
     private var _binding: FragmentPedidosBinding? = null
+
+    /** Acceso seguro al binding mientras la vista está activa. */
     private val binding get() = _binding!!
 
+    /** ViewModel que carga y expone el listado de pedidos del usuario. */
     private val viewModel: PedidosViewModel by viewModels()
 
+    /**
+     * Adaptador de la lista de pedidos. Al hacer clic en un pedido,
+     * navega al detalle pasando el [Pedido.pedidoId] como argumento.
+     */
     private val adapter = PedidosAdapter(
         onClick = { pedido ->
             findNavController().navigate(
@@ -30,6 +46,9 @@ class PedidosFragment : Fragment() {
         }
     )
 
+    /**
+     * Infla el layout del fragmento y lo enlaza con ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,6 +57,10 @@ class PedidosFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Configura la barra de herramientas, el RecyclerView y comienza
+     * la observación del estado del ViewModel.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,6 +74,13 @@ class PedidosFragment : Fragment() {
         observeState()
     }
 
+    /**
+     * Observa el [PedidosState] emitido por el ViewModel y actualiza la UI.
+     *
+     * - [PedidosState.Loading]: muestra el indicador de carga y oculta la lista.
+     * - [PedidosState.Success]: muestra la lista o un mensaje si está vacía.
+     * - [PedidosState.Error]: muestra el mensaje de error en lugar de la lista.
+     */
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -83,6 +113,9 @@ class PedidosFragment : Fragment() {
         }
     }
 
+    /**
+     * Libera el binding al destruir la vista para prevenir pérdidas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

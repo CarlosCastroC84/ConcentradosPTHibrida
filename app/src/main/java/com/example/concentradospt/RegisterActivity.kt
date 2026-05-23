@@ -14,11 +14,32 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
+/**
+ * Actividad de registro de nuevos usuarios en la aplicación.
+ *
+ * Presenta un formulario donde el usuario ingresa su nombre completo, correo electrónico
+ * y contraseña para crear una cuenta a través de AWS Cognito. Tras el registro exitoso,
+ * muestra un diálogo para ingresar el código de confirmación enviado al correo y
+ * finaliza el proceso de verificación de la cuenta.
+ */
 class RegisterActivity : AppCompatActivity() {
 
+    /** Referencia al binding de la vista para acceder a los elementos del layout. */
     private lateinit var binding: ActivityRegisterBinding
+
+    /** ViewModel que gestiona la lógica de negocio y el estado del proceso de registro. */
     private val viewModel: RegisterViewModel by viewModels()
 
+    /**
+     * Inicializa la actividad, infla el layout, configura los listeners de los botones
+     * y comienza a observar el estado del registro.
+     *
+     * Valida los campos del formulario antes de delegar la operación al ViewModel.
+     * Las validaciones incluyen: nombre no vacío, correo con formato válido,
+     * contraseña de al menos 8 caracteres y coincidencia de contraseñas.
+     *
+     * @param savedInstanceState Estado previamente guardado de la actividad, o null si es nueva.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -53,6 +74,16 @@ class RegisterActivity : AppCompatActivity() {
         binding.tvSignIn.setOnClickListener { finish() }
     }
 
+    /**
+     * Observa el estado del [RegisterViewModel] y actualiza la interfaz en consecuencia.
+     *
+     * Reacciona a cada estado del flujo de registro:
+     * - [RegisterState.Idle]: oculta el indicador de carga.
+     * - [RegisterState.Loading]: muestra el indicador de carga.
+     * - [RegisterState.NeedsConfirmation]: muestra el diálogo de código de confirmación.
+     * - [RegisterState.Success]: muestra un diálogo de éxito y finaliza la actividad.
+     * - [RegisterState.Error]: muestra el mensaje de error en un Snackbar.
+     */
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -81,6 +112,13 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Controla la visibilidad del indicador de progreso y habilita o deshabilita
+     * los campos del formulario durante una operación en curso.
+     *
+     * @param loading `true` para mostrar el indicador y bloquear los controles;
+     *                `false` para ocultarlo y habilitarlos nuevamente.
+     */
     private fun setLoading(loading: Boolean) {
         binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
         binding.btnCreateAccount.isEnabled = !loading
@@ -90,6 +128,10 @@ class RegisterActivity : AppCompatActivity() {
         binding.etConfirmPassword.isEnabled = !loading
     }
 
+    /**
+     * Limpia los mensajes de error de todos los campos del formulario de registro,
+     * preparando la interfaz para un nuevo intento de validación.
+     */
     private fun clearErrors() {
         binding.tilName.error = null
         binding.tilEmail.error = null
@@ -97,6 +139,15 @@ class RegisterActivity : AppCompatActivity() {
         binding.tilConfirmPassword.error = null
     }
 
+    /**
+     * Muestra el diálogo de confirmación de cuenta que solicita el código enviado por correo.
+     *
+     * El usuario debe ingresar el código de 6 dígitos recibido en su correo electrónico
+     * para completar la verificación de la cuenta en AWS Cognito. Valida que el código
+     * no esté vacío antes de enviarlo al ViewModel.
+     *
+     * @param email Correo electrónico del usuario recién registrado, necesario para confirmar la cuenta.
+     */
     private fun showConfirmationDialog(email: String) {
         val dialogBinding = DialogRegisterConfirmBinding.inflate(layoutInflater)
 

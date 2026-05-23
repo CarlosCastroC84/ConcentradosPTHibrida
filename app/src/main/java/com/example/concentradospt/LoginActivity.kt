@@ -26,19 +26,45 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
+/**
+ * Actividad principal de inicio de sesión de la aplicación.
+ *
+ * Permite a los usuarios autenticarse mediante correo electrónico y contraseña,
+ * o mediante cédula y PIN para usuarios administrativos (Admin, Vendedor, Bodega).
+ * También soporta autenticación biométrica (huella dactilar/reconocimiento facial)
+ * para usuarios con credenciales previamente almacenadas, y flujo de recuperación
+ * de contraseña a través de AWS Cognito.
+ */
 class LoginActivity : AppCompatActivity() {
 
+    /** Referencia al binding de la vista para acceder a los elementos del layout. */
     private lateinit var binding: ActivityLoginBinding
+
+    /** ViewModel que gestiona la lógica de negocio y el estado del inicio de sesión. */
     private val viewModel: LoginViewModel by viewModels()
 
+    /** Lista de roles disponibles para el inicio de sesión administrativo. */
     private val roles = listOf("ADMIN", "VENDEDOR", "BODEGA")
 
+    /**
+     * Constantes utilizadas para el manejo de preferencias cifradas de biometría.
+     */
     private companion object {
+        /** Nombre del archivo de preferencias cifradas para biometría. */
         const val BIOMETRIC_PREFS_FILE = "biometric_prefs"
+
+        /** Clave para almacenar el correo electrónico del usuario en las preferencias biométricas. */
         const val KEY_BIOMETRIC_EMAIL = "pref_biometric_email"
+
+        /** Clave para almacenar la contraseña del usuario en las preferencias biométricas. */
         const val KEY_BIOMETRIC_PASSWORD = "pref_biometric_password"
     }
 
+    /**
+     * Instancia de [EncryptedSharedPreferences] inicializada de forma diferida.
+     * Utiliza AES-256-GCM para cifrar claves y valores, garantizando la seguridad
+     * de las credenciales guardadas para la autenticación biométrica.
+     */
     private val biometricPrefs by lazy {
         val masterKey = MasterKey.Builder(this)
             .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
@@ -52,6 +78,15 @@ class LoginActivity : AppCompatActivity() {
         )
     }
 
+    /**
+     * Inicializa la actividad, configura los componentes de la interfaz y registra
+     * los observadores y los listeners de interacción del usuario.
+     *
+     * Verifica si existe una sesión activa al arrancar, y configura el comportamiento
+     * del formulario según el tipo de identificador ingresado (cédula vs. correo).
+     *
+     * @param savedInstanceState Estado previamente guardado de la actividad, o null si es nueva.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -95,11 +130,23 @@ class LoginActivity : AppCompatActivity() {
         binding.btnBiometric.setOnClickListener { launchBiometricPrompt() }
     }
 
+    /**
+     * Configura el desplegable (dropdown) para la selección del rol administrativo.
+     * Enlaza el adaptador con la lista de roles disponibles al campo de texto autocompletable.
+     */
     private fun setupRolDropdown() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, roles)
         binding.actvRol.setAdapter(adapter)
     }
 
+    /**
+     * Configura la detección automática del tipo de identificador ingresado.
+     *
+     * Observa los cambios en el campo de identificador: si el texto es una secuencia
+     * numérica de 4 a 20 dígitos, se trata como una cédula y se ajusta la interfaz
+     * para el flujo de administrador (muestra selector de rol, oculta opciones de cliente).
+     * De lo contrario, se muestra la interfaz estándar de correo electrónico.
+     */
     private fun setupIdentifierDetection() {
         binding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
@@ -135,6 +182,14 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * Configura la visibilidad y el estado del botón de autenticación biométrica.
+     *
+     * Verifica si el dispositivo soporta biometría fuerte o débil. Si la biometría
+     * está disponible y existen credenciales guardadas, habilita el botón; de lo
+     * contrario, lo muestra deshabilitado con un texto orientativo o lo oculta
+     * si el dispositivo no tiene soporte biométrico.
+     */
     private fun setupBiometricButton() {
         val biometricManager = BiometricManager.from(this)
         val canAuthenticate = biometricManager.canAuthenticate(
@@ -157,6 +212,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Lanza el diálogo de autenticación biométrica del sistema.
+     *
+     * Al autenticarse exitosamente, recupera las credenciales guardadas y llama
+     * al ViewModel para iniciar sesión automáticamente. Los errores distintos a
+     * cancelación por el usuario se muestran en un Snackbar.
+     */
     private fun launchBiometricPrompt() {
         val executor = ContextCompat.getMainExecutor(this)
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
@@ -181,6 +243,13 @@ class LoginActivity : AppCompatActivity() {
         }).authenticate(promptInfo)
     }
 
+    /**
+     * Muestra el primer paso del diálogo de recuperación de contraseña.
+     *
+     * Solicita el correo electrónico del usuario para enviar el código de verificación.
+     * Si el campo de identificador ya contiene un correo válido, lo pre-rellena
+     * automáticamente en el diálogo. Al confirmar, delega el envío al ViewModel.
+     */
     private fun showForgotPasswordStep1Dialog() {
         val dialogBinding = DialogForgotStep1Binding.inflate(LayoutInflater.from(this))
         val prefillEmail = binding.etEmail.text?.toString()?.trim()
@@ -204,6 +273,15 @@ class LoginActivity : AppCompatActivity() {
             .show()
     }
 
+    /**
+     * Muestra el segundo paso del diálogo de recuperación de contraseña.
+     *
+     * Permite al usuario ingresar el código de verificación recibido por correo
+     * y establecer una nueva contraseña. Valida que el código no esté vacío,
+     * que la contraseña tenga al menos 8 caracteres y que ambas contraseñas coincidan.
+     *
+     * @param email Correo electrónico del usuario al que se envió el código de verificación.
+     */
     private fun showForgotPasswordStep2Dialog(email: String) {
         val dialogBinding = DialogForgotStep2Binding.inflate(LayoutInflater.from(this))
 
@@ -237,6 +315,19 @@ class LoginActivity : AppCompatActivity() {
             .show()
     }
 
+    /**
+     * Observa el estado del [LoginViewModel] y actualiza la interfaz en consecuencia.
+     *
+     * Reacciona a cada estado posible del flujo de inicio de sesión:
+     * - [LoginState.Idle]: oculta el indicador de carga.
+     * - [LoginState.Loading]: muestra el indicador de carga.
+     * - [LoginState.Success]: guarda credenciales biométricas y navega a la pantalla principal.
+     * - [LoginState.AdminSuccess]: navega a la pantalla de administración o vendedor.
+     * - [LoginState.Error]: muestra el mensaje de error en un Snackbar.
+     * - [LoginState.ForgotPasswordCodeSent]: muestra el paso 2 del diálogo de recuperación.
+     * - [LoginState.ForgotPasswordSuccess]: muestra confirmación de restablecimiento exitoso.
+     * - [LoginState.ForgotPasswordError]: muestra el error del restablecimiento.
+     */
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -279,6 +370,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Controla la visibilidad del indicador de progreso y habilita o deshabilita
+     * los controles del formulario durante una operación en curso.
+     *
+     * @param loading `true` para mostrar el indicador y deshabilitar controles;
+     *                `false` para ocultarlo y habilitarlos nuevamente.
+     */
     private fun setLoading(loading: Boolean) {
         binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
         binding.btnLogin.isEnabled = !loading
@@ -287,11 +385,22 @@ class LoginActivity : AppCompatActivity() {
         binding.actvRol.isEnabled = !loading
     }
 
+    /**
+     * Limpia los mensajes de error de los campos de identificador y contraseña,
+     * eliminando cualquier texto de validación previo antes de un nuevo intento.
+     */
     private fun clearErrors() {
         binding.tilEmail.error = null
         binding.tilPassword.error = null
     }
 
+    /**
+     * Almacena de forma cifrada el correo y la contraseña del usuario
+     * en [EncryptedSharedPreferences] para permitir futuros inicios de sesión biométricos.
+     *
+     * @param email Correo electrónico del usuario a guardar.
+     * @param password Contraseña del usuario a guardar.
+     */
     private fun saveBiometricCredentials(email: String, password: String) {
         biometricPrefs.edit()
             .putString(KEY_BIOMETRIC_EMAIL, email)
@@ -299,15 +408,36 @@ class LoginActivity : AppCompatActivity() {
             .apply()
     }
 
+    /**
+     * Verifica si existen credenciales biométricas previamente guardadas.
+     *
+     * @return `true` si hay un correo electrónico almacenado para biometría; `false` en caso contrario.
+     */
     private fun hasBiometricCredentials() =
         biometricPrefs.getString(KEY_BIOMETRIC_EMAIL, null) != null
 
+    /**
+     * Recupera el correo electrónico almacenado en las preferencias biométricas cifradas.
+     *
+     * @return El correo electrónico guardado, o `null` si no existe.
+     */
     private fun getBiometricEmail() =
         biometricPrefs.getString(KEY_BIOMETRIC_EMAIL, null)
 
+    /**
+     * Recupera la contraseña almacenada en las preferencias biométricas cifradas.
+     *
+     * @return La contraseña guardada, o `null` si no existe.
+     */
     private fun getBiometricPassword() =
         biometricPrefs.getString(KEY_BIOMETRIC_PASSWORD, null)
 
+    /**
+     * Navega hacia la [MainActivity] finalizando la actividad actual.
+     * Pasa el indicador de si el usuario tiene rol de administrador.
+     *
+     * @param isAdmin `true` si el usuario autenticado tiene permisos de administrador.
+     */
     private fun navigateToMain(isAdmin: Boolean) {
         startActivity(Intent(this, MainActivity::class.java).apply {
             putExtra(MainActivity.EXTRA_IS_ADMIN, isAdmin)
@@ -315,6 +445,15 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
+    /**
+     * Navega a la pantalla correspondiente según el rol del usuario administrativo.
+     *
+     * Si el rol es "VENDEDOR", redirige a [VendedorActivity] con los datos del vendedor.
+     * Para cualquier otro rol administrativo (ej. ADMIN, BODEGA), redirige a [AdminActivity].
+     * En ambos casos finaliza la actividad actual para limpiar la pila de retroceso.
+     *
+     * @param usuario Información del usuario administrativo autenticado, incluyendo rol, nombre y cédula.
+     */
     private fun navigateToAdmin(usuario: AdminUsuarioInfo) {
         if (usuario.rol.equals("VENDEDOR", ignoreCase = true)) {
             startActivity(Intent(this, VendedorActivity::class.java).apply {

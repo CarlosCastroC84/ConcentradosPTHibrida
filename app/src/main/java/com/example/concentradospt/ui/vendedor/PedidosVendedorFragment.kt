@@ -14,13 +14,31 @@ import com.example.concentradospt.databinding.FragmentPedidosVendedorBinding
 import com.example.concentradospt.ui.admin.VentasAdapter
 import kotlinx.coroutines.launch
 
+/**
+ * Fragmento del panel del vendedor que muestra los pedidos (ventas) asignados a su usuario.
+ *
+ * Presenta la lista de pedidos mediante [VentasAdapter] (reutilizado del módulo admin)
+ * y ofrece chips de filtro para segmentar los pedidos por estado:
+ * Todos, Pendiente, En Proceso y Entregado.
+ *
+ * Al pulsar sobre un pedido, navega al [DetalleVentaFragment] pasando el ID de la venta.
+ * Gestiona los estados de carga, éxito y error a través de [PedidosVendedorViewModel].
+ */
 class PedidosVendedorFragment : Fragment() {
 
+    /** Referencia al binding de la vista; se anula en [onDestroyView] para evitar fugas de memoria. */
     private var _binding: FragmentPedidosVendedorBinding? = null
+
+    /** Acceso seguro al binding mientras la vista está activa. */
     private val binding get() = _binding!!
 
+    /** ViewModel que carga y filtra los pedidos del vendedor autenticado. */
     private val viewModel: PedidosVendedorViewModel by viewModels()
 
+    /**
+     * Adaptador reutilizado del módulo admin para mostrar ventas.
+     * Al pulsar una venta, navega al detalle pasando el ID en el Bundle.
+     */
     private val adapter = VentasAdapter { venta ->
         findNavController().navigate(
             R.id.action_pedidos_vend_to_detalle,
@@ -28,6 +46,9 @@ class PedidosVendedorFragment : Fragment() {
         )
     }
 
+    /**
+     * Infla el layout del fragmento y lo enlaza con ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +57,10 @@ class PedidosVendedorFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Configura el RecyclerView, los chips de filtro y comienza
+     * a observar el estado del ViewModel.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -46,6 +71,12 @@ class PedidosVendedorFragment : Fragment() {
         observeState()
     }
 
+    /**
+     * Configura los chips de filtro que permiten al vendedor segmentar
+     * sus pedidos por estado (null = todos los estados).
+     *
+     * Cada chip invoca [PedidosVendedorViewModel.filtrar] con el estado correspondiente.
+     */
     private fun setupChipFilters() {
         binding.pedvChipTodos.setOnClickListener { viewModel.filtrar(null) }
         binding.pedvChipPendiente.setOnClickListener { viewModel.filtrar("PENDIENTE") }
@@ -53,6 +84,13 @@ class PedidosVendedorFragment : Fragment() {
         binding.pedvChipEntregado.setOnClickListener { viewModel.filtrar("ENTREGADA") }
     }
 
+    /**
+     * Observa el [PedidosVendedorState] emitido por el ViewModel y actualiza la UI.
+     *
+     * - Loading: muestra el indicador de progreso y oculta la lista.
+     * - Success: muestra la lista de pedidos o un mensaje de vacío si no hay resultados.
+     * - Error: muestra el mensaje de error.
+     */
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -84,6 +122,9 @@ class PedidosVendedorFragment : Fragment() {
         }
     }
 
+    /**
+     * Libera el binding al destruir la vista para prevenir pérdidas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

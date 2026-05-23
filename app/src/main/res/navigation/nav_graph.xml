@@ -84,6 +84,10 @@
             android:name="pedidoId"
             app:argType="string"
             android:defaultValue="" />
+        <argument
+            android:name="refPayco"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
 
     <!-- PEDIDOS -->

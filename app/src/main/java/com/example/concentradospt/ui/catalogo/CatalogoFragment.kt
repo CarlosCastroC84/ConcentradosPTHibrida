@@ -17,14 +17,35 @@ import com.example.concentradospt.ui.producto.ProductViewModel
 import com.google.android.material.search.SearchView
 import kotlinx.coroutines.launch
 
+/**
+ * Fragmento que presenta el catálogo completo de productos de la tienda.
+ *
+ * Permite al usuario explorar todos los productos disponibles con soporte para:
+ * - Filtrado por categoría mediante chips (Concentrados, Fertilizantes, Semillas, Herramientas).
+ * - Búsqueda en tiempo real por nombre a través de un SearchBar/SearchView.
+ * - Navegación al detalle de un producto al pulsarlo.
+ * - Adición directa de productos al carrito.
+ *
+ * Usa [ProductViewModel] para filtrar y buscar, y [CartViewModel] para añadir ítems.
+ */
 class CatalogoFragment : Fragment() {
 
+    /** Referencia al binding de la vista; se anula en [onDestroyView] para evitar fugas de memoria. */
     private var _binding: CatalogoFragmentBinding? = null
+
+    /** Acceso seguro al binding mientras la vista está activa. */
     private val binding get() = _binding!!
 
+    /** ViewModel compartido que gestiona el catálogo, filtros y búsqueda de productos. */
     private val viewModel: ProductViewModel by activityViewModels()
+
+    /** ViewModel compartido que gestiona el carrito de compras. */
     private val cartViewModel: CartViewModel by activityViewModels()
 
+    /**
+     * Adaptador de la lista de productos del catálogo.
+     * Permite navegar al detalle o agregar directamente al carrito.
+     */
     private val adapter = CatalogoAdapter(
         onProductClick = { producto ->
             viewModel.selectProducto(producto)
@@ -33,6 +54,9 @@ class CatalogoFragment : Fragment() {
         onAddToCart = { producto -> cartViewModel.addToCart(producto) }
     )
 
+    /**
+     * Infla el layout del fragmento y lo enlaza con ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +65,10 @@ class CatalogoFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Configura el RecyclerView, los filtros de categoría por chips,
+     * la barra de búsqueda y comienza a observar el estado del ViewModel.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,6 +80,12 @@ class CatalogoFragment : Fragment() {
         observeState()
     }
 
+    /**
+     * Configura los chips de filtro por categoría.
+     *
+     * Al seleccionar un chip, invoca [ProductViewModel.filterByCategoria] con
+     * la categoría correspondiente. El chip "Todos" limpia el filtro (pasa null).
+     */
     private fun setupChipFilters() {
         binding.catalogoChipGroup.setOnCheckedStateChangeListener { _, checkedIds ->
             val categoria = when (checkedIds.firstOrNull()) {
@@ -66,6 +100,13 @@ class CatalogoFragment : Fragment() {
         }
     }
 
+    /**
+     * Configura el comportamiento del SearchBar y el SearchView para búsqueda de productos.
+     *
+     * - Al ocultar el SearchView, limpia la consulta de búsqueda.
+     * - Al confirmar una búsqueda (teclado), actualiza el SearchBar y filtra.
+     * - Mientras se escribe, filtra los productos en tiempo real con [ProductViewModel.search].
+     */
     private fun setupSearch() {
         binding.catalogoSearchView.setupWithSearchBar(binding.catalogoSearchBar)
         binding.catalogoSearchView.addTransitionListener { _, _, newState ->
@@ -94,6 +135,13 @@ class CatalogoFragment : Fragment() {
         )
     }
 
+    /**
+     * Observa el [ProductUiState] del ViewModel y actualiza la visibilidad de las vistas.
+     *
+     * - Loading: muestra el indicador de progreso y oculta la lista.
+     * - Success: muestra la lista de productos o un mensaje de vacío si no hay resultados.
+     * - Error: muestra el mensaje de error en lugar de la lista.
+     */
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.uiState.collect { state ->
@@ -126,6 +174,9 @@ class CatalogoFragment : Fragment() {
         }
     }
 
+    /**
+     * Libera el binding al destruir la vista para prevenir pérdidas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

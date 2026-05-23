@@ -3,6 +3,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
         android:name=".ConcentradosPTApp"
@@ -64,6 +68,23 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- ePayco Checkout (WebView) -->
+        <activity
+            android:name=".ui.checkout.EpaycoCheckoutActivity"
+            android:exported="false"
+            android:label="Pasarela ePayco"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- FileProvider para fotos de cámara -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.concentradospt.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
 
     </application>
 </manifest>

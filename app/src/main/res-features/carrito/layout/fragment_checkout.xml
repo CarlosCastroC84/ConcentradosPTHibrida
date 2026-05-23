@@ -165,6 +165,19 @@
                     android:imeOptions="actionDone" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Button
+                android:id="@+id/checkout_btn_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/checkout_btn_use_location"
+                android:textSize="12sp"
+                android:fontFamily="@font/inter"
+                android:textAllCaps="false"
+                android:drawableStart="@android:drawable/ic_menu_compass"
+                android:drawablePadding="4dp"
+                style="@style/Widget.Material3.Button.OutlinedButton" />
+
             <!-- Sección: Método de Pago -->
             <TextView
                 android:layout_width="wrap_content"

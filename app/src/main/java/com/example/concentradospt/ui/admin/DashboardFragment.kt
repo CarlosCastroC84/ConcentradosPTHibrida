@@ -15,13 +15,32 @@ import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Fragmento del panel de control principal del administrador (Dashboard).
+ *
+ * Presenta un resumen de los indicadores clave del negocio:
+ * - Total de ventas acumuladas en formato COP.
+ * - Número de pedidos pendientes.
+ * - Cantidad de usuarios activos en el sistema.
+ *
+ * Desde este fragmento el administrador puede navegar rápidamente a:
+ * gestión de productos, gestión de usuarios, módulo de reportes,
+ * o cerrar sesión en la aplicación.
+ */
 class DashboardFragment : Fragment() {
 
+    /** Referencia al binding de la vista; se anula en [onDestroyView] para evitar fugas de memoria. */
     private var _binding: DashboardFragmentBinding? = null
+
+    /** Acceso seguro al binding mientras la vista está activa. */
     private val binding get() = _binding!!
 
+    /** ViewModel que carga y provee los indicadores del dashboard. */
     private val viewModel: DashboardViewModel by viewModels()
 
+    /**
+     * Infla el layout del fragmento y lo enlaza con ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,9 +49,14 @@ class DashboardFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Configura los botones de acceso rápido, el botón de cierre de sesión
+     * y comienza a observar los indicadores del ViewModel.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Ocultar la lista de pedidos recientes (pendiente de implementación)
         binding.dashboardRvRecentOrders.visibility = View.GONE
 
         binding.dashboardQuickProducts.setOnClickListener {
@@ -51,6 +75,13 @@ class DashboardFragment : Fragment() {
         observeState()
     }
 
+    /**
+     * Observa el estado del [DashboardViewModel] y actualiza los indicadores de la UI.
+     *
+     * Mientras carga, muestra el texto de carga y guiones en los contadores.
+     * Si hay error, indica "Error" en el total de ventas.
+     * En caso de éxito, muestra total de ventas en COP, pedidos pendientes y usuarios activos.
+     */
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -73,11 +104,19 @@ class DashboardFragment : Fragment() {
         }
     }
 
+    /**
+     * Libera el binding al destruir la vista para prevenir pérdidas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
 
+/**
+ * Extensión para formatear un [Double] como moneda colombiana (COP).
+ *
+ * @return Cadena con el valor formateado, por ejemplo "$1.500,00".
+ */
 private fun Double.formatCOP(): String =
     NumberFormat.getCurrencyInstance(Locale("es", "CO")).format(this)

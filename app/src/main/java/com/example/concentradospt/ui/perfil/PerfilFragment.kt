@@ -22,13 +22,33 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 
+/**
+ * Fragmento que presenta el perfil del usuario autenticado.
+ *
+ * Muestra el nombre, correo electrónico y avatar del usuario,
+ * junto con un resumen de sus pedidos recientes. Permite al usuario:
+ * - Navegar al historial completo de pedidos.
+ * - Acceder a sus productos favoritos.
+ * - Editar sus datos de perfil (nombre, teléfono, dirección) mediante un diálogo.
+ * - Cerrar sesión en la aplicación.
+ *
+ * Los datos se cargan y administran a través de [PerfilViewModel].
+ */
 class PerfilFragment : Fragment() {
 
+    /** Referencia al binding de la vista; se anula en [onDestroyView] para evitar fugas de memoria. */
     private var _binding: PerfilFragmentBinding? = null
+
+    /** Acceso seguro al binding mientras la vista está activa. */
     private val binding get() = _binding!!
 
+    /** ViewModel que gestiona los datos del perfil y los pedidos recientes del usuario. */
     private val viewModel: PerfilViewModel by viewModels()
 
+    /**
+     * Adaptador para la lista de pedidos recientes mostrada en el perfil.
+     * Al pulsar un pedido, navega al [DetallePedidoFragment] con su ID.
+     */
     private val ordersAdapter = PedidosAdapter(onClick = { pedido ->
         findNavController().navigate(
             R.id.action_perfil_to_detalle_pedido,
@@ -36,6 +56,9 @@ class PerfilFragment : Fragment() {
         )
     })
 
+    /**
+     * Infla el layout del fragmento y lo enlaza con ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +67,10 @@ class PerfilFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Configura el RecyclerView de pedidos recientes, los botones de navegación
+     * y acciones del perfil, y comienza a observar el estado del ViewModel.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -69,6 +96,13 @@ class PerfilFragment : Fragment() {
         }
     }
 
+    /**
+     * Observa el estado del [PerfilViewModel] y actualiza la UI con los datos del usuario.
+     *
+     * Mientras carga, muestra el texto de carga en el nombre y vacía el correo.
+     * En éxito, muestra el nombre y correo (con fallback al email de Cognito),
+     * el avatar con Glide, la lista de pedidos recientes y cualquier mensaje de error/éxito.
+     */
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -116,6 +150,12 @@ class PerfilFragment : Fragment() {
         }
     }
 
+    /**
+     * Muestra el diálogo de edición de perfil con campos para nombre, teléfono y dirección.
+     *
+     * Los campos se pre-rellenan con los datos actuales del cliente.
+     * Al confirmar, delega la actualización a [PerfilViewModel.actualizarPerfil].
+     */
     private fun showEditProfileDialog() {
         val cliente = viewModel.state.value.cliente
 
@@ -126,6 +166,13 @@ class PerfilFragment : Fragment() {
             setPadding(spacing * 2, spacing, spacing * 2, 0)
         }
 
+        /**
+         * Función local que crea un campo de texto con estilo outlined y lo agrega al contenedor.
+         *
+         * @param hint        Texto de sugerencia del campo.
+         * @param initialText Valor inicial a mostrar en el campo.
+         * @return [TextInputEditText] del campo creado.
+         */
         fun makeField(hint: String, initialText: String?): TextInputEditText {
             val layout = TextInputLayout(requireContext(), null,
                 com.google.android.material.R.attr.textInputOutlinedStyle).apply {
@@ -161,6 +208,9 @@ class PerfilFragment : Fragment() {
             .show()
     }
 
+    /**
+     * Libera el binding al destruir la vista para prevenir pérdidas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

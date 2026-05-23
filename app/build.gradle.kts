@@ -84,6 +84,9 @@ dependencies {
     // SwipeRefreshLayout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
+    // Geolocalización (FusedLocationProvider)
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
     // AWS Amplify Auth (Cognito)
     implementation(libs.amplify.auth.cognito)
 

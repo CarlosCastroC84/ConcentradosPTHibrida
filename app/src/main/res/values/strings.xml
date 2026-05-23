@@ -28,6 +28,12 @@
     <string name="action_filter">Filtrar</string>
     <string name="action_see_all">Ver Todo</string>
     <string name="action_add">Añadir</string>
+    <string name="checkout_btn_use_location">Usar mi ubicación</string>
+    <string name="checkout_location_error">No se pudo obtener la ubicación</string>
+    <string name="epayco_public_key">1582614</string>
+    <string name="admin_image_select">Seleccionar imagen</string>
+    <string name="admin_image_gallery">Desde galería</string>
+    <string name="admin_image_camera">Tomar foto</string>
     <string name="action_edit">Editar</string>
     <string name="action_delete">Eliminar</string>
     <string name="action_share">Compartir</string>

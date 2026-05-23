@@ -18,18 +18,42 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
+/**
+ * Fragmento del panel del vendedor para gestionar el catálogo de productos.
+ *
+ * Reutiliza [GestionProductosViewModel] y [AdminProductoAdapter] del módulo admin
+ * para ofrecer al vendedor las mismas capacidades de gestión:
+ * - Ver la lista de productos registrados.
+ * - Crear nuevos productos mediante [ProductoFormView] en un diálogo.
+ * - Editar productos existentes con sus datos precargados.
+ * - Eliminar productos con confirmación previa.
+ *
+ * A diferencia de [GestionProductosFragment], este fragmento no incluye la
+ * selección de imagen desde cámara/galería en el flujo actual.
+ */
 class PanelProductosVendedorFragment : Fragment() {
 
+    /** Referencia al binding de la vista; se anula en [onDestroyView] para evitar fugas de memoria. */
     private var _binding: FragmentPanelProductosVendedorBinding? = null
+
+    /** Acceso seguro al binding mientras la vista está activa. */
     private val binding get() = _binding!!
 
+    /** ViewModel compartido del módulo admin que gestiona las operaciones CRUD de productos. */
     private val viewModel: GestionProductosViewModel by viewModels()
 
+    /**
+     * Adaptador reutilizado del módulo admin para la lista de productos.
+     * Expone acciones de editar y eliminar por cada ítem.
+     */
     private val adapter = AdminProductoAdapter(
         onEdit = { showProductoDialog(it) },
         onDelete = { confirmDelete(it) }
     )
 
+    /**
+     * Infla el layout del fragmento y lo enlaza con ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,6 +62,10 @@ class PanelProductosVendedorFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Configura el RecyclerView, el botón FAB para crear productos
+     * y comienza a observar el estado del ViewModel y los resultados de acciones.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -49,6 +77,13 @@ class PanelProductosVendedorFragment : Fragment() {
         observeActionResult()
     }
 
+    /**
+     * Observa el [GestionProductosState] y actualiza la UI según el estado actual.
+     *
+     * - Loading: muestra el indicador de progreso.
+     * - Success: muestra la lista o un mensaje de vacío si no hay productos.
+     * - Error: muestra el mensaje de error.
+     */
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -80,6 +115,10 @@ class PanelProductosVendedorFragment : Fragment() {
         }
     }
 
+    /**
+     * Observa los mensajes de resultado de acciones (crear, editar, eliminar)
+     * y los muestra en un Snackbar, limpiando el resultado tras mostrarlo.
+     */
     private fun observeActionResult() {
         lifecycleScope.launch {
             viewModel.actionResult.collect { msg ->
@@ -91,6 +130,15 @@ class PanelProductosVendedorFragment : Fragment() {
         }
     }
 
+    /**
+     * Muestra el diálogo con el formulario [ProductoFormView] para crear o editar un producto.
+     *
+     * Si [producto] es null, el diálogo está en modo creación; si no, en modo edición.
+     * Al confirmar, construye el [AdminProducto] con los datos del formulario y lo
+     * envía al ViewModel para persistirlo.
+     *
+     * @param producto Producto a editar, o null para crear uno nuevo.
+     */
     private fun showProductoDialog(producto: AdminProducto?) {
         val isNew = producto == null
         val fields = ProductoFormView(requireContext(), producto)
@@ -116,6 +164,13 @@ class PanelProductosVendedorFragment : Fragment() {
             .show()
     }
 
+    /**
+     * Muestra un diálogo de confirmación antes de eliminar el producto indicado.
+     *
+     * Al confirmar, delega la eliminación a [GestionProductosViewModel.eliminarProducto].
+     *
+     * @param producto Producto que se desea eliminar.
+     */
     private fun confirmDelete(producto: AdminProducto) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Eliminar producto")
@@ -127,6 +182,9 @@ class PanelProductosVendedorFragment : Fragment() {
             .show()
     }
 
+    /**
+     * Libera el binding al destruir la vista para prevenir pérdidas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

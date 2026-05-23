@@ -19,16 +19,41 @@ import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Fragmento que presenta el dashboard de reportes de ventas para el administrador.
+ *
+ * Muestra los siguientes indicadores calculados a partir de la lista completa de ventas:
+ * - KPIs: ingresos totales, número de pedidos y ticket promedio.
+ * - Gráfico de barras horizontal con el conteo de ventas por estado
+ *   (Generadas, Borradores, Anuladas), con anchura proporcional al máximo.
+ * - Ranking de los 5 productos más vendidos (por unidades) derivado
+ *   de los detalles de cada venta.
+ *
+ * Incluye un selector de período (Spinner) y un botón de exportación
+ * (función disponible en versión Pro, muestra Snackbar informativo).
+ *
+ * Reutiliza [VentasViewModel] del módulo admin para obtener los datos.
+ */
 class ReportesVentasFragment : Fragment() {
 
+    /** Referencia al binding de la vista; se anula en [onDestroyView] para evitar fugas de memoria. */
     private var _binding: FragmentReportesVentasBinding? = null
+
+    /** Acceso seguro al binding mientras la vista está activa. */
     private val binding get() = _binding!!
 
+    /** ViewModel del módulo admin reutilizado para cargar la lista completa de ventas. */
     private val viewModel: VentasViewModel by viewModels()
+
+    /** Copia local de todas las ventas cargadas, usada para los cálculos del dashboard. */
     private var allVentas: List<Venta> = emptyList()
 
+    /** Opciones del selector de período disponibles para el usuario. */
     private val periodos = listOf("Esta semana", "Este mes", "Este año", "Todo")
 
+    /**
+     * Infla el layout del fragmento y lo enlaza con ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +62,12 @@ class ReportesVentasFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Configura la barra de herramientas, el Spinner de período, el botón de exportación
+     * y comienza a observar el estado de ventas del ViewModel.
+     *
+     * El Spinner se inicializa preseleccionando "Este mes" (índice 1).
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -57,6 +88,13 @@ class ReportesVentasFragment : Fragment() {
         observeVentas()
     }
 
+    /**
+     * Observa el [VentasUiState] del ViewModel.
+     *
+     * Cuando el estado es [VentasUiState.Success], almacena las ventas localmente
+     * y actualiza el dashboard completo. En caso de error, actualiza el dashboard
+     * con una lista vacía para mostrar ceros en los indicadores.
+     */
     private fun observeVentas() {
         lifecycleScope.launch {
             viewModel.uiState.collect { state ->
@@ -74,6 +112,14 @@ class ReportesVentasFragment : Fragment() {
         }
     }
 
+    /**
+     * Actualiza todos los indicadores y gráficos del dashboard con la lista de ventas proporcionada.
+     *
+     * Calcula ingresos totales, número de pedidos, ticket promedio,
+     * conteo por estado y delega la construcción del ranking de productos a [updateTopProductos].
+     *
+     * @param ventas Lista de ventas sobre la que se calculan los indicadores.
+     */
     private fun updateDashboard(ventas: List<Venta>) {
         val totalIngresos = ventas.sumOf { it.total }
         val totalPedidos = ventas.size
@@ -83,6 +129,7 @@ class ReportesVentasFragment : Fragment() {
         binding.rvKpiPedidos.text = totalPedidos.toString()
         binding.rvKpiPromedio.text = promedio.formatCOP()
 
+        // Conteo de ventas por estado para el gráfico de barras
         val generadas = ventas.count { it.estado.equals("GENERADA", true) }
         val borradores = ventas.count { it.estado.equals("BORRADOR", true) }
         val anuladas = ventas.count { it.estado.equals("ANULADA", true) }
@@ -95,6 +142,17 @@ class ReportesVentasFragment : Fragment() {
         updateTopProductos(ventas)
     }
 
+    /**
+     * Actualiza visualmente la barra de un estado de venta en el gráfico horizontal.
+     *
+     * La anchura de la barra se calcula proporcionalmente al máximo valor del conjunto
+     * (máximo 240dp). Si el conteo es mayor que cero, se asegura un ancho mínimo de 8dp.
+     *
+     * @param barView   Vista de la barra cuya anchura se va a ajustar.
+     * @param labelView TextView donde se muestra el conteo numérico.
+     * @param count     Número de ventas en este estado.
+     * @param max       Valor máximo entre todos los estados, usado como referencia de escala.
+     */
     private fun updateBar(barView: View, labelView: TextView, count: Int, max: Int) {
         val maxWidthDp = 240
         val widthDp = if (max > 0) (maxWidthDp * count / max).coerceAtLeast(if (count > 0) 8 else 0) else 0
@@ -105,6 +163,17 @@ class ReportesVentasFragment : Fragment() {
         labelView.text = count.toString()
     }
 
+    /**
+     * Construye el ranking de los 5 productos más vendidos en el período indicado.
+     *
+     * Agrega las cantidades vendidas por nombre de producto a través de todos los
+     * detalles de las ventas, ordena descendentemente y muestra las primeras 5 entradas
+     * como filas de texto en el contenedor del ranking.
+     *
+     * Si no hay datos de productos, muestra un mensaje informativo.
+     *
+     * @param ventas Lista de ventas de cuya que se extraen los detalles de productos.
+     */
     private fun updateTopProductos(ventas: List<Venta>) {
         val container = binding.rvTopProductosContainer
         container.removeAllViews()
@@ -139,11 +208,19 @@ class ReportesVentasFragment : Fragment() {
             }
     }
 
+    /**
+     * Libera el binding al destruir la vista para prevenir pérdidas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
 
+/**
+ * Extensión para formatear un [Double] como moneda colombiana (COP).
+ *
+ * @return Cadena con el valor formateado, por ejemplo "$1.500,00".
+ */
 private fun Double.formatCOP(): String =
     NumberFormat.getCurrencyInstance(Locale("es", "CO")).format(this)

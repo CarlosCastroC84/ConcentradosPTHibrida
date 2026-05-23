@@ -20,13 +20,34 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import kotlinx.coroutines.launch
 
+/**
+ * Fragmento de administración para la gestión completa de usuarios del sistema.
+ *
+ * Muestra la lista de usuarios registrados y permite al administrador:
+ * - Crear nuevos usuarios con cédula, nombre, apellido, correo, PIN y rol.
+ * - Editar datos básicos de un usuario existente (nombre, apellido, correo, rol).
+ * - Activar o desactivar un usuario con confirmación previa.
+ * - Regenerar el PIN de acceso y enviarlo por correo al usuario.
+ * - Eliminar usuarios con confirmación previa.
+ *
+ * Las operaciones se delegan a [GestionUsuariosViewModel] y los resultados
+ * se notifican al usuario mediante Snackbar.
+ */
 class GestionUsuariosFragment : Fragment() {
 
+    /** Referencia al binding de la vista; se anula en [onDestroyView] para evitar fugas de memoria. */
     private var _binding: FragmentGestionUsuariosBinding? = null
+
+    /** Acceso seguro al binding mientras la vista está activa. */
     private val binding get() = _binding!!
 
+    /** ViewModel que gestiona las operaciones sobre los usuarios administrativos. */
     private val viewModel: GestionUsuariosViewModel by viewModels()
 
+    /**
+     * Adaptador de la lista de usuarios.
+     * Expone acciones de activar/desactivar, regenerar PIN, editar y eliminar.
+     */
     private val adapter = AdminUsuarioAdapter(
         onToggleEstado = { confirmToggle(it) },
         onResetPin = { confirmRegenerarPin(it) },
@@ -34,6 +55,9 @@ class GestionUsuariosFragment : Fragment() {
         onEliminar = { confirmEliminar(it) }
     )
 
+    /**
+     * Infla el layout del fragmento y lo enlaza con ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +66,10 @@ class GestionUsuariosFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Configura la barra de herramientas, el RecyclerView, el botón FAB
+     * y comienza a observar el estado del ViewModel y los resultados de acciones.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -54,6 +82,13 @@ class GestionUsuariosFragment : Fragment() {
         observeActionResult()
     }
 
+    /**
+     * Observa el [GestionUsuariosState] y actualiza la UI según el estado actual.
+     *
+     * - Loading: muestra el indicador de progreso.
+     * - Success: muestra la lista o un mensaje de vacío si no hay usuarios.
+     * - Error: muestra el mensaje de error.
+     */
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -85,6 +120,10 @@ class GestionUsuariosFragment : Fragment() {
         }
     }
 
+    /**
+     * Observa los mensajes de resultado de acciones sobre usuarios
+     * y los muestra en un Snackbar, limpiando el resultado tras mostrarlo.
+     */
     private fun observeActionResult() {
         lifecycleScope.launch {
             viewModel.actionResult.collect { msg ->
@@ -96,6 +135,13 @@ class GestionUsuariosFragment : Fragment() {
         }
     }
 
+    /**
+     * Muestra un diálogo de confirmación antes de activar o desactivar el usuario.
+     *
+     * El texto del mensaje varía según el estado actual del usuario.
+     *
+     * @param usuario Usuario cuyo estado se desea cambiar.
+     */
     private fun confirmToggle(usuario: AdminUsuarioInfo) {
         val accion = if (usuario.isActive) "desactivar" else "activar"
         MaterialAlertDialogBuilder(requireContext())
@@ -106,6 +152,12 @@ class GestionUsuariosFragment : Fragment() {
             .show()
     }
 
+    /**
+     * Muestra un diálogo de confirmación antes de regenerar el PIN del usuario.
+     * Informa que el nuevo PIN será enviado al correo del usuario.
+     *
+     * @param usuario Usuario al que se le regenerará el PIN.
+     */
     private fun confirmRegenerarPin(usuario: AdminUsuarioInfo) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Regenerar PIN")
@@ -115,6 +167,12 @@ class GestionUsuariosFragment : Fragment() {
             .show()
     }
 
+    /**
+     * Muestra el diálogo de creación de usuario con campos para cédula, nombre,
+     * apellido, correo electrónico, PIN y selección de rol.
+     *
+     * Al confirmar, construye un [AdminUsuarioInfo] y lo delega al ViewModel.
+     */
     private fun showCrearDialog() {
         val ctx = requireContext()
         val layout = LinearLayout(ctx).apply {
@@ -147,6 +205,12 @@ class GestionUsuariosFragment : Fragment() {
             .show()
     }
 
+    /**
+     * Muestra el diálogo de edición de usuario con los datos actuales precargados.
+     * Permite modificar nombre, apellido, correo y rol.
+     *
+     * @param usuario Usuario existente cuyos datos se van a editar.
+     */
     private fun showEditarDialog(usuario: AdminUsuarioInfo) {
         val ctx = requireContext()
         val layout = LinearLayout(ctx).apply {
@@ -175,6 +239,11 @@ class GestionUsuariosFragment : Fragment() {
             .show()
     }
 
+    /**
+     * Muestra un diálogo de confirmación antes de eliminar el usuario de forma permanente.
+     *
+     * @param usuario Usuario que se desea eliminar.
+     */
     private fun confirmEliminar(usuario: AdminUsuarioInfo) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Eliminar usuario")
@@ -184,6 +253,14 @@ class GestionUsuariosFragment : Fragment() {
             .show()
     }
 
+    /**
+     * Crea y agrega dinámicamente un campo de texto con estilo OutlinedBox al [parent].
+     *
+     * @param parent  LinearLayout al que se agrega el campo.
+     * @param hint    Texto de sugerencia del campo.
+     * @param initial Valor inicial del campo (vacío por defecto).
+     * @return [TextInputEditText] del campo creado para leer su valor más tarde.
+     */
     private fun buildTextInput(parent: LinearLayout, hint: String, initial: String = ""): TextInputEditText {
         val ctx = parent.context
         val til = TextInputLayout(ctx, null, com.google.android.material.R.style.Widget_MaterialComponents_TextInputLayout_OutlinedBox).apply {
@@ -206,6 +283,15 @@ class GestionUsuariosFragment : Fragment() {
         return et
     }
 
+    /**
+     * Crea y agrega dinámicamente un [Spinner] de selección de rol al [parent].
+     *
+     * Los roles disponibles son: ADMIN, VENDEDOR, BODEGA. Preselecciona el rol indicado.
+     *
+     * @param parent   LinearLayout al que se agrega el spinner.
+     * @param selected Rol preseleccionado (por defecto "VENDEDOR").
+     * @return [Spinner] creado para leer el rol seleccionado más tarde.
+     */
     private fun buildRolSpinner(parent: LinearLayout, selected: String = "VENDEDOR"): Spinner {
         val ctx = parent.context
         val roles = listOf("ADMIN", "VENDEDOR", "BODEGA")
@@ -222,6 +308,9 @@ class GestionUsuariosFragment : Fragment() {
         return spinner
     }
 
+    /**
+     * Libera el binding al destruir la vista para prevenir pérdidas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
