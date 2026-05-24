@@ -1,6 +1,5 @@
 package com.example.concentradospt.data.repository
 
-import android.util.Log
 import com.example.concentradospt.data.model.CrearPedidoRequest
 import com.example.concentradospt.data.model.DeliverySnapshotRequest
 import com.example.concentradospt.data.model.ItemPedidoRequest
@@ -8,7 +7,6 @@ import com.example.concentradospt.data.model.Pedido
 import com.example.concentradospt.data.model.CartItem
 import com.example.concentradospt.data.network.ApiService
 import com.example.concentradospt.data.network.RetrofitClient
-import com.google.gson.Gson
 
 /**
  * Repositorio que gestiona las operaciones relacionadas con los pedidos del cliente
@@ -74,7 +72,6 @@ class PedidoRepository {
                 addressReference = addressReference?.ifBlank { null }
             )
         )
-        Log.d("PedidoRepo", "JSON enviado: ${Gson().toJson(request)}")
         return api.crearPedido(request)
     }
 }

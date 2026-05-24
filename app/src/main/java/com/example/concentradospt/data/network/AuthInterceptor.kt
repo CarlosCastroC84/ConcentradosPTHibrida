@@ -2,6 +2,7 @@ package com.example.concentradospt.data.network
 
 import android.util.Log
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
+import com.example.concentradospt.BuildConfig
 import com.amplifyframework.core.Amplify
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -43,14 +44,14 @@ class AuthInterceptor : Interceptor {
         val token = fetchToken()
 
         return if (token != null) {
-            Log.d("AuthInterceptor", "Inyectando ID Token en: $path")
+            if (BuildConfig.DEBUG) Log.d("AuthInterceptor", "Inyectando ID Token en: $path")
             chain.proceed(
                 request.newBuilder()
                     .addHeader("Authorization", "Bearer $token")
                     .build()
             )
         } else {
-            Log.w("AuthInterceptor", "No se encontró token para la ruta: $path")
+            if (BuildConfig.DEBUG) Log.w("AuthInterceptor", "No se encontró token para la ruta: $path")
             chain.proceed(request)
         }
     }

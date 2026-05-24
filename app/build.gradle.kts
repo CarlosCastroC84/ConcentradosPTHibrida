@@ -17,12 +17,19 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "EPAYCO_KEY", "\"1582614\"")
+            buildConfigField("Boolean", "EPAYCO_TEST_MODE", "true")
+        }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "EPAYCO_KEY", "\"1582614\"")
+            buildConfigField("Boolean", "EPAYCO_TEST_MODE", "false")
         }
     }
     compileOptions {
@@ -35,6 +42,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     sourceSets {
         getByName("main") {

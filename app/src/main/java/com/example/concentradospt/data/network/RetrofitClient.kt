@@ -1,5 +1,6 @@
 package com.example.concentradospt.data.network
 
+import com.example.concentradospt.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,15 +26,16 @@ object RetrofitClient {
      * - Tiempos de espera de 30 segundos tanto para la conexión como para la lectura.
      */
     private val okHttpClient: OkHttpClient by lazy {
-        val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-        OkHttpClient.Builder()
+        val builder = OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor())
-            .addInterceptor(logging)
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
-            .build()
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+        }
+        builder.build()
     }
 
     /**

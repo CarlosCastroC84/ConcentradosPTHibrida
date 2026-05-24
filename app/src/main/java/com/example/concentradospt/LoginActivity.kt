@@ -229,9 +229,8 @@ class LoginActivity : AppCompatActivity() {
 
         BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                val email = getBiometricEmail() ?: return
-                val password = getBiometricPassword() ?: return
-                viewModel.signIn(email, password)
+                if (getBiometricEmail() == null) return
+                viewModel.checkExistingSession()
             }
             override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                 if (errorCode != BiometricPrompt.ERROR_USER_CANCELED &&
@@ -339,7 +338,7 @@ class LoginActivity : AppCompatActivity() {
                         val identifier = binding.etEmail.text?.toString()?.trim() ?: ""
                         val password = binding.etPassword.text?.toString()?.trim() ?: ""
                         if (identifier.isNotEmpty() && !identifier.matches(Regex("\\d{4,20}"))) {
-                            saveBiometricCredentials(identifier, password)
+                            saveBiometricCredentials(identifier)
                         }
                         navigateToMain(state.isAdmin)
                     }
@@ -401,10 +400,10 @@ class LoginActivity : AppCompatActivity() {
      * @param email Correo electrónico del usuario a guardar.
      * @param password Contraseña del usuario a guardar.
      */
-    private fun saveBiometricCredentials(email: String, password: String) {
+    private fun saveBiometricCredentials(email: String) {
         biometricPrefs.edit()
             .putString(KEY_BIOMETRIC_EMAIL, email)
-            .putString(KEY_BIOMETRIC_PASSWORD, password)
+            .remove(KEY_BIOMETRIC_PASSWORD)
             .apply()
     }
 
@@ -429,10 +428,7 @@ class LoginActivity : AppCompatActivity() {
      *
      * @return La contraseña guardada, o `null` si no existe.
      */
-    private fun getBiometricPassword() =
-        biometricPrefs.getString(KEY_BIOMETRIC_PASSWORD, null)
-
-    /**
+/**
      * Navega hacia la [MainActivity] finalizando la actividad actual.
      * Pasa el indicador de si el usuario tiene rol de administrador.
      *

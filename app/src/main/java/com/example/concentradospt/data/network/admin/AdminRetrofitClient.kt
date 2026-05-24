@@ -1,5 +1,6 @@
 package com.example.concentradospt.data.network.admin
 
+import com.example.concentradospt.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -31,16 +32,17 @@ object AdminRetrofitClient {
      * y el autenticador propios del módulo de administración.
      */
     private val okHttpClient: OkHttpClient by lazy {
-        val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-        OkHttpClient.Builder()
+        val builder = OkHttpClient.Builder()
             .addInterceptor(AdminAuthInterceptor())
             .authenticator(AdminTokenAuthenticator())
-            .addInterceptor(logging)
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
-            .build()
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+        }
+        builder.build()
     }
 
     /**

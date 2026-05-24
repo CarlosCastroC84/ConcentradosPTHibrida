@@ -1,44 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:stitch.withgoogle.com)",
-      "WebSearch",
-      "Bash(xargs grep *)",
-      "Bash(xargs wc *)",
-      "Bash(dir \"D:\\\\\\\\Librerias\\\\\\\\ConcentradosPT\\\\\\\\app\\\\\\\\src\\\\\\\\main\\\\\\\\res\\\\\\\\layout\\\\\\\\\")",
-      "Bash(findstr dialog *)",
-      "Bash(./gradlew assembleDebug)",
-      "PowerShell(curl.exe -X POST \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/api/v1/auth/login\" -H \"Content-Type: application/json\" -d '{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"VENDEDOR\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}' -v 2>&1)",
-      "PowerShell(curl.exe -X POST \"http://172.26.1.119:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d '{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"VENDEDOR\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}' -s -w \"`nHTTP_CODE: %{http_code}\")",
-      "PowerShell(curl.exe \"http://172.26.1.119/\" -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 8; curl.exe \"https://172.26.1.119/\" -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 8 -k)",
-      "PowerShell(curl.exe -X POST \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/auth/login\" -H \"Content-Type: application/json\" -d '{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"VENDEDOR\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}' -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
-      "PowerShell(curl.exe -X POST \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/auth/empleado/login\" -H \"Content-Type: application/json\" -d '{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"VENDEDOR\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}' -s -w \"`nHTTP_CODE: %{http_code}\"; curl.exe -X OPTIONS \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/auth/\" -s -w \"`nHTTP_CODE: %{http_code}\")",
-      "PowerShell(curl.exe \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/productos\" -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10 | Select-Object -First 3)",
-      "PowerShell(curl.exe -X POST \"https://uswxs1ee2d.execute-api.us-east-2.amazonaws.com/prod/api/v1/auth/login\" -H \"Content-Type: application/json\" -d \"{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"ADMIN\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}\" -s -w \"`nHTTP_CODE: %{http_code}\")",
-      "PowerShell(curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d \"{\\\\\"cedula\\\\\":\\\\\"1065565849\\\\\",\\\\\"rol\\\\\":\\\\\"ADMIN\\\\\",\\\\\"pin\\\\\":\\\\\"6987\\\\\"}\" -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
-      "PowerShell($body = '{\"cedula\":\"1065565849\",\"rol\":\"ADMIN\",\"pin\":\"6987\"}'; curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d $body -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
-      "PowerShell($body = '{\"cedula\":\"1065565849\",\"rol\":\"VENDEDOR\",\"pin\":\"6987\"}'; curl.exe -X POST \"http://100.25.124.3:8080/api/v1/auth/login\" -H \"Content-Type: application/json\" -d $body -s -w \"`nHTTP_CODE: %{http_code}\" --max-time 10)",
-      "Bash(awk '{print $9}')",
-      "Bash(grep -v \"^$\")",
-      "Bash(dir /s \"D:\\\\Librerias\\\\ConcentradosPT\\\\app\\\\src\\\\main\\\\java\")",
-      "Bash(adb logcat *)",
-      "Read(//d/Android/SDK/Sdk/platform-tools/**)",
-      "Bash(./adb.exe logcat *)",
-      "Bash(./adb.exe install *)",
-      "Bash(./gradlew clean *)",
-      "Bash(adb install *)",
-      "PowerShell(adb install *)",
-      "PowerShell(Get-Command *)",
-      "PowerShell($adb = \"C:\\\\Users\\\\cacc1\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; & $adb install -r -t \"D:\\\\Librerias\\\\ConcentradosPT\\\\app\\\\build\\\\intermediates\\\\apk\\\\debug\\\\app-debug.apk\")",
-      "PowerShell($adb = \"C:\\\\Users\\\\cacc1\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; & $adb install -r -t \"D:\\\\Librerias\\\\ConcentradosPT\\\\app\\\\build\\\\outputs\\\\apk\\\\debug\\\\app-debug.apk\")",
-      "PowerShell($adb = \"C:\\\\Users\\\\cacc1\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; & $adb logcat -c; Write-Host \"Logcat limpiado\")",
-      "PowerShell($adb = \"C:\\\\Users\\\\cacc1\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; & $adb logcat -d | Select-String -Pattern \"PedidoRepo|Checkout|okhttp\" | Select-Object -First 60)",
-      "PowerShell($adb = \"C:\\\\Users\\\\cacc1\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; & $adb logcat -c; Write-Host \"Listo\")",
-      "PowerShell(Select-String -Path \"C:\\\\Users\\\\cacc1\\\\.claude\\\\projects\\\\D--Librerias-ConcentradosPT\\\\6da00270-8e28-45dd-95ec-ab9e0d061b6d\\\\tool-results\\\\b8ddtxmcv.txt\" -Pattern \"POST|pedidos|500|PedidoRepo|Error\" | Select-Object -First 30 | ForEach-Object { $_.Line })",
-      "PowerShell(Select-String -Path \"C:\\\\Users\\\\cacc1\\\\.claude\\\\projects\\\\D--Librerias-ConcentradosPT\\\\6da00270-8e28-45dd-95ec-ab9e0d061b6d\\\\tool-results\\\\b8ddtxmcv.txt\" -Pattern \"clientes/pedidos|500|PedidoRepo|Checkout|detail\" | ForEach-Object { $_.Line } | Select-Object -First 20)",
-      "PowerShell($adb = \"C:\\\\Users\\\\cacc1\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; & $adb logcat -c; Write-Host \"Limpio - prueba ahora el checkout\")",
-      "PowerShell($adb = \"C:\\\\Users\\\\cacc1\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; & $adb logcat -d | Select-String -Pattern \"clientes/pedidos|PedidoRepo|500|detail|Error en pedidos|INVALID|PRODUCT\" | ForEach-Object { $_.Line })",
-      "PowerShell(cd \"D:\\\\Librerias\\\\ConcentradosPT\"; .\\\\gradlew assembleDebug 2>&1 | Select-Object -Last 5; $adb = \"C:\\\\Users\\\\cacc1\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; & $adb install -r -t \"D:\\\\Librerias\\\\ConcentradosPT\\\\app\\\\build\\\\outputs\\\\apk\\\\debug\\\\app-debug.apk\")"
+      "Bash(Get-ChildItem -Path \"D:\\\\Librerias\\\\ConcentradosPT\" -Recurse -Directory)",
+      "Bash(Select-Object -First 20)",
+      "Bash(Format-Table FullName)"
     ]
   }
 }

@@ -61,7 +61,8 @@ class AdminTokenAuthenticator : Authenticator {
                     .build()
             }
 
-            val body = """{"refreshToken":"$refreshToken"}"""
+            val body = org.json.JSONObject().put("refreshToken", refreshToken)
+                .toString()
                 .toRequestBody("application/json".toMediaTypeOrNull())
             val refreshRequest = Request.Builder()
                 .url("http://100.25.124.3:8080/api/v1/auth/refresh")

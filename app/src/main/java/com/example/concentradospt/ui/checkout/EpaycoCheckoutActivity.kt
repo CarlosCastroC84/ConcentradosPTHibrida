@@ -11,6 +11,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.concentradospt.BuildConfig
 import com.example.concentradospt.R
 
 /**
@@ -125,7 +126,7 @@ class EpaycoCheckoutActivity : AppCompatActivity() {
             }
         }
 
-        val publicKey = getString(R.string.epayco_public_key)
+        val publicKey = BuildConfig.EPAYCO_KEY
         webView.loadDataWithBaseURL(
             "https://checkout.epayco.co",
             buildCheckoutHtml(publicKey, total, pedidoId),
@@ -220,7 +221,7 @@ class EpaycoCheckoutActivity : AppCompatActivity() {
                     data-epayco-description="Pedido #$pedidoCorto"
                     data-epayco-currency="cop"
                     data-epayco-country="co"
-                    data-epayco-test="true"
+                    data-epayco-test="${BuildConfig.EPAYCO_TEST_MODE}"
                     data-epayco-response="epayco://response"
                     data-epayco-confirmation="epayco://confirmation"
                     data-epayco-external="false">
